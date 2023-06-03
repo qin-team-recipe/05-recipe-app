@@ -40,3 +40,9 @@ lerna-debug.log*
 .env.production
 .env.development.local
 .env.production.local
+
+# .docker
+.docker/mysql/db
+.docker/mysql/log
+.docker/localstack/*.pem*
+.docker/localstack/data
