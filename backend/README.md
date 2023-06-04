@@ -29,6 +29,15 @@ $ docker exec localstack aws --endpoint-url=http://localhost:4572 s3 mb s3://rec
 
 `localhost:8000`にアクセスして、`recipe-app`バケットが作成されていればOK
 
+## Migration
+```bash
+$ npm run migrate
+```
+## Init PrismaClient
+```bash
+$ npx prisma generate
+```
+
 ## Others
 backendディレクトリに`.git`が存在する場合は、削除する。
 ```bash
