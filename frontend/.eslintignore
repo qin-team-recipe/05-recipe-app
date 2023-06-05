@@ -2,5 +2,4 @@
 /.next/*
 /public/*
 /.eslintrc.js
-/prettier.config.js
-/next.config.js
+/*.config.js
