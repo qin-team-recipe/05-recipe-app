@@ -9,33 +9,94 @@ datasource db {
 }
 
 model User {
-  id           String    @id @default(cuid())
+  id           String     @id @default(cuid())
   name         String
-  imgPath      String?   @map("img_path") @db.Text
-  introduction String    @db.Text
-  twitterId    String?   @map("twitter_id")
-  instagramId   String?   @map("instagram_id")
-  siteUrl      String?   @map("site_url")
-  createdAt    DateTime  @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
-  updatedAt    DateTime  @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
-  deletedAt    DateTime? @map("deleted_at")
+  imgPath      String?    @map("img_path") @db.Text
+  introduction String     @db.Text
+  twitterId    String?    @map("twitter_id")
+  instagramId  String?    @map("instagram_id")
+  siteUrl      String?    @map("site_url")
+  createdAt    DateTime   @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt    DateTime   @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
+  deletedAt    DateTime?  @map("deleted_at")
   recipe       Recipe[]
+  Favorites    Favorite[]
 
   @@map("users")
 }
 
 model Recipe {
-  id            String    @id @default(cuid())
-  userId        String    @map("user_id")
+  id            String        @id @default(cuid())
+  userId        String        @map("user_id")
   name          String
-  description   String    @db.Text
-  servingCount  Int       @map("serving_count") @db.UnsignedTinyInt
-  favoriteCount Int       @map("favorite_count") @db.UnsignedTinyInt
-  draftFlag     Boolean   @default(true) @map("draft_flag")
-  createdAt     DateTime  @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
-  updatedAt     DateTime  @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
-  deletedAt     DateTime? @map("deleted_at")
-  user          User      @relation(fields: [userId], references: [id])
+  description   String        @db.Text
+  servingCount  Int           @map("serving_count") @db.UnsignedTinyInt
+  favoriteCount Int           @map("favorite_count") @db.UnsignedTinyInt
+  draftFlag     Boolean       @default(true) @map("draft_flag")
+  createdAt     DateTime      @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt     DateTime      @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
+  deletedAt     DateTime?     @map("deleted_at")
+  user          User          @relation(fields: [userId], references: [id])
+  RecipeSteps   RecipeStep[]
+  RecipeLinks   RecipeLink[]
+  RecipeImages  RecipeImage[]
+  RecipeItems   RecipeItem[]
 
   @@map("recipes")
+}
+
+model RecipeStep {
+  id          Int      @id @default(autoincrement())
+  recipeId    String   @map("recipe_id")
+  description String   @db.Text
+  stepNum     Int      @map("step_num") @db.UnsignedTinyInt
+  createdAt   DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt   DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
+  recipe      Recipe   @relation(fields: [recipeId], references: [id])
+
+  @@map("recipe_steps")
+}
+
+model RecipeLink {
+  id        Int      @id @default(autoincrement())
+  recipeId  String   @map("recipe_id")
+  url       String   @db.Text
+  createdAt DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
+  recipe    Recipe   @relation(fields: [recipeId], references: [id])
+
+  @@map("recipe_links")
+}
+
+model RecipeImage {
+  id        Int      @id @default(autoincrement())
+  recipeId  String   @map("recipe_id")
+  path      String   @db.Text
+  createdAt DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
+  recipe    Recipe   @relation(fields: [recipeId], references: [id])
+
+  @@map("recipe_Images")
+}
+
+model RecipeItem {
+  id          Int      @id @default(autoincrement())
+  recipeId    String   @map("recipe_id")
+  name        String
+  description String   @db.Text
+  createdAt   DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt   DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
+  recipe      Recipe   @relation(fields: [recipeId], references: [id])
+
+  @@map("recipe_Items")
+}
+
+model Favorite {
+  id        Int      @id @default(autoincrement())
+  userId    String   @map("user_id")
+  recipeId  String   @map("recipe_id")
+  createdAt DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@map("favorites")
 }
