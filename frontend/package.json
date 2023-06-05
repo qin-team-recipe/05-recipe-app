@@ -7,8 +7,13 @@
     "predev": "rm -rf .next",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
     "eslint": "eslint --ext .jsx,.js,.tsx,.tsx ./src --fix",
+    "lint": "run-p --continue-on-error lint:*",
+    "lint:eslint": "eslint --ext .jsx,.js,.tsx,.tsx ./src",
+    "lint:prettier": "prettier --write .",
+    "fix": "run-s --continue-on-error fix:eslint fix:prettier",
+    "fix:eslint": "eslint --ext .jsx,.js,.tsx,.tsx ./src --fix",
+    "fix:prettier": "prettier --write ./src",
     "test": "jest"
   },
   "dependencies": {
