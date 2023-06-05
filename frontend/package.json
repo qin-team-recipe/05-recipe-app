@@ -16,6 +16,15 @@
     "fix:prettier": "prettier --write ./src",
     "test": "jest"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "yarn fix:eslint",
+      "yarn fix:prettier"
+    ],
+    "**/*.{json,md,mdx,css,html,yml,yaml,scss}": [
+      "prettier --write ."
+    ]
+  },
   "dependencies": {
     "next": "13.4.4",
     "react": "18.2.0",
