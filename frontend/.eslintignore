@@ -3,3 +3,4 @@
 /public/*
 /.eslintrc.js
 /*.config.js
+/jest.setup.js
