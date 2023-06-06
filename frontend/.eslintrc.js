@@ -118,4 +118,5 @@ module.exports = {
       },
     },
   ],
+  ignorePatterns: ["node_modules", ".next", "out", ".eslintrc.js"],
 }
