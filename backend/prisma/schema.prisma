@@ -1,6 +1,6 @@
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["fullTextIndex"]
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -9,39 +9,47 @@ datasource db {
 }
 
 model User {
-  id           String     @id @default(cuid())
-  name         String
-  imgPath      String?    @map("img_path") @db.Text
-  introduction String     @db.Text
-  twitterId    String?    @map("twitter_id")
-  instagramId  String?    @map("instagram_id")
-  siteUrl      String?    @map("site_url")
-  createdAt    DateTime   @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
-  updatedAt    DateTime   @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
-  deletedAt    DateTime?  @map("deleted_at")
-  recipe       Recipe[]
-  Favorites    Favorite[]
+  id            String         @id @default(cuid())
+  email         String         @unique
+  password      String
+  name          String
+  imgPath       String?        @map("img_path") @db.Text
+  introduction  String         @db.Text
+  twitterId     String?        @map("twitter_id")
+  instagramId   String?        @map("instagram_id")
+  siteUrl       String?        @map("site_url")
+  createdAt     DateTime       @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt     DateTime       @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
+  recipes       Recipe[]
+  favorites     Favorite[]
+  followers     Follow[]       @relation("follower")
+  followeds     Follow[]       @relation("followed")
+  shoppingMemos ShoppingMemo[]
+  shoppingMenus ShoppingMenu[]
 
+  @@fulltext([name, introduction])
   @@map("users")
 }
 
 model Recipe {
-  id            String        @id @default(cuid())
-  userId        String        @map("user_id")
+  id            String         @id @default(cuid())
+  userId        String         @map("user_id")
   name          String
-  description   String        @db.Text
-  servingCount  Int           @map("serving_count") @db.UnsignedTinyInt
-  favoriteCount Int           @map("favorite_count") @db.UnsignedTinyInt
-  draftFlag     Boolean       @default(true) @map("draft_flag")
-  createdAt     DateTime      @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
-  updatedAt     DateTime      @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
-  deletedAt     DateTime?     @map("deleted_at")
-  user          User          @relation(fields: [userId], references: [id])
-  RecipeSteps   RecipeStep[]
-  RecipeLinks   RecipeLink[]
-  RecipeImages  RecipeImage[]
-  RecipeItems   RecipeItem[]
+  description   String         @db.Text
+  servingCount  Int            @map("serving_count") @db.UnsignedTinyInt
+  favoriteCount Int            @map("favorite_count") @db.UnsignedInt
+  draftFlag     Boolean        @default(true) @map("draft_flag")
+  createdAt     DateTime       @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt     DateTime       @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
+  user          User           @relation(fields: [userId], references: [id])
+  recipeSteps   RecipeStep[]
+  recipeLinks   RecipeLink[]
+  recipeImages  RecipeImage[]
+  recipeItems   RecipeItem[]
+  favorites     Favorite[]
+  shoppingMenus ShoppingMenu[]
 
+  @@fulltext([name, description])
   @@map("recipes")
 }
 
@@ -54,6 +62,7 @@ model RecipeStep {
   updatedAt   DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
   recipe      Recipe   @relation(fields: [recipeId], references: [id])
 
+  @@fulltext([description])
   @@map("recipe_steps")
 }
 
@@ -76,19 +85,21 @@ model RecipeImage {
   updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
   recipe    Recipe   @relation(fields: [recipeId], references: [id])
 
-  @@map("recipe_Images")
+  @@map("recipe_images")
 }
 
 model RecipeItem {
-  id          Int      @id @default(autoincrement())
-  recipeId    String   @map("recipe_id")
-  name        String
-  description String   @db.Text
-  createdAt   DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
-  updatedAt   DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
-  recipe      Recipe   @relation(fields: [recipeId], references: [id])
+  id            Int            @id @default(autoincrement())
+  recipeId      String         @map("recipe_id")
+  name          String
+  description   String         @db.Text
+  createdAt     DateTime       @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt     DateTime       @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
+  recipe        Recipe         @relation(fields: [recipeId], references: [id])
+  shoppingItems ShoppingItem[]
 
-  @@map("recipe_Items")
+  @@fulltext([name])
+  @@map("recipe_items")
 }
 
 model Favorite {
@@ -97,6 +108,59 @@ model Favorite {
   recipeId  String   @map("recipe_id")
   createdAt DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
   user      User     @relation(fields: [userId], references: [id])
+  recipe    Recipe   @relation(fields: [recipeId], references: [id])
 
   @@map("favorites")
+}
+
+model ShoppingMemo {
+  id         String   @id @default(cuid())
+  userId     String   @map("user_id")
+  name       String
+  boughtFlag Boolean  @default(false) @map("bought_flag")
+  createdAt  DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt  DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
+  user       User     @relation(fields: [userId], references: [id])
+
+  @@map("shopping_memos")
+}
+
+model ShoppingMenu {
+  id            String         @id @default(cuid())
+  userId        String         @map("user_id")
+  recipeId      String         @map("recipe_id")
+  name          String
+  order         Int            @map("order") @db.UnsignedInt
+  createdAt     DateTime       @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt     DateTime       @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
+  user          User           @relation(fields: [userId], references: [id])
+  recipe        Recipe         @relation(fields: [recipeId], references: [id])
+  shoppingItems ShoppingItem[]
+
+  @@map("shopping_menus")
+}
+
+model ShoppingItem {
+  id             Int          @id @default(autoincrement())
+  shoppingMenuId String       @map("shopping_menu_id")
+  recipeItemId   Int          @map("recipe_item_id")
+  boughtFlag     Boolean      @default(false) @map("bought_flag")
+  createdAt      DateTime     @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt      DateTime     @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
+  shoppingMenu   ShoppingMenu @relation(fields: [shoppingMenuId], references: [id])
+  recipeItem     RecipeItem   @relation(fields: [recipeItemId], references: [id])
+
+  @@map("shopping_items")
+}
+
+model Follow {
+  id         Int      @id @default(autoincrement())
+  followerId String   @map("follower_id")
+  followedId String   @map("followed_id")
+  createdAt  DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  follower   User     @relation("follower", fields: [followerId], references: [id])
+  followed   User     @relation("followed", fields: [followedId], references: [id])
+
+  @@unique([followerId, followedId])
+  @@map("follows")
 }
