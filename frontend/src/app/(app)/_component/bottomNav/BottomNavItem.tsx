@@ -2,6 +2,8 @@ import React, { FC } from "react"
 import { Route } from "next"
 import Link from "next/link"
 
+/** @package */
+export type NavLabel = "検索" | "お気に入り" | "お買い物"
 type BottomNavItemProps<T extends string> = {
   href: Route<T> | URL
   navLabel: "検索" | "お気に入り" | "お買い物"

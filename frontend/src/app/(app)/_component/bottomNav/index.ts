@@ -1,2 +1,2 @@
 export { BottomNavBar } from "./BottomNavBar"
-export { BottomNavItem } from "./BottomNavItem"
+export { BottomNavItem, type NavLabel } from "./BottomNavItem"
