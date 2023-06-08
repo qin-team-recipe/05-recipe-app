@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react"
 
-import { SearchHeader } from "./_component"
+import { SearchHeader } from "@/app/(app)/search/_component"
 
 type SearchLayoutProps = {
   children: ReactNode
