@@ -12,6 +12,7 @@ const customJestConfig = {
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
   },
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
 }
 
 module.exports = createJestConfig(customJestConfig)
