@@ -16,7 +16,7 @@ export default function MainLayout(props: MainLayoutProps) {
   return (
     <div className="flex h-screen flex-col justify-between">
       <main className="mb-auto mt-0 flex flex-1 flex-col overflow-y-auto px-2">{children}</main>
-      <footer className="w-full shadow-base">
+      <footer className="bg-mauve-app z-10 w-full shadow-base">
         <BottomNavBar>
           <BottomNavItem navLabel="検索" href="/search" />
           <BottomNavItem navLabel="お気に入り" href="/favorite" />
