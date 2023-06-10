@@ -8,11 +8,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum AuthProvider {
+  GOOGLE
+  APPLE
+}
+
 model User {
   id            String         @id @default(cuid()) @db.Char(25)
   email         String         @unique
-  password      String
-  name          String
+  provider      AuthProvider
+  providerId    String         @map("provider_id")
+  nickname      String
   imgPath       String?        @map("img_path") @db.Text
   introduction  String         @db.Text
   twitterId     String?        @map("twitter_id")
@@ -27,7 +33,8 @@ model User {
   shoppingMemos ShoppingMemo[]
   shoppingMenus ShoppingMenu[]
 
-  @@fulltext([name, introduction])
+  @@unique([provider, providerId])
+  @@fulltext([nickname, introduction])
   @@map("users")
 }
 
