@@ -8,11 +8,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum AuthProvider {
+  GOOGLE
+  APPLE
+}
+
 model User {
-  id            String         @id @default(cuid())
+  id            String         @id @default(cuid()) @db.Char(25)
   email         String         @unique
-  password      String
-  name          String
+  provider      AuthProvider
+  providerId    String         @map("provider_id")
+  nickname      String
   imgPath       String?        @map("img_path") @db.Text
   introduction  String         @db.Text
   twitterId     String?        @map("twitter_id")
@@ -27,13 +33,14 @@ model User {
   shoppingMemos ShoppingMemo[]
   shoppingMenus ShoppingMenu[]
 
-  @@fulltext([name, introduction])
+  @@unique([provider, providerId])
+  @@fulltext([nickname, introduction])
   @@map("users")
 }
 
 model Recipe {
-  id            String         @id @default(cuid())
-  userId        String         @map("user_id")
+  id            String         @id @default(cuid()) @db.Char(25)
+  userId        String         @map("user_id") @db.Char(25)
   name          String
   description   String         @db.Text
   servingCount  Int            @map("serving_count") @db.UnsignedTinyInt
@@ -55,7 +62,7 @@ model Recipe {
 
 model RecipeStep {
   id          Int      @id @default(autoincrement())
-  recipeId    String   @map("recipe_id")
+  recipeId    String   @map("recipe_id") @db.Char(25)
   description String   @db.Text
   stepNum     Int      @map("step_num") @db.UnsignedTinyInt
   createdAt   DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
@@ -68,7 +75,7 @@ model RecipeStep {
 
 model RecipeLink {
   id        Int      @id @default(autoincrement())
-  recipeId  String   @map("recipe_id")
+  recipeId  String   @map("recipe_id") @db.Char(25)
   url       String   @db.Text
   createdAt DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
   updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
@@ -79,7 +86,7 @@ model RecipeLink {
 
 model RecipeImage {
   id        Int      @id @default(autoincrement())
-  recipeId  String   @map("recipe_id")
+  recipeId  String   @map("recipe_id") @db.Char(25)
   path      String   @db.Text
   createdAt DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
   updatedAt DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
@@ -90,7 +97,7 @@ model RecipeImage {
 
 model RecipeItem {
   id            Int            @id @default(autoincrement())
-  recipeId      String         @map("recipe_id")
+  recipeId      String         @map("recipe_id") @db.Char(25)
   name          String
   description   String         @db.Text
   createdAt     DateTime       @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
@@ -104,8 +111,8 @@ model RecipeItem {
 
 model Favorite {
   id        Int      @id @default(autoincrement())
-  userId    String   @map("user_id")
-  recipeId  String   @map("recipe_id")
+  userId    String   @map("user_id") @db.Char(25)
+  recipeId  String   @map("recipe_id") @db.Char(25)
   createdAt DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
   user      User     @relation(fields: [userId], references: [id])
   recipe    Recipe   @relation(fields: [recipeId], references: [id])
@@ -114,8 +121,8 @@ model Favorite {
 }
 
 model ShoppingMemo {
-  id         String   @id @default(cuid())
-  userId     String   @map("user_id")
+  id         String   @id @default(cuid()) @db.Char(25)
+  userId     String   @map("user_id") @db.Char(25)
   name       String
   boughtFlag Boolean  @default(false) @map("bought_flag")
   createdAt  DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
@@ -126,9 +133,9 @@ model ShoppingMemo {
 }
 
 model ShoppingMenu {
-  id            String         @id @default(cuid())
-  userId        String         @map("user_id")
-  recipeId      String         @map("recipe_id")
+  id            String         @id @default(cuid()) @db.Char(25)
+  userId        String         @map("user_id") @db.Char(25)
+  recipeId      String         @map("recipe_id") @db.Char(25)
   name          String
   order         Int            @map("order") @db.UnsignedInt
   createdAt     DateTime       @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
@@ -142,7 +149,7 @@ model ShoppingMenu {
 
 model ShoppingItem {
   id             Int          @id @default(autoincrement())
-  shoppingMenuId String       @map("shopping_menu_id")
+  shoppingMenuId String       @map("shopping_menu_id") @db.Char(25)
   recipeItemId   Int          @map("recipe_item_id")
   boughtFlag     Boolean      @default(false) @map("bought_flag")
   createdAt      DateTime     @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
@@ -155,8 +162,8 @@ model ShoppingItem {
 
 model Follow {
   id         Int      @id @default(autoincrement())
-  followerId String   @map("follower_id")
-  followedId String   @map("followed_id")
+  followerId String   @map("follower_id") @db.Char(25)
+  followedId String   @map("followed_id") @db.Char(25)
   createdAt  DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
   follower   User     @relation("follower", fields: [followerId], references: [id])
   followed   User     @relation("followed", fields: [followedId], references: [id])

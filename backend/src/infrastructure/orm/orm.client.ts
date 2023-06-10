@@ -1,5 +1,5 @@
 import { INestApplication, Injectable, OnModuleInit } from '@nestjs/common';
-import { PrismaClient, Prisma } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 
 export type TransactionClient = Omit<
   PrismaClient,
@@ -7,7 +7,7 @@ export type TransactionClient = Omit<
 >;
 
 @Injectable()
-export class PrismaService
+export class OrmClient
   extends PrismaClient<Prisma.PrismaClientOptions, Prisma.LogLevel>
   implements OnModuleInit
 {
