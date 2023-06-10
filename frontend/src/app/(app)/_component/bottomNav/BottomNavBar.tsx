@@ -11,5 +11,5 @@ export const BottomNavBar: FC<BottomNavBarProps> = (props) => {
   const { children } = props
 
   // TODO: スクロールしている時は非表示にする
-  return <nav className="grid w-full grid-cols-3 py-2">{children}</nav>
+  return <nav className="grid w-full grid-cols-3 py-0.5">{children}</nav>
 }
