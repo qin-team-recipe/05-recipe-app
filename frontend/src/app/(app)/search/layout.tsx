@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react"
 
-import { ContentContainer } from "@/app/(app)/_component/container"
 import { SearchHeader } from "@/app/(app)/search/_component"
 
 type SearchLayoutProps = {
@@ -15,9 +14,7 @@ export default function SearchLayout(props: SearchLayoutProps) {
       <header className="mb-auto mt-0 w-full">
         <SearchHeader />
       </header>
-      <div className="flex-1 overflow-y-auto">
-        <ContentContainer>{children}</ContentContainer>
-      </div>
+      <div className="flex-1 overflow-y-auto py-5">{children}</div>
     </div>
   )
 }
