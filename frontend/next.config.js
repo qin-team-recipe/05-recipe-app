@@ -5,6 +5,15 @@ const nextConfig = {
     typedRoutes: true,
     serverActions: true,
   },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/search",
+        permanent: true,
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
