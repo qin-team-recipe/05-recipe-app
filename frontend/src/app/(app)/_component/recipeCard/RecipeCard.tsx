@@ -1,7 +1,8 @@
 import React, { FC } from "react"
 
-import { RecipeFavButton } from "@/app/(app)/_component/recipeCard/RecipeFavButton"
+import { RecipeFavButton } from "@/app/(app)/_component/recipeCard"
 
+/** @package */
 export const RecipeCard: FC = () => {
   return (
     <div className="text-mauve-normal w-36">
