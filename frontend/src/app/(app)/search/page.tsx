@@ -1,5 +1,7 @@
 import React from "react"
 
+import { HotChef, HotRecipe } from "@/app/(app)/search/_component"
+
 export const metadata = {
   title: "シェフやレシピを検索",
 }
@@ -10,13 +12,13 @@ export default function SearchPage() {
   })
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-12">
       <section>
-        <h3>注目のシェフ</h3>
+        <HotChef />
       </section>
 
       <section>
-        <h3>話題のレシピ</h3>
+        <HotRecipe />
       </section>
 
       <section>

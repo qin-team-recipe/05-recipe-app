@@ -1,13 +1,13 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { PrismaService } from 'src/infrastructure/prisma/prisma.service';
 import { ConfigService } from '@nestjs/config';
+import { NestFactory } from '@nestjs/core';
+import { OrmClient } from 'src/infrastructure/orm/orm.client';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const prismaService = app.get(PrismaService, { strict: false });
-  await prismaService.enableShutdownHooks(app);
+  const ormClient = app.get(OrmClient, { strict: false });
+  await ormClient.enableShutdownHooks(app);
 
   const configService = app.get(ConfigService);
   await app.listen(configService.get<number>('APP_PORT') || 8080);

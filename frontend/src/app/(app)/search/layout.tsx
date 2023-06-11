@@ -14,7 +14,7 @@ export default function SearchLayout(props: SearchLayoutProps) {
       <header className="mb-auto mt-0 w-full">
         <SearchHeader />
       </header>
-      <div className="flex-1 overflow-y-auto">{children}</div>
+      <div className="flex-1 overflow-y-auto py-5">{children}</div>
     </div>
   )
 }
