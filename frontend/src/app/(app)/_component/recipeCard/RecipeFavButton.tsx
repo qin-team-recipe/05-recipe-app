@@ -34,6 +34,7 @@ const reducer = (state: State, action: Action): State => {
   }
 }
 
+/** @package */
 export const RecipeFavButton: FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
 

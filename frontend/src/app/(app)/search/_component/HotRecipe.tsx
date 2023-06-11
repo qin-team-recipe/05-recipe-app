@@ -3,21 +3,18 @@ import React from "react"
 import { ScrollAreaWrapper } from "@/app/_component"
 import { ContentContainer } from "@/app/(app)/_component/container"
 import { SectionHeader } from "@/app/(app)/_component/header"
+import { RecipeCard } from "@/app/(app)/_component/recipeCard"
 
 /** @package */
-export const HotChef = () => {
+export const HotRecipe = () => {
   const chefCards = Array.from({ length: 10 }).map((_, i) => {
-    return (
-      <div key={i} className="min-w-32 h-56 w-32 bg-tomato-5">
-        山田シェフ
-      </div>
-    )
+    return <RecipeCard key={i} />
   })
 
   return (
     <div className="space-y-4">
       <ContentContainer>
-        <SectionHeader title="注目のシェフ" href="/favorite" />
+        <SectionHeader title="話題のレシピ" href="/favorite" isMore />
       </ContentContainer>
 
       {/* 横スクロールエリアには右paddingをつけない */}
