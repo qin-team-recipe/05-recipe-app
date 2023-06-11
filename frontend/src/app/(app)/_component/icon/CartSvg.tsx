@@ -2,14 +2,23 @@ import React, { FC } from "react"
 
 type IconProps = {
   color: string
+  height: number
+  width: number
 }
 
 /** @package */
 export const CartSvg: FC<IconProps> = (props) => {
-  const { color } = props
+  const { color, height, width } = props
 
   return (
-    <svg className={color} width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      className={color}
+      width={width}
+      height={height}
+      viewBox="0 0 25 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M8.33325 22C8.88554 22 9.33325 21.5523 9.33325 21C9.33325 20.4477 8.88554 20 8.33325 20C7.78097 20 7.33325 20.4477 7.33325 21C7.33325 21.5523 7.78097 22 8.33325 22Z"
         strokeWidth="1.5"

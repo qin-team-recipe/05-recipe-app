@@ -30,11 +30,11 @@ export const BottomNavItem: FC<BottomNavItemProps<string>> = (props) => {
   return (
     <Link href={href} className={`group flex flex-col items-center justify-center gap-1 ${textColor}`}>
       {navLabel === "検索" ? (
-        <SearchSvg color={imgColor} />
+        <SearchSvg color={imgColor} width={24} height={24} />
       ) : navLabel === "お気に入り" ? (
-        <FavSvg color={imgColor} />
+        <FavSvg color={imgColor} width={24} height={24} strokeWidth={1.5} />
       ) : (
-        <CartSvg color={imgColor} />
+        <CartSvg color={imgColor} width={24} height={24} />
       )}
       <div className="text-xs">{navLabel}</div>
     </Link>

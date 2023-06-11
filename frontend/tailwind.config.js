@@ -19,5 +19,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-radix-colors")],
+  plugins: [require("tailwindcss-radix-colors"), require("@tailwindcss/line-clamp")],
 }
