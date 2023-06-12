@@ -1,4 +1,4 @@
 export { SearchHeader } from "./SearchHeader"
-export { HotChef } from "./HotChef"
-export { HotRecipe } from "./HotRecipe"
+export { HotChefList } from "./HotChefList"
+export { HotRecipeList } from "./HotRecipeList"
 export { ChefList } from "./ChefList"
