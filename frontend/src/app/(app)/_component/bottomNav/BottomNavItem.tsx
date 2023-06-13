@@ -17,14 +17,17 @@ type BottomNavItemProps<T extends string> = {
 }
 
 const textColor = tv({
-  base: `group flex flex-1 flex-col items-center justify-center gap-1
-  sm:flex-row sm:justify-start sm:gap-2 sm:mr-5`,
+  base: `
+  group flex flex-1 flex-col items-center justify-center gap-1 pl-3 py-2 rounded-lg
+  hover:bg-tomato-4
+  sm:flex-row sm:justify-start sm:gap-2 sm:pr-5 sm:rounded-full `,
   variants: {
     isActive: {
-      false: `text-gray-11 stroke-gray-11
-        hover:text-tomato-11 hover:stroke-tomato-11
-        dark:text-graydark-11 dark:hover:text-tomatodark-11
-        dark:stroke-graydark-11 dark:hover:stroke-tomatodark-11`,
+      false: `
+      text-gray-11 stroke-gray-11
+      hover:text-tomato-11 hover:stroke-tomato-11
+      dark:text-graydark-11 dark:hover:text-tomatodark-11
+      dark:stroke-graydark-11 dark:hover:stroke-tomatodark-11`,
       true: "text-tomato-11 dark:text-tomatodark-11",
     },
   },
@@ -33,7 +36,8 @@ const textColor = tv({
 const imgColor = tv({
   variants: {
     isActive: {
-      false: `stroke-gray-11 group-hover:stroke-tomato-11
+      false: `
+      stroke-gray-11 group-hover:stroke-tomato-11
       dark:stroke-graydark-11 darkroup-hover:stroke-tomatodark-11`,
       true: "stroke-tomato-11 dark:stroke-tomatodark-11",
     },

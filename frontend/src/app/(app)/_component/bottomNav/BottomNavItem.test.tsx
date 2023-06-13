@@ -7,7 +7,7 @@ import { BottomNavItem, NavLabel } from "@/app/(app)/_component/bottomNav/Bottom
 
 describe("BottomNavItemコンポーネントが正しくレンダリングされている", () => {
   describe("propsで受け取ったnavLabelが正しく表示されている", () => {
-    const navLabelList: NavLabel[] = ["検索", "お気に入り", "お買い物"]
+    const navLabelList: NavLabel[] = ["さがす", "お気に入り", "お買い物リスト"]
     const hrefList: (Route<string> | URL)[] = ["/search", "/favorite", "/shopping"]
 
     test("「検索」と表示されている", () => {
