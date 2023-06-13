@@ -8,7 +8,7 @@ import { SectionHeader } from "@/app/(app)/_component/header"
 export const HotChefList = () => {
   const chefCards = Array.from({ length: 10 }).map((_, i) => {
     return (
-      <div key={i} className="min-w-32 h-56 w-32 bg-tomato-5">
+      <div key={i} className="h-56 w-40 bg-tomato-5">
         山田シェフ
       </div>
     )
