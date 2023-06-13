@@ -19,7 +19,7 @@ type BottomNavItemProps<T extends string> = {
 const textColor = tv({
   base: `
   group flex flex-1 flex-col items-center justify-center gap-1 pl-3 py-2 rounded-lg
-  hover:bg-tomato-4
+  sm:hover:bg-tomato-4
   sm:flex-row sm:justify-start sm:gap-2 sm:pr-5 sm:rounded-full `,
   variants: {
     isActive: {
