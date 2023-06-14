@@ -1,17 +1,18 @@
 import React from "react"
 
 import { ScrollAreaWrapper } from "@/app/_component"
+import { ChefCard } from "@/app/(app)/_component/chefCard"
 import { ContentContainer } from "@/app/(app)/_component/container"
 import { SectionHeader } from "@/app/(app)/_component/header"
 
 /** @package */
 export const ChefList = () => {
   const chefCards = Array.from({ length: 10 }).map((_, i) => {
-    return (
-      <div key={i} className="min-w-22 h-36 w-24 bg-tomato-5">
-        山田シェフ
-      </div>
-    )
+    const introduction =
+      "白ごはん.comを運営しています。アップしたレシピの紹介や、youtube動画、日々の食のこと、オリジナル商品などの案内等をブログでやっています。"
+    const name = "山田シェフ"
+    const img = "/chef.jpeg"
+    return <ChefCard key={i} hasDescription={true} introduction={introduction} name={name} img={img} />
   })
 
   return (
