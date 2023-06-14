@@ -11,6 +11,7 @@ type ChefInfoProps = {
 /** @package */
 export const ChefInfo: FC<ChefInfoProps> = (props) => {
   const { count, introduction, name } = props
+
   return (
     <div className="h-full w-full">
       <p className="text-lg font-bold">{name}</p>

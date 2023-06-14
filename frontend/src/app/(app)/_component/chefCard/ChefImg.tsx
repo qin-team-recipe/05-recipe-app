@@ -8,8 +8,9 @@ type ChefImgProps = {
 /** @package */
 export const ChefImg: FC<ChefImgProps> = (props) => {
   const { img } = props
+
   return (
-    <div className=" h-full w-full">
+    <div className="h-full w-full">
       {/* TODO: imageがnullの場合の画像用意 */}
       <Image
         src={img || "/pizza.jpg"}
