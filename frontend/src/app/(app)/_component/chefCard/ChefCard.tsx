@@ -22,7 +22,7 @@ export const ChefCard: FC<ChefCardProps> = (props) => {
       <div className="h-full w-28">
         <ChefImg img={img} />
       </div>
-      <ChefInfo introduction={introduction} name={name} count={recipeCount || 0} />
+      <ChefInfo introduction={introduction} name={name} count={recipeCount ?? 0} />
     </div>
   ) : (
     <div className="min-w-32 relative flex h-56 w-32 overflow-hidden">
