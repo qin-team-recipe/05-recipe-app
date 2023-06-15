@@ -20,8 +20,13 @@ export default function ChefPage() {
           <div className="py-4">
             初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり主婦の友社より３月３日、２冊同時発売！絶賛発売中！
           </div>
-          <div className="text-mauve-dim text-sm">
-            <span className="text-mauve-normal pr-1 font-bold">456</span>フォロワー
+          <div className="align-center text-mauve-dim flex gap-2 text-sm">
+            <div>
+              <span className="text-mauve-normal pr-1 font-bold">2,345</span>レシピ
+            </div>
+            <div>
+              <span className="text-mauve-normal pr-1 font-bold">1,234</span>フォロワー
+            </div>
           </div>
         </div>
         <ChefFavButton />
