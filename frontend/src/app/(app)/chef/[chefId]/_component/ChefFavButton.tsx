@@ -8,7 +8,7 @@ const color = tv({
   base: `rounded-md border px-3 mt-3`,
   variants: {
     isFollow: {
-      false: `bg-tomato-solid text-tomato-1`,
+      false: `bg-tomato-solid text-tomato-1 border-tomato-10 dark:border-tomato-9`,
       true: "bg-tomato-ghost text-tomato-dim",
     },
   },
