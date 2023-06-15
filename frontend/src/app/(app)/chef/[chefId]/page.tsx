@@ -12,7 +12,7 @@ export default function ChefPage() {
   return (
     <div>
       <div className="relative h-96 max-h-screen w-full">
-        <Image src="/chef.jpg" alt="" fill className="h-3/4 object-cover" />
+        <Image src="/chef.jpg" alt="chef" fill className="h-3/4 object-cover" />
       </div>
       <ContentContainer>
         <div className="text-mauve-normal">
