@@ -1,24 +1,32 @@
 "use client"
 
-import React, { FC, useCallback, useState } from "react"
+import React, { FC, useState } from "react"
 
-import { FavSvg } from "@/app/(app)/_component/icon"
+import { tv } from "tailwind-variants"
+
+const color = tv({
+  base: `rounded-md border px-3 mt-3`,
+  variants: {
+    isFollow: {
+      false: `bg-tomato-solid text-tomato-1`,
+      true: "bg-tomato-ghost text-tomato-dim",
+    },
+  },
+})
 
 /** @package */
 export const ChefFavButton: FC = () => {
-  const [bgColor, SetbgColor] = useState<string>("bg-mauve-9")
-  const handleClick = useCallback(() => {
-    SetbgColor((prevColor) => {
-      return prevColor === "bg-mauve-9" ? "bg-tomato-9" : "bg-mauve-9"
+  const [isFollow, setIsFollow] = useState<boolean>(false)
+
+  const handleClick = () => {
+    setIsFollow((isFollow) => {
+      return !isFollow
     })
-  }, [])
+  }
 
   return (
-    <button
-      onClick={handleClick}
-      className={`absolute bottom-[-20px] right-4 z-10 grid aspect-square w-16 place-items-center rounded-full ${bgColor}`}
-    >
-      <FavSvg color="stroke-mauve-1" width={40} height={40} strokeWidth={1.5} />
+    <button onClick={handleClick} className={color({ isFollow })}>
+      {isFollow ? "フォロー中" : "フォローする"}
     </button>
   )
 }
