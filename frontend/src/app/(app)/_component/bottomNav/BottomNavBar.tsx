@@ -16,7 +16,7 @@ const bottomNavBar = tv({
   variants: {
     isShow: {
       false: "hidden sm:flex",
-      true: "grid",
+      true: "flex",
     },
   },
 })
