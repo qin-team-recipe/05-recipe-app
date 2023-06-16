@@ -2,7 +2,7 @@ import React from "react"
 import Image from "next/image"
 
 import { ContentContainer } from "@/app/(app)/_component/container"
-import { ChefFavButton } from "@/app/(app)/chef/[chefId]/_component"
+import { BackButton, ChefFavButton } from "@/app/(app)/chef/[chefId]/_component"
 
 export const metadata = {
   title: "シェフ詳細",
@@ -13,6 +13,7 @@ export default function ChefPage() {
     <div>
       <div className="relative h-96 max-h-screen w-full">
         <Image src="/chef.jpg" alt="chef" fill className="h-3/4 object-cover" />
+        <BackButton />
       </div>
       <ContentContainer>
         <div className="text-mauve-normal">
