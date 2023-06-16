@@ -11,12 +11,6 @@ datasource db {
 model User {
   id                String              @id @default(cuid()) @db.Char(25)
   email             String              @unique
-  nickname          String
-  imgPath           String?             @map("img_path") @db.Text
-  introduction      String              @db.Text
-  twitterId         String?             @map("twitter_id")
-  instagramId       String?             @map("instagram_id")
-  siteUrl           String?             @map("site_url") @db.Text
   createdAt         DateTime            @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
   updatedAt         DateTime            @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
   recipes           Recipe[]
@@ -26,9 +20,27 @@ model User {
   shoppingMemos     ShoppingMemo[]
   shoppingMenus     ShoppingMenu[]
   userAuthProviders UserAuthProviders[]
+  userProfile       UserProfile?
+
+  @@map("users")
+}
+
+model UserProfile {
+  userId        String   @unique @map("user_id") @db.Char(25)
+  nickname      String
+  imgPath       String?  @map("img_path") @db.Text
+  introduction  String   @db.Text
+  twitterId     String?  @map("twitter_id")
+  instagramId   String?  @map("instagram_id")
+  siteUrl       String?  @map("site_url") @db.Text
+  followerCount Int      @map("follower_count") @db.UnsignedInt
+  recipeCount   Int      @map("recipe_count") @db.UnsignedInt
+  createdAt     DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt     DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
+  user          User     @relation(fields: [userId], references: [id])
 
   @@fulltext([nickname, introduction])
-  @@map("users")
+  @@map("user_profiles")
 }
 
 enum AuthProvider {
