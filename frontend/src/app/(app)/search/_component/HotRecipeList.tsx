@@ -22,7 +22,7 @@ export const HotRecipeList = () => {
         <ScrollAreaWrapper>
           {/* カードリストの右にだけpaddingがつくように */}
           <ContentContainer isPaddingLeft={false}>
-            <div className="flex space-x-4">{chefCards}</div>
+            <div className="flex w-36 space-x-4">{chefCards}</div>
           </ContentContainer>
         </ScrollAreaWrapper>
       </ContentContainer>
