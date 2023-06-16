@@ -2,25 +2,28 @@ import React, { FC } from "react"
 
 import { ContentContainer } from "@/app/(app)/_component/container"
 import { PageDetailHeader } from "@/app/(app)/_component/header"
-import { RecipeCard } from "@/app/(app)/_component/recipeCard"
 import { TwoTab } from "@/app/(app)/_component/twoTab"
 import { twoTabLinkList } from "@/app/(app)/chef/[chefId]/_lib"
 
 export const metadata = {
-  title: "シェフ詳細 | シェフ一覧",
+  title: "シェフ詳細 | リンク",
 }
 
-type ChefPageProps = {
+type LinkTabPageProps = {
   params: {
     chefId: string
   }
 }
 
-const ChefPage: FC<ChefPageProps> = (props) => {
+const LinkTabPage: FC<LinkTabPageProps> = (props) => {
   const { params } = props
 
-  const chefCards = Array.from({ length: 10 }).map((_, i) => {
-    return <RecipeCard key={i} />
+  const chefCards = Array.from({ length: 4 }).map((_, i) => {
+    return (
+      <div key={i} className="h-20 w-full bg-tomato-5">
+        Linkカード
+      </div>
+    )
   })
 
   const linkList = twoTabLinkList(params.chefId)
@@ -32,7 +35,7 @@ const ChefPage: FC<ChefPageProps> = (props) => {
       <div className="py-7">
         <TwoTab linkList={linkList}>
           <ContentContainer>
-            <div className="grid grid-cols-2 gap-2">{chefCards}</div>
+            <div>{chefCards}</div>
           </ContentContainer>
         </TwoTab>
       </div>
@@ -40,4 +43,4 @@ const ChefPage: FC<ChefPageProps> = (props) => {
   )
 }
 
-export default ChefPage
+export default LinkTabPage
