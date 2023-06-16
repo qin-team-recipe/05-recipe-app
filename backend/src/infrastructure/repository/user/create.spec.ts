@@ -1,12 +1,36 @@
+import { Test } from '@nestjs/testing';
 import createPrismaMock from 'prisma-mock';
+import { CustomLoggerService } from 'src/common/logger/custom-logger.service';
 import { UserCreateInput } from 'src/entity/user.entity';
+import { OrmClient } from 'src/infrastructure/orm/orm.client';
 import { UserRepository } from './repository';
 
-let client;
 let repository: UserRepository;
-beforeAll(() => {
-  client = createPrismaMock();
-  repository = new UserRepository(client);
+let ormMock: OrmClient;
+let loggerMock: Partial<CustomLoggerService>;
+
+beforeAll(async () => {
+  ormMock = createPrismaMock();
+
+  loggerMock = {
+    error: jest.fn(),
+  };
+
+  const moduleRef = await Test.createTestingModule({
+    providers: [
+      UserRepository,
+      {
+        provide: OrmClient,
+        useValue: ormMock,
+      },
+      {
+        provide: CustomLoggerService,
+        useValue: loggerMock,
+      },
+    ],
+  }).compile();
+
+  repository = moduleRef.get<UserRepository>(UserRepository);
 });
 
 describe('UserRepository.create()', () => {
@@ -24,7 +48,7 @@ describe('UserRepository.create()', () => {
     const user = await repository.create(userProps);
 
     // Verify: ensure user.create was called with correct arguments
-    expect(client.user.create).toHaveBeenCalledWith({
+    expect(ormMock.user.create).toHaveBeenCalledWith({
       data: userProps,
     });
 
@@ -48,7 +72,7 @@ describe('UserRepository.create()', () => {
     const user = await repository.create(userPropsWithoutOptional);
 
     // Verify: ensure user.create was called with correct arguments
-    expect(client.user.create).toHaveBeenCalledWith({
+    expect(ormMock.user.create).toHaveBeenCalledWith({
       data: userPropsWithoutOptional,
     });
 
