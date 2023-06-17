@@ -15,8 +15,7 @@ type ChefCardProps = {
 
 /** @package */
 export const ChefCard: FC<ChefCardProps> = (props) => {
-  const { hasDescription, img, introduction, name, recipeCount } =
-    props
+  const { hasDescription, img, introduction, name, recipeCount } = props
 
   return hasDescription ? (
     <div className="flex h-28 w-full items-start gap-4 overflow-hidden">

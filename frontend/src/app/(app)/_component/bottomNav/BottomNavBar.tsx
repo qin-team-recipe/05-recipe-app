@@ -34,8 +34,6 @@ export const BottomNavBar: FC<BottomNavBarProps> = (props) => {
 
   // TODO: スクロールしている時は非表示にする
   return (
-    <div className={bottomNavBar({ isShow: isShowBottomNav })}>
-      {children}
-    </div>
+    <div className={bottomNavBar({ isShow: isShowBottomNav })}>{children}</div>
   )
 }

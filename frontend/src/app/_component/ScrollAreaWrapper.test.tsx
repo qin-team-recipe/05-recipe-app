@@ -9,10 +9,7 @@ type ChefCardProps = {
   onCardIntersect: (entries: IntersectionObserverEntry[]) => void
 }
 
-const ChefCard: React.FC<ChefCardProps> = ({
-  index,
-  onCardIntersect,
-}) => {
+const ChefCard: React.FC<ChefCardProps> = ({ index, onCardIntersect }) => {
   const cardRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -37,21 +34,17 @@ const ChefCard: React.FC<ChefCardProps> = ({
   )
 }
 
-const onCardIntersect = jest.fn(
-  (entries: IntersectionObserverEntry[]) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        // eslint-disable-next-line no-console
-        // console.log("Visible:", entry.target)
-      }
-    })
-  },
-)
+const onCardIntersect = jest.fn((entries: IntersectionObserverEntry[]) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      // eslint-disable-next-line no-console
+      // console.log("Visible:", entry.target)
+    }
+  })
+})
 
 const chefCards = Array.from({ length: 30 }).map((_, i) => {
-  return (
-    <ChefCard key={i} index={i} onCardIntersect={onCardIntersect} />
-  )
+  return <ChefCard key={i} index={i} onCardIntersect={onCardIntersect} />
 })
 
 describe("ScrollAreaWrapperコンポーネントでラップした要素をスクロールできる", () => {
@@ -87,10 +80,7 @@ describe("ScrollAreaWrapperコンポーネントでラップした要素をス�
   test("縦スクロールできる", async () => {
     render(
       <ScrollAreaWrapper orientation="vertical">
-        <div
-          className="flex flex-col space-x-4"
-          data-testid="scroll-area"
-        >
+        <div className="flex flex-col space-x-4" data-testid="scroll-area">
           {chefCards}
         </div>
       </ScrollAreaWrapper>,

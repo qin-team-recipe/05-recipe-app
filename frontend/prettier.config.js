@@ -1,7 +1,7 @@
 /** @type {import('prettier').Config} */
 module.exports = {
   // prettier
-  printWidth: 70,
+  printWidth: 80,
   singleQuote: false,
   semi: false,
   trailingComma: "all",
@@ -21,10 +21,6 @@ module.exports = {
     "",
     "^[./]",
   ],
-  importOrderParserPlugins: [
-    "typescript",
-    "jsx",
-    "decorators-legacy",
-  ],
+  importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
   importOrderTypeScriptVersion: "5.1.3",
 }

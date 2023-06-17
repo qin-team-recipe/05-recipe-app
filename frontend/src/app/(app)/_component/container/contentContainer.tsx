@@ -20,14 +20,8 @@ const container = tv({
 })
 
 /** @package */
-export const ContentContainer: FC<ContentContainerProps> = (
-  props,
-) => {
-  const {
-    children,
-    isPaddingLeft = true,
-    isPaddingRight = true,
-  } = props
+export const ContentContainer: FC<ContentContainerProps> = (props) => {
+  const { children, isPaddingLeft = true, isPaddingRight = true } = props
 
   return (
     <div className={container({ isPaddingLeft, isPaddingRight })}>

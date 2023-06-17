@@ -16,21 +16,13 @@ describe("セクションヘッダーが正しくレンダリングされてい�
   describe("propsで受け取ったisMoreの値によって「もっと見る」ボタンの表示が正しく切り替わっている", () => {
     test("isMoreがtrueのときは「もっと見る」ボタンが表示される", () => {
       const { getByText } = render(
-        <SectionHeader
-          title="注目のシェフ"
-          href="/favorite"
-          isMore
-        />,
+        <SectionHeader title="注目のシェフ" href="/favorite" isMore />,
       )
       expect(getByText("もっと見る")).toBeInTheDocument()
     })
     test("isMoreがfalseのときは「もっと見る」ボタンが表示されない", () => {
       const { queryByText } = render(
-        <SectionHeader
-          title="注目のシェフ"
-          href="/favorite"
-          isMore={false}
-        />,
+        <SectionHeader title="注目のシェフ" href="/favorite" isMore={false} />,
       )
       expect(queryByText("もっと見る")).toBeNull()
     })

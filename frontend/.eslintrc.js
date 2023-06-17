@@ -107,7 +107,12 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["src/**/page.tsx", "src/**/layout.tsx", "src/**/loading.tsx", "src/**/error.tsx"],
+      files: [
+        "src/**/page.tsx",
+        "src/**/layout.tsx",
+        "src/**/loading.tsx",
+        "src/**/error.tsx",
+      ],
       rules: { "import/no-default-export": "off" },
     },
     {

@@ -26,9 +26,7 @@ const reducer = (state: State, action: Action): State => {
       return {
         ...state,
         bgColor:
-          state.bgColor === "bg-mauve-12"
-            ? "bg-tomato-2"
-            : "bg-mauve-12",
+          state.bgColor === "bg-mauve-12" ? "bg-tomato-2" : "bg-mauve-12",
         strokeColor:
           state.strokeColor === "stroke-mauve-7"
             ? "stroke-tomato-10"
