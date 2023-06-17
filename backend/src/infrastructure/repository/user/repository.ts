@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CustomLoggerService } from 'src/common/logger/custom-logger.service';
 import {
   FindUserResponse,
+  PaginateUserResponse,
   UserCreateInput,
   UserResponse,
   UserUpdateInput,
@@ -68,6 +69,32 @@ export class UserRepository {
               name: true,
               description: true,
               favoriteCount: true,
+            },
+          },
+        },
+      });
+    } catch (error) {
+      this.logger.error(error);
+      throw error;
+    }
+  }
+
+  // ユーザー一覧をページネーションで取得する
+  async paginate(
+    page?: number,
+    perPage?: number,
+  ): Promise<PaginateUserResponse> {
+    try {
+      return await this.orm.user.findMany({
+        skip: page && perPage ? perPage * (page - 1) : undefined,
+        take: perPage,
+        include: {
+          userProfile: {
+            select: {
+              nickname: true,
+              imgPath: true,
+              introduction: true,
+              recipeCount: true,
             },
           },
         },

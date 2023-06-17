@@ -37,6 +37,10 @@ export type FindUserResponse = UserResponse & {
   recipes: FindUserRecipe[];
 };
 
+export type PaginateUserResponse = (UserResponse & {
+  userProfile: PaginateUserProfile | null;
+})[];
+
 export class UserCreateInputDto extends createZodDto(UserCreateInputSchema) {}
 
 export class UserUpdateInputDto extends createZodDto(UserUpdateInputSchema) {}
@@ -45,4 +49,8 @@ type FindUserProfile = Omit<UserProfile, 'userId' | 'createdAt' | 'updatedAt'>;
 type FindUserRecipe = Pick<
   Recipe,
   'id' | 'name' | 'description' | 'favoriteCount'
+>;
+type PaginateUserProfile = Pick<
+  UserProfile,
+  'nickname' | 'imgPath' | 'introduction' | 'recipeCount'
 >;
