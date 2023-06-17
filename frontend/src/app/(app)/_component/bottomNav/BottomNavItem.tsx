@@ -7,7 +7,11 @@ import { usePathname } from "next/navigation"
 
 import { tv } from "tailwind-variants"
 
-import { CartSvg, FavSvg, SearchSvg } from "@/app/(app)/_component/icon"
+import {
+  CartSvg,
+  FavSvg,
+  SearchSvg,
+} from "@/app/(app)/_component/icon"
 
 /** @package */
 export type NavLabel = "さがす" | "お気に入り" | "お買い物リスト"
@@ -45,7 +49,9 @@ const imgColor = tv({
 })
 
 /** @package */
-export const BottomNavItem: FC<BottomNavItemProps<string>> = (props) => {
+export const BottomNavItem: FC<BottomNavItemProps<string>> = (
+  props,
+) => {
   const { href, navLabel } = props
 
   const pathname = usePathname()
@@ -54,13 +60,32 @@ export const BottomNavItem: FC<BottomNavItemProps<string>> = (props) => {
   const currentIcon = () => {
     switch (navLabel) {
       case "さがす":
-        return <SearchSvg color={imgColor({ isActive })} width={24} height={24} />
+        return (
+          <SearchSvg
+            color={imgColor({ isActive })}
+            width={24}
+            height={24}
+          />
+        )
         break
       case "お気に入り":
-        return <FavSvg color={imgColor({ isActive })} width={24} height={24} strokeWidth={1.5} />
+        return (
+          <FavSvg
+            color={imgColor({ isActive })}
+            width={24}
+            height={24}
+            strokeWidth={1.5}
+          />
+        )
         break
       case "お買い物リスト":
-        return <CartSvg color={imgColor({ isActive })} width={24} height={24} />
+        return (
+          <CartSvg
+            color={imgColor({ isActive })}
+            width={24}
+            height={24}
+          />
+        )
         break
       default:
         return null

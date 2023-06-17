@@ -27,8 +27,15 @@ export const BottomNavBar: FC<BottomNavBarProps> = (props) => {
 
   const pathname = usePathname()
 
-  const isShowBottomNav = pathname === "/search" || pathname === "/favorite" || pathname === "/shopping"
+  const isShowBottomNav =
+    pathname === "/search" ||
+    pathname === "/favorite" ||
+    pathname === "/shopping"
 
   // TODO: スクロールしている時は非表示にする
-  return <div className={bottomNavBar({ isShow: isShowBottomNav })}>{children}</div>
+  return (
+    <div className={bottomNavBar({ isShow: isShowBottomNav })}>
+      {children}
+    </div>
+  )
 }

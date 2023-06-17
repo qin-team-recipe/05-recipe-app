@@ -10,7 +10,9 @@ type ScrollAreaWrapperProps = {
 }
 
 /** @package */
-export const ScrollAreaWrapper: FC<ScrollAreaWrapperProps> = (props) => {
+export const ScrollAreaWrapper: FC<ScrollAreaWrapperProps> = (
+  props,
+) => {
   const { children, orientation = "horizontal" } = props
 
   return (

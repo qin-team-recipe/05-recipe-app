@@ -9,7 +9,9 @@ type SectionHeaderProps<T extends string> = {
 }
 
 /** @package */
-export const SectionHeader: FC<SectionHeaderProps<string>> = (props) => {
+export const SectionHeader: FC<SectionHeaderProps<string>> = (
+  props,
+) => {
   const { href, isMore = false, title } = props
 
   return (

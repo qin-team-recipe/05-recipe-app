@@ -25,9 +25,18 @@ const reducer = (state: State, action: Action): State => {
     case "TOGGLE_COLOR":
       return {
         ...state,
-        bgColor: state.bgColor === "bg-mauve-12" ? "bg-tomato-2" : "bg-mauve-12",
-        strokeColor: state.strokeColor === "stroke-mauve-7" ? "stroke-tomato-10" : "stroke-mauve-7",
-        textColor: state.textColor === "text-mauve-7" ? "text-tomato-10" : "text-mauve-7",
+        bgColor:
+          state.bgColor === "bg-mauve-12"
+            ? "bg-tomato-2"
+            : "bg-mauve-12",
+        strokeColor:
+          state.strokeColor === "stroke-mauve-7"
+            ? "stroke-tomato-10"
+            : "stroke-mauve-7",
+        textColor:
+          state.textColor === "text-mauve-7"
+            ? "text-tomato-10"
+            : "text-mauve-7",
       }
     default:
       return state
@@ -47,7 +56,12 @@ export const RecipeFavButton: FC = () => {
       onClick={handleClick}
       className={`absolute right-1 top-1 flex w-fit items-center gap-1 rounded-full ${state.bgColor} bg-opacity-60 p-2 text-xs`}
     >
-      <FavSvg color={`${state.strokeColor}`} width={16} height={16} strokeWidth={3} />
+      <FavSvg
+        color={`${state.strokeColor}`}
+        width={16}
+        height={16}
+        strokeWidth={3}
+      />
       <div className={`${state.textColor}`}>1,234</div>
     </button>
   )

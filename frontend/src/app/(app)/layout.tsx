@@ -1,7 +1,10 @@
 import React, { ReactNode } from "react"
 import Link from "next/link"
 
-import { BottomNavBar, BottomNavItem } from "@/app/(app)/_component/bottomNav"
+import {
+  BottomNavBar,
+  BottomNavItem,
+} from "@/app/(app)/_component/bottomNav"
 
 export const metadata = {
   title: "シェフやレシピを検索",

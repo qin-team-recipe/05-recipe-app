@@ -2,14 +2,22 @@ import React, { FC } from "react"
 import Image from "next/image"
 
 import { ContentContainer } from "@/app/(app)/_component/container"
-import { BackButton, ChefFavButton } from "@/app/(app)/chef/[chefId]/_component"
+import {
+  BackButton,
+  ChefFavButton,
+} from "@/app/(app)/chef/[chefId]/_component"
 
 /** @package */
 export const PageDetailHeader: FC = () => {
   return (
     <div>
       <div className="relative h-96 max-h-screen w-full">
-        <Image src="/chef.jpg" alt="chef" fill className="h-3/4 object-cover" />
+        <Image
+          src="/chef.jpg"
+          alt="chef"
+          fill
+          className="h-3/4 object-cover"
+        />
         <BackButton />
       </div>
       <ContentContainer>
@@ -20,8 +28,14 @@ export const PageDetailHeader: FC = () => {
           </div>
           <div className="align-center text-mauve-dim flex gap-2 text-sm">
             <div>
-              <span className="text-mauve-normal pr-1 font-bold">2,345</span>レシピ
-              <span className="text-mauve-normal pr-1 font-bold">1,234</span>フォロワー
+              <span className="text-mauve-normal pr-1 font-bold">
+                2,345
+              </span>
+              レシピ
+              <span className="text-mauve-normal pr-1 font-bold">
+                1,234
+              </span>
+              フォロワー
             </div>
           </div>
         </div>
