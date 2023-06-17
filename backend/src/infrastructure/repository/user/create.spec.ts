@@ -1,8 +1,8 @@
 import { Test } from '@nestjs/testing';
 import createPrismaMock from 'prisma-mock';
-import { CustomLoggerService } from 'src/common/logger/custom-logger.service';
 import { UserCreateInput } from 'src/entity/user.entity';
 import { OrmClient } from 'src/infrastructure/orm/orm.client';
+import { CustomLoggerService } from 'src/utils/logger/custom-logger.service';
 import { UserRepository } from './repository';
 
 let repository: UserRepository;

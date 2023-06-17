@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { CustomLoggerModule } from 'src/common/logger/custom-logger.module';
 import { UserModule } from 'src/module/user.module';
+import { CustomLoggerModule } from 'src/utils/logger/custom-logger.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 

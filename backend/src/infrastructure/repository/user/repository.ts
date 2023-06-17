@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { CustomLoggerService } from 'src/common/logger/custom-logger.service';
 import {
   FindUserResponse,
   PaginateUserResponse,
@@ -8,6 +7,9 @@ import {
   UserUpdateInput,
 } from 'src/entity/user.entity';
 import { OrmClient } from 'src/infrastructure/orm/orm.client';
+import { prismaErrorHandling } from 'src/infrastructure/repository/prisma-error-handling';
+import { InvalidArgsError } from 'src/utils/exception/invalid-args.error';
+import { CustomLoggerService } from 'src/utils/logger/custom-logger.service';
 
 @Injectable()
 export class UserRepository {
@@ -22,6 +24,7 @@ export class UserRepository {
       return await this.orm.user.create({ data: userProps });
     } catch (error) {
       this.logger.error(error);
+      prismaErrorHandling(error);
       throw error;
     }
   }
@@ -29,8 +32,9 @@ export class UserRepository {
   // ユーザーを更新する
   async update(userProps: UserUpdateInput): Promise<UserResponse | null> {
     if (typeof userProps.id !== 'string') {
-      const error = new Error('id must be a string');
+      const error = new InvalidArgsError('id must be a string');
       this.logger.error(error);
+      prismaErrorHandling(error);
       throw error;
     }
 
@@ -41,6 +45,7 @@ export class UserRepository {
       });
     } catch (error) {
       this.logger.error(error);
+      prismaErrorHandling(error);
       throw error;
     }
   }
@@ -75,6 +80,7 @@ export class UserRepository {
       });
     } catch (error) {
       this.logger.error(error);
+      prismaErrorHandling(error);
       throw error;
     }
   }
@@ -101,6 +107,7 @@ export class UserRepository {
       });
     } catch (error) {
       this.logger.error(error);
+      prismaErrorHandling(error);
       throw error;
     }
   }

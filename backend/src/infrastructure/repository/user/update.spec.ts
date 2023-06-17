@@ -1,8 +1,9 @@
 import { Test } from '@nestjs/testing';
 import updatePrismaMock from 'prisma-mock';
-import { CustomLoggerService } from 'src/common/logger/custom-logger.service';
 import { UserUpdateInput } from 'src/entity/user.entity';
 import { OrmClient } from 'src/infrastructure/orm/orm.client';
+import { InvalidArgsError } from 'src/utils/exception/invalid-args.error';
+import { CustomLoggerService } from 'src/utils/logger/custom-logger.service';
 import { UserRepository } from './repository';
 
 let repository: UserRepository;
@@ -61,7 +62,9 @@ describe('UserRepository.update()', () => {
       email: 'test@test.com',
     };
     const user = repository.update(userProps);
-    await expect(user).rejects.toThrowError(Error('id must be a string'));
+    await expect(user).rejects.toThrowError(
+      new InvalidArgsError('id must be a string'),
+    );
   });
 
   test('Update user with non-existent id', async () => {
