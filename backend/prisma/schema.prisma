@@ -67,7 +67,7 @@ model Recipe {
   name          String
   description   String         @db.Text
   servingCount  Int            @map("serving_count") @db.UnsignedTinyInt
-  favoriteCount Int            @map("favorite_count") @db.UnsignedInt
+  favoriteCount Int?           @map("favorite_count") @db.UnsignedInt
   draftFlag     Boolean        @default(true) @map("draft_flag")
   createdAt     DateTime       @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
   updatedAt     DateTime       @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
