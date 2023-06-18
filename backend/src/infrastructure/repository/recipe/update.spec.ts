@@ -103,8 +103,8 @@ describe('RecipeRepository.update()', () => {
     };
     const recipe = await repository.update(recipeProps);
 
-    // Verify: ensure user.update was called with correct arguments
-    expect(ormMock.user.update).toHaveBeenCalledWith({
+    // Verify: ensure recipe.update was called with correct arguments
+    expect(ormMock.recipe.update).toHaveBeenCalledWith({
       where: { id: recipeProps.id },
       data: recipeProps,
     });
