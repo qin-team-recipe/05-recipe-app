@@ -6,8 +6,14 @@ const recipe = z.object({
   userId: z.string().cuid(),
   name: z.string().max(191, '191字未満で入力してください'),
   description: z.string().max(1000, '1000字未満で入力してください'),
-  servingCount: z.number().min(1, '1以上の数字で入力してください'),
-  favoriteCount: z.number().nullable(),
+  servingCount: z
+    .number()
+    .int('整数を入力してください')
+    .min(1, '1以上の数値を入力してください'),
+  favoriteCount: z
+    .number()
+    .int('整数を入力してください')
+    .nonnegative('0以上の数値を入力してください'),
   draftFlag: z.boolean(),
   createdAt: z.date(),
   updatedAt: z.date(),
