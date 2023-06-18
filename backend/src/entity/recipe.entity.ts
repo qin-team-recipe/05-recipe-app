@@ -1,4 +1,5 @@
 import type { Prisma, Recipe } from '@prisma/client';
+import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
 
 const recipe = z.object({
@@ -22,7 +23,21 @@ const recipe = z.object({
 export const RecipeCreateInputSchema: z.ZodType<Prisma.RecipeUncheckedCreateInput> =
   recipe.omit({ id: true, createdAt: true, updatedAt: true });
 
+export const RecipeUpdateInputSchema: z.ZodType<Prisma.RecipeUncheckedCreateInput> =
+  recipe.omit({ createdAt: true, updatedAt: true });
+
 export const RecipeResponseSchema: z.ZodType<Recipe> = recipe;
 
 export type RecipeCreateInput = z.infer<typeof RecipeCreateInputSchema>;
+
+export type RecipeUpdateInput = z.infer<typeof RecipeUpdateInputSchema>;
+
 export type RecipeResponse = z.infer<typeof RecipeResponseSchema>;
+
+export class RecipeCreateInputDto extends createZodDto(
+  RecipeCreateInputSchema,
+) {}
+
+export class RecipeUpdateInputDto extends createZodDto(
+  RecipeUpdateInputSchema,
+) {}
