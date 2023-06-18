@@ -67,6 +67,7 @@ describe('RecipeRepository.create()', () => {
       name: '上級レシピ',
       description: 'とても美味しいレシピです',
       servingCount: 1,
+      favoriteCount: 0,
       draftFlag: true,
     };
     const recipe = await repository.create(recipePropsWithoutOptional);
