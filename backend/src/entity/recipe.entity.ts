@@ -28,7 +28,21 @@ export const RecipeUpdateInputSchema: z.ZodType<Prisma.RecipeUncheckedCreateInpu
 
 export const RecipeResponseSchema: z.ZodType<Recipe> = recipe;
 
-export type RecipeCreateInput = z.infer<typeof RecipeCreateInputSchema>;
+export type RecipeCreateInput = Required<
+  Pick<
+    z.infer<typeof RecipeCreateInputSchema>,
+    | 'userId'
+    | 'name'
+    | 'description'
+    | 'servingCount'
+    | 'favoriteCount'
+    | 'draftFlag'
+    | 'recipeImages'
+    | 'recipeSteps'
+    | 'recipeLinks'
+    | 'recipeItems'
+  >
+>;
 
 export type RecipeUpdateInput = z.infer<typeof RecipeUpdateInputSchema>;
 
