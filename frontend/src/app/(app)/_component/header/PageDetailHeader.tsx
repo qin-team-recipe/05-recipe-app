@@ -20,8 +20,10 @@ export const PageDetailHeader: FC = () => {
           </div>
           <div className="align-center text-mauve-dim flex gap-2 text-sm">
             <div>
-              <span className="text-mauve-normal pr-1 font-bold">2,345</span>レシピ
-              <span className="text-mauve-normal pr-1 font-bold">1,234</span>フォロワー
+              <span className="text-mauve-normal pr-1 font-bold">2,345</span>
+              レシピ
+              <span className="text-mauve-normal pr-1 font-bold">1,234</span>
+              フォロワー
             </div>
           </div>
         </div>

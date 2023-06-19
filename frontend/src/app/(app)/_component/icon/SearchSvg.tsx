@@ -25,7 +25,12 @@ export const SearchSvg: FC<IconProps> = (props) => {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <path d="M21.6667 21L17.3167 16.65" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M21.6667 21L17.3167 16.65"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   )
 }

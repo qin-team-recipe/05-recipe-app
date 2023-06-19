@@ -12,7 +12,15 @@ export const ChefList = () => {
       "白ごはん.comを運営しています。アップしたレシピの紹介や、youtube動画、日々の食のこと、オリジナル商品などの案内等をブログでやっています。"
     const name = "山田シェフ"
     const img = "/chef.jpeg"
-    return <ChefCard key={i} hasDescription={true} introduction={introduction} name={name} img={img} />
+    return (
+      <ChefCard
+        key={i}
+        hasDescription={true}
+        introduction={introduction}
+        name={name}
+        img={img}
+      />
+    )
   })
 
   return (

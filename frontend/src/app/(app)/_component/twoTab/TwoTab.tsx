@@ -34,7 +34,13 @@ export const TwoTab: FC<TwoTabProps> = (props) => {
       <div className="grid w-full grid-cols-2">
         {linkList.map((link) => {
           return (
-            <Link key={String(link.href)} href={link.href} className={twoTabLink({ isActive: pathname === link.href })}>
+            <Link
+              key={String(link.href)}
+              href={link.href}
+              className={twoTabLink({
+                isActive: pathname === link.href,
+              })}
+            >
               {link.tabLabel}
             </Link>
           )

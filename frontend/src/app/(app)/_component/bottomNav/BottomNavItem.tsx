@@ -54,10 +54,19 @@ export const BottomNavItem: FC<BottomNavItemProps<string>> = (props) => {
   const currentIcon = () => {
     switch (navLabel) {
       case "さがす":
-        return <SearchSvg color={imgColor({ isActive })} width={24} height={24} />
+        return (
+          <SearchSvg color={imgColor({ isActive })} width={24} height={24} />
+        )
         break
       case "お気に入り":
-        return <FavSvg color={imgColor({ isActive })} width={24} height={24} strokeWidth={1.5} />
+        return (
+          <FavSvg
+            color={imgColor({ isActive })}
+            width={24}
+            height={24}
+            strokeWidth={1.5}
+          />
+        )
         break
       case "お買い物リスト":
         return <CartSvg color={imgColor({ isActive })} width={24} height={24} />
