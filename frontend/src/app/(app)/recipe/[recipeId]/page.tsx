@@ -12,7 +12,7 @@ const ChefPage: FC = () => {
     img: "/pizza.jpg",
     introduction:
       "おいしいおいしいマルゲリータピザ。トマトたっぷり・チーズたっぷり！生地はさくさくもっちもち",
-    name: "山田の特性マルゲリータ",
+    name: "山田の特製マルゲリータ",
     user: "山田シェフ",
     userImg: "/chef.jpg",
   }
