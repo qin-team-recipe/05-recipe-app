@@ -1,5 +1,6 @@
 import React, { FC } from "react"
 import Image from "next/image"
+import Link from "next/link"
 
 import { ContentContainer } from "@/app/(app)/_component/container"
 import { BackButton, ChefFavButton } from "@/app/(app)/chef/[chefId]/_component"
@@ -56,16 +57,16 @@ export const PageDetailHeader: FC<DetailHeroProps<"chef" | "recipe">> = (
               </div>
             </div>
           ) : (
-            <div className="align-center text-mauve-dim flex gap-2 text-sm">
-              <div className="align-center flex gap-1">
-                <div className="round-full w-12">{data.userImg}</div>
+            <div className="align-center text-mauve-normal flex gap-2 text-sm">
+              <Link className="align-center flex gap-1" href="/">
+                <div className="aspect-square w-6 rounded-full bg-gray-7"></div>
                 <div>{data.user}</div>
-              </div>
+              </Link>
               <div>
                 <span className="text-mauve-normal pr-1 font-bold">
                   {data.favoriteCount}
                 </span>
-                フォロワー
+                お気に入り
               </div>
             </div>
           )}
