@@ -2,8 +2,9 @@ import React, { FC } from "react"
 import Image from "next/image"
 import Link from "next/link"
 
+import { BackButton } from "@/app/(app)/_component/backButton"
 import { ContentContainer } from "@/app/(app)/_component/container"
-import { BackButton, ChefFavButton } from "@/app/(app)/chef/[chefId]/_component"
+import { FollowButton } from "@/app/(app)/chef/[chefId]/_component"
 
 type Common = {
   img: string
@@ -71,7 +72,7 @@ export const PageDetailHeader: FC<DetailHeroProps<"chef" | "recipe">> = (
             </div>
           )}
         </div>
-        <ChefFavButton />
+        <FollowButton pageType={pageType} />
       </ContentContainer>
     </div>
   )
