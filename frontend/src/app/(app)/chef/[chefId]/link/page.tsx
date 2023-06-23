@@ -3,9 +3,8 @@ import React, { FC } from "react"
 import { ContentContainer } from "@/app/(app)/_component/container"
 import { PageDetailHeader } from "@/app/(app)/_component/header"
 import { TwoTab } from "@/app/(app)/_component/twoTab"
+import { LinkCard } from "@/app/(app)/chef/[chefId]/_component"
 import { twoTabLinkList } from "@/app/(app)/chef/[chefId]/_lib"
-
-import { LinkCard } from "../_component"
 
 export const metadata = {
   title: "シェフ詳細 | リンク",
