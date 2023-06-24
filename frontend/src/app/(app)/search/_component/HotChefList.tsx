@@ -10,7 +10,7 @@ export const HotChefList = () => {
   const name = "山田シェフ"
   const img = "/chef.jpeg"
   const chefCards = Array.from({ length: 10 }).map((_, i) => {
-    return <ChefCard key={i} hasDescription={false} name={name} img={img} />
+    return <ChefCard key={i} cardType="round" name={name} img={img} />
   })
 
   return (

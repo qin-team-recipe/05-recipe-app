@@ -15,7 +15,7 @@ export const ChefList = () => {
     return (
       <ChefCard
         key={i}
-        hasDescription={true}
+        cardType="withDescription"
         introduction={introduction}
         name={name}
         img={img}
