@@ -8,34 +8,58 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id                String             @id @default(cuid()) @db.Char(25)
+  email             String             @unique
+  createdAt         DateTime           @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt         DateTime           @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
+  recipes           Recipe[]           @relation("user")
+  favorites         Favorite[]
+  followers         Follow[]           @relation("follower")
+  followeds         Follow[]           @relation("followed")
+  shoppingMemos     ShoppingMemo[]
+  shoppingMenus     ShoppingMenu[]
+  userAuthProviders UserAuthProvider[]
+  userProfile       UserProfile?
+
+  @@map("users")
+}
+
+model UserProfile {
+  userId        String   @unique @map("user_id") @db.Char(25)
+  nickname      String
+  imgPath       String?  @map("img_path") @db.Text
+  introduction  String   @db.Text
+  twitterId     String?  @map("twitter_id")
+  instagramId   String?  @map("instagram_id")
+  siteUrl       String?  @map("site_url") @db.Text
+  followerCount Int      @map("follower_count") @db.UnsignedInt
+  recipeCount   Int      @map("recipe_count") @db.UnsignedInt
+  createdAt     DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt     DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
+  user          User     @relation(fields: [userId], references: [id])
+  recipes       Recipe[] @relation("userProfile")
+
+  @@fulltext([nickname, introduction])
+  @@map("user_profiles")
+}
+
 enum AuthProvider {
   GOOGLE
   APPLE
 }
 
-model User {
-  id            String         @id @default(cuid()) @db.Char(25)
-  email         String         @unique
-  provider      AuthProvider
-  providerId    String         @map("provider_id")
-  nickname      String
-  imgPath       String?        @map("img_path") @db.Text
-  introduction  String         @db.Text
-  twitterId     String?        @map("twitter_id")
-  instagramId   String?        @map("instagram_id")
-  siteUrl       String?        @map("site_url")
-  createdAt     DateTime       @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
-  updatedAt     DateTime       @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
-  recipes       Recipe[]
-  favorites     Favorite[]
-  followers     Follow[]       @relation("follower")
-  followeds     Follow[]       @relation("followed")
-  shoppingMemos ShoppingMemo[]
-  shoppingMenus ShoppingMenu[]
+model UserAuthProvider {
+  id         Int          @id @default(autoincrement())
+  userId     String       @map("user_id") @db.Char(25)
+  provider   AuthProvider
+  providerId String       @map("provider_id")
+  createdAt  DateTime     @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  user       User         @relation(fields: [userId], references: [id])
 
+  @@unique([userId, provider])
   @@unique([provider, providerId])
-  @@fulltext([nickname, introduction])
-  @@map("users")
+  @@map("user_auth_providers")
 }
 
 model Recipe {
@@ -48,7 +72,8 @@ model Recipe {
   draftFlag     Boolean        @default(true) @map("draft_flag")
   createdAt     DateTime       @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
   updatedAt     DateTime       @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
-  user          User           @relation(fields: [userId], references: [id])
+  user          User           @relation("user", fields: [userId], references: [id], map: "UserRelation_FK")
+  userProfile   UserProfile    @relation("userProfile", fields: [userId], references: [userId], map: "UserProfileRelation_FK")
   recipeSteps   RecipeStep[]
   recipeLinks   RecipeLink[]
   recipeImages  RecipeImage[]

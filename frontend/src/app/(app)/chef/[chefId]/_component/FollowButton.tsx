@@ -14,8 +14,13 @@ const color = tv({
   },
 })
 
+type FollowButtonProps = {
+  pageType: "chef" | "recipe"
+}
+
 /** @package */
-export const ChefFavButton: FC = () => {
+export const FollowButton: FC<FollowButtonProps> = (props) => {
+  const { pageType } = props
   const [isFollow, setIsFollow] = useState<boolean>(false)
 
   const handleClick = () => {
@@ -26,7 +31,13 @@ export const ChefFavButton: FC = () => {
 
   return (
     <button onClick={handleClick} className={color({ isFollow })}>
-      {isFollow ? "フォロー中" : "フォローする"}
+      {pageType === "chef"
+        ? isFollow
+          ? "フォロー中"
+          : "フォローする"
+        : isFollow
+        ? "お気に入りから削除"
+        : "お気に入りに追加"}
     </button>
   )
 }

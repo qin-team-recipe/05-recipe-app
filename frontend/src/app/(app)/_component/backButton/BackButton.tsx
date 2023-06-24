@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 
 import { IconArrowLeft } from "@tabler/icons-react"
 
+/** @package */
 export const BackButton = () => {
   const router = useRouter()
 
