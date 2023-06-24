@@ -3,7 +3,7 @@ import React from "react"
 import { ScrollAreaWrapper } from "@/app/_component"
 import { ChefCard } from "@/app/(app)/_component/chefCard"
 import { ContentContainer } from "@/app/(app)/_component/container"
-import { SectionHeader } from "@/app/(app)/_component/header"
+import { SectionHeader, SubButtonLink } from "@/app/(app)/_component/header"
 
 /** @package */
 export const ChefList = () => {
@@ -23,10 +23,15 @@ export const ChefList = () => {
     )
   })
 
+  const subButtonLink = {
+    href: "/favorite",
+    label: "もっと見る",
+  } as const satisfies SubButtonLink
+
   return (
     <div className="space-y-4">
       <ContentContainer>
-        <SectionHeader title="シェフ" href="/favorite" isMore />
+        <SectionHeader label="シェフ" subButtonLink={subButtonLink} />
       </ContentContainer>
 
       {/* 横スクロールエリアには右paddingをつけない */}
