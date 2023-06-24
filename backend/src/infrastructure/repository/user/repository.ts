@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import {
   FindUserResponse,
   PaginateUserResponse,
+  UserCreatedResponse,
   UserCreateInput,
   UserResponse,
   UserUpdateInput,
@@ -18,10 +19,23 @@ export class UserRepository {
     private readonly logger: CustomLoggerService,
   ) {}
 
-  // ユーザーを作成する
-  async create(userProps: UserCreateInput): Promise<UserResponse> {
+  // ユーザーと認証プロバイダを作成する
+  async createWithAuthProvider(
+    userProps: UserCreateInput,
+  ): Promise<UserCreatedResponse> {
     try {
-      return await this.orm.user.create({ data: userProps });
+      return await this.orm.user.create({
+        data: userProps,
+        include: {
+          userAuthProviders: {
+            select: {
+              userId: true,
+              provider: true,
+              providerId: true,
+            },
+          },
+        },
+      });
     } catch (error) {
       this.logger.error(error);
       prismaErrorHandling(error);
@@ -55,6 +69,41 @@ export class UserRepository {
     try {
       return await this.orm.user.findUnique({
         where: { id },
+        include: {
+          userProfile: {
+            select: {
+              nickname: true,
+              imgPath: true,
+              introduction: true,
+              twitterId: true,
+              instagramId: true,
+              siteUrl: true,
+              followerCount: true,
+              recipeCount: true,
+            },
+          },
+          recipes: {
+            select: {
+              id: true,
+              name: true,
+              description: true,
+              favoriteCount: true,
+            },
+          },
+        },
+      });
+    } catch (error) {
+      this.logger.error(error);
+      prismaErrorHandling(error);
+      throw error;
+    }
+  }
+
+  // ユーザーをemailで取得する
+  async findByEmail(email: string): Promise<FindUserResponse | null> {
+    try {
+      return await this.orm.user.findUnique({
+        where: { email },
         include: {
           userProfile: {
             select: {
