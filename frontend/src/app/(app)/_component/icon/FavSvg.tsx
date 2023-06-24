@@ -3,13 +3,13 @@ import React, { FC } from "react"
 type IconProps = {
   color: string
   height: number
-  strokeWidth: number
+  strokeWidth?: number
   width: number
 }
 
 /** @package */
 export const FavSvg: FC<IconProps> = (props) => {
-  const { color, height, strokeWidth, width } = props
+  const { color, height, strokeWidth = "2", width } = props
 
   return (
     <svg
