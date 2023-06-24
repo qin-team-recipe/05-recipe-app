@@ -8,7 +8,7 @@ import { RecipeCard } from "@/app/(app)/_component/recipeCard"
 /** @package */
 export const HotRecipeList = () => {
   const chefCards = Array.from({ length: 10 }).map((_, i) => {
-    return <RecipeCard key={i} />
+    return <RecipeCard key={i} hasHotRecipe={true} />
   })
 
   return (
@@ -22,7 +22,7 @@ export const HotRecipeList = () => {
         <ScrollAreaWrapper>
           {/* カードリストの右にだけpaddingがつくように */}
           <ContentContainer isPaddingLeft={false}>
-            <div className="flex w-36 space-x-4">{chefCards}</div>
+            <div className="flex space-x-4">{chefCards}</div>
           </ContentContainer>
         </ScrollAreaWrapper>
       </ContentContainer>

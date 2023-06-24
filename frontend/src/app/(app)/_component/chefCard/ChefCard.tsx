@@ -52,7 +52,7 @@ export const ChefCard: FC<ChefCardProps> = (props) => {
   return (
     <div className="min-w-32 relative flex h-56 w-32 overflow-hidden">
       <ChefImg img={img} />
-      <p className="text-mauve-normal absolute bottom-3 left-2 text-xl font-semibold">
+      <p className="absolute bottom-3 left-2 text-xl font-semibold text-mauve-1">
         {name}
       </p>
     </div>

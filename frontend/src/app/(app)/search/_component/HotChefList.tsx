@@ -10,7 +10,9 @@ export const HotChefList = () => {
   const name = "山田シェフ"
   const img = "/chef.jpeg"
   const chefCards = Array.from({ length: 10 }).map((_, i) => {
-    return <ChefCard key={i} cardType="round" name={name} img={img} />
+    return (
+      <ChefCard key={i} cardType="withoutDescription" name={name} img={img} />
+    )
   })
 
   return (
@@ -23,7 +25,7 @@ export const HotChefList = () => {
       <ContentContainer isPaddingRight={false}>
         <ScrollAreaWrapper>
           {/* カードリストの右にだけpaddingがつくように */}
-          <ContentContainer isPaddingLeft={false}>
+          <ContentContainer isPaddingLeft={false} isPaddingRight={true}>
             <div className="flex space-x-4">{chefCards}</div>
           </ContentContainer>
         </ScrollAreaWrapper>
