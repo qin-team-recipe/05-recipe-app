@@ -19,7 +19,7 @@ type ChefPageProps = {
 const ChefPage: FC<ChefPageProps> = (props) => {
   const { params } = props
 
-  const chefCards = Array.from({ length: 10 }).map((_, i) => {
+  const recipeCards = Array.from({ length: 10 }).map((_, i) => {
     return <RecipeCard key={i} />
   })
 
@@ -41,7 +41,7 @@ const ChefPage: FC<ChefPageProps> = (props) => {
       <div className="py-7">
         <TwoTab linkList={linkList}>
           <ContentContainer>
-            <div className="grid grid-cols-2 gap-2">{chefCards}</div>
+            <div className="grid grid-cols-2 gap-2">{recipeCards}</div>
           </ContentContainer>
         </TwoTab>
       </div>
