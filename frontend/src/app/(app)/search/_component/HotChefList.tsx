@@ -16,7 +16,7 @@ export const HotChefList = () => {
   return (
     <div className="space-y-4">
       <ContentContainer>
-        <SectionHeader title="注目のシェフ" href="/favorite" />
+        <SectionHeader label="注目のシェフ" />
       </ContentContainer>
 
       {/* 横スクロールエリアには右paddingをつけない */}
