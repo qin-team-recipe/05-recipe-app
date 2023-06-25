@@ -64,9 +64,18 @@ const LinkTabPage: FC<LinkTabPageProps> = (props) => {
 
   const linkList = twoTabLinkList(params.chefId)
 
+  const chefData = {
+    follower: 1234,
+    img: "/chef.jpg",
+    introduction:
+      "初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり主婦の友社より３月３日、２冊同時発売！絶賛発売中！",
+    name: "山田シェフ",
+    recipeCount: 2345,
+  }
+
   return (
     <div>
-      <PageDetailHeader />
+      <PageDetailHeader data={chefData} pageType="chef" />
       <div className="py-7">
         <TwoTab linkList={linkList}>
           <ContentContainer>
