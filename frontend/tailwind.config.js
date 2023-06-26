@@ -22,6 +22,9 @@ module.exports = withTV({
       height: {
         screen: ["100vh", "100dvh"],
       },
+      fontSize: {
+        "2xs": "0.625rem",
+      },
     },
   },
   plugins: [
