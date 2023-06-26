@@ -9,7 +9,7 @@ type IconProps = {
 
 /** @package */
 export const SearchSvg: FC<IconProps> = (props) => {
-  const { color, height, strokeWidth = "1.5", width } = props
+  const { color, height, strokeWidth = "2", width } = props
 
   return (
     <svg
