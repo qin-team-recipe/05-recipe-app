@@ -1,5 +1,7 @@
 import React, { FC } from "react"
 
+import { IconCopy } from "@tabler/icons-react"
+
 import { PageDetailHeader } from "@/app/(app)/_component/header"
 
 export const metadata = {
@@ -20,6 +22,12 @@ const ChefPage: FC = () => {
   return (
     <div>
       <PageDetailHeader data={recipeData} pageType="recipe" />
+      <div className="flex justify-end px-4">
+        <button className="flex text-blue-11 active:opacity-95">
+          <IconCopy />
+          コピーする
+        </button>
+      </div>
     </div>
   )
 }
