@@ -38,11 +38,37 @@ describe('RecipeRepository.create()', () => {
     // Exercise: call the function
     const recipeProps: RecipeCreateInput = {
       userId: 'cuid',
-      name: '上級レシピ',
-      description: 'とても美味しいレシピです',
+      title: 'test title',
+      description: 'test description',
       servingCount: 1,
       favoriteCount: 1,
       draftFlag: true,
+      recipeImages: {
+        create: {
+          id: 1234567890,
+          path: 'test/img/path',
+        },
+      },
+      recipeSteps: {
+        create: {
+          id: 1234567890,
+          description: 'test description',
+          stepNum: 1,
+        },
+      },
+      recipeLinks: {
+        create: {
+          id: 1234567890,
+          url: 'https://test.com',
+        },
+      },
+      recipeItems: {
+        create: {
+          id: 1234567890,
+          name: 'test name',
+          description: 'test description',
+        },
+      },
     };
     const recipe = await repository.create(recipeProps);
 
@@ -53,7 +79,7 @@ describe('RecipeRepository.create()', () => {
 
     // Verify: ensure the function returns the data we specified
     expect(recipe.userId).toStrictEqual(recipeProps.userId);
-    expect(recipe.name).toStrictEqual(recipeProps.name);
+    expect(recipe.title).toStrictEqual(recipeProps.title);
     expect(recipe.description).toStrictEqual(recipeProps.description);
     expect(recipe.servingCount).toStrictEqual(recipeProps.servingCount);
     expect(recipe.favoriteCount).toStrictEqual(recipeProps.favoriteCount);
@@ -64,11 +90,37 @@ describe('RecipeRepository.create()', () => {
     // Exercise: call the function
     const recipePropsWithoutOptional: RecipeCreateInput = {
       userId: 'cuid',
-      name: '上級レシピ',
-      description: 'とても美味しいレシピです',
+      title: 'test title',
+      description: 'test description',
       servingCount: 1,
       favoriteCount: 0,
       draftFlag: true,
+      recipeImages: {
+        create: {
+          id: 1234567890,
+          path: 'test/img/path',
+        },
+      },
+      recipeSteps: {
+        create: {
+          id: 1234567890,
+          description: 'test description',
+          stepNum: 1,
+        },
+      },
+      recipeLinks: {
+        create: {
+          id: 1234567890,
+          url: 'https://test.com',
+        },
+      },
+      recipeItems: {
+        create: {
+          id: 1234567890,
+          name: 'test name',
+          description: 'test description',
+        },
+      },
     };
     const recipe = await repository.create(recipePropsWithoutOptional);
 
@@ -79,7 +131,7 @@ describe('RecipeRepository.create()', () => {
 
     // Verify: ensure the function returns the data we specified
     expect(recipe.userId).toStrictEqual(recipePropsWithoutOptional.userId);
-    expect(recipe.name).toStrictEqual(recipePropsWithoutOptional.name);
+    expect(recipe.title).toStrictEqual(recipePropsWithoutOptional.title);
     expect(recipe.description).toStrictEqual(
       recipePropsWithoutOptional.description,
     );
