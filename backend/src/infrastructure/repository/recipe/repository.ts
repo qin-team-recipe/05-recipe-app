@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {
-  PaginateRecipeResponse,
+  PickupListRecipeResponse,
   RecipeCreateInput,
   RecipeResponse,
   RecipeUpdateInput,
@@ -53,7 +53,7 @@ export class RecipeRepository {
   async pickupList(
     take: number,
     cursor?: string,
-  ): Promise<PaginateRecipeResponse> {
+  ): Promise<PickupListRecipeResponse> {
     try {
       return await this.orm.recipe.findMany({
         take,
