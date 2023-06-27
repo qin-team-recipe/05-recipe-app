@@ -1,23 +1,23 @@
 import React, { FC } from "react"
-import { Route } from "next"
 import Link from "next/link"
 
-type SectionHeaderProps<T extends string> = {
-  href: Route<T> | URL
-  isMore?: boolean
-  title: string
+import { SubButtonLink } from "@/app/(app)/_component/header"
+
+type SectionHeaderProps = {
+  label: string
+  subButtonLink?: SubButtonLink
 }
 
 /** @package */
-export const SectionHeader: FC<SectionHeaderProps<string>> = (props) => {
-  const { href, isMore = false, title } = props
+export const SectionHeader: FC<SectionHeaderProps> = (props) => {
+  const { label, subButtonLink } = props
 
   return (
     <div className="flex items-end justify-between font-bold">
-      <h3 className="text-mauve-normal text-xl">{title}</h3>
-      {isMore ? (
+      <h3 className="text-mauve-normal text-xl">{label}</h3>
+      {subButtonLink ? (
         <div className="text-mauve-dim">
-          <Link href={href}>もっと見る</Link>
+          <Link href={subButtonLink.href}>{subButtonLink.label}</Link>
         </div>
       ) : null}
     </div>

@@ -5,6 +5,7 @@ import { Route } from "next"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
+import { useMediaQuery } from "react-responsive"
 import { tv } from "tailwind-variants"
 
 import { CartSvg, FavSvg, SearchSvg } from "@/app/(app)/_component/icon"
@@ -18,9 +19,9 @@ type BottomNavItemProps<T extends string> = {
 
 const textColor = tv({
   base: `
-  group flex flex-1 flex-col items-center justify-center gap-1 pl-3 py-2 rounded-lg
+  group flex flex-1 flex-col items-center justify-center gap-1 rounded-lg
   sm:hover:bg-tomato-4
-  sm:flex-row sm:justify-start sm:gap-2 sm:pr-5 sm:rounded-full `,
+  sm:flex-row sm:justify-start sm:gap-2 sm:pr-5 sm:pl-3 sm:py-2 sm:rounded-full`,
   variants: {
     isActive: {
       false: `
@@ -49,18 +50,39 @@ export const BottomNavItem: FC<BottomNavItemProps<string>> = (props) => {
   const { href, navLabel } = props
 
   const pathname = usePathname()
+  const isBreakPoint = useMediaQuery({ query: "(max-width: 640)" })
+
+  const navIconSize = isBreakPoint ? 24 : 22
 
   const isActive = pathname === href
   const currentIcon = () => {
     switch (navLabel) {
       case "さがす":
-        return <SearchSvg color={imgColor({ isActive })} width={24} height={24} />
+        return (
+          <SearchSvg
+            color={imgColor({ isActive })}
+            width={navIconSize}
+            height={navIconSize}
+          />
+        )
         break
       case "お気に入り":
-        return <FavSvg color={imgColor({ isActive })} width={24} height={24} strokeWidth={1.5} />
+        return (
+          <FavSvg
+            color={imgColor({ isActive })}
+            width={navIconSize}
+            height={navIconSize}
+          />
+        )
         break
       case "お買い物リスト":
-        return <CartSvg color={imgColor({ isActive })} width={24} height={24} />
+        return (
+          <CartSvg
+            color={imgColor({ isActive })}
+            width={navIconSize}
+            height={navIconSize}
+          />
+        )
         break
       default:
         return null
@@ -70,7 +92,9 @@ export const BottomNavItem: FC<BottomNavItemProps<string>> = (props) => {
   return (
     <Link href={href} className={textColor({ isActive })}>
       {currentIcon()}
-      <div className="text-xs sm:text-base">{navLabel}</div>
+      <div className="text-2xs font-bold sm:text-base sm:font-normal">
+        {navLabel}
+      </div>
     </Link>
   )
 }

@@ -14,12 +14,21 @@ module.exports = withTV({
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        instagram:
+          "conic-gradient(from 0deg at 50% 50%,#eb54ee -45.66deg,#9854ee 40.61deg,#eec354 140.69deg,#ee5454 226.49deg,#eb54ee 314.34deg,#9854ee 400.61deg)",
       },
       height: {
         screen: ["100vh", "100dvh"],
       },
+      fontSize: {
+        "2xs": "0.625rem",
+      },
     },
   },
-  plugins: [require("tailwindcss-radix-colors"), require("@tailwindcss/line-clamp")],
+  plugins: [
+    require("tailwindcss-radix-colors"),
+    require("@tailwindcss/line-clamp"),
+  ],
 })

@@ -1,4 +1,10 @@
-import type { Prisma, Recipe, User, UserProfile } from '@prisma/client';
+import type {
+  Prisma,
+  Recipe,
+  User,
+  UserAuthProvider,
+  UserProfile,
+} from '@prisma/client';
 import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
 
@@ -10,19 +16,29 @@ const user = z.object({
 });
 
 export const UserCreateInputSchema: z.ZodType<Prisma.UserCreateInput> =
-  user.omit({ id: true, createdAt: true, updatedAt: true });
+  user.pick({ email: true });
 
 export const UserUpdateInputSchema: z.ZodType<Prisma.UserUpdateInput> =
   user.omit({ createdAt: true, updatedAt: true });
 
 export const UserResponseSchema: z.ZodType<User> = user;
+
 export const UserResponseWithRecipesSchema: z.ZodType<User> = user;
 
-export type UserCreateInput = z.infer<typeof UserCreateInputSchema>;
+export type UserCreateInput = Required<
+  Pick<z.infer<typeof UserCreateInputSchema>, 'email' | 'userAuthProviders'>
+>;
 
-export type UserUpdateInput = z.infer<typeof UserUpdateInputSchema>;
+export type UserUpdateInput = Pick<
+  z.infer<typeof UserUpdateInputSchema>,
+  'id' | 'email'
+>;
 
 export type UserResponse = z.infer<typeof UserResponseSchema>;
+
+export type UserCreatedResponse = UserResponse & {
+  userAuthProviders: Omit<UserAuthProvider, 'id' | 'createdAt'>[];
+};
 
 export type FindUserResponse = UserResponse & {
   userProfile: FindUserProfile | null;

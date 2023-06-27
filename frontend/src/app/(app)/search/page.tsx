@@ -1,6 +1,10 @@
 import React from "react"
 
-import { ChefList, HotChefList, HotRecipeList } from "@/app/(app)/search/_component"
+import {
+  ChefList,
+  HotChefList,
+  HotRecipeList,
+} from "@/app/(app)/search/_component"
 
 export const metadata = {
   title: "シェフやレシピを検索",

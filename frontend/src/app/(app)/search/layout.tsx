@@ -11,10 +11,12 @@ export default function SearchLayout(props: SearchLayoutProps) {
 
   return (
     <div className="flex h-full flex-col overscroll-y-contain">
-      <header className="w-full">
+      <div className="p-3">
         <SearchHeader />
-      </header>
-      <div className="flex-1 overflow-y-auto pb-16 pt-5 sm:py-5">{children}</div>
+      </div>
+      <div className="flex-1 overflow-y-auto pb-16 pt-5 sm:py-5">
+        {children}
+      </div>
     </div>
   )
 }

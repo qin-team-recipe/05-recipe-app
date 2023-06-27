@@ -79,13 +79,14 @@ export class UserProfileRepository {
 
   // ユーザープロフィール一覧をページネーションで取得する
   async paginate(
-    page?: number,
-    perPage?: number,
+    take: number,
+    cursor?: string,
   ): Promise<PaginateUserProfileResponse> {
     try {
       return await this.orm.userProfile.findMany({
-        skip: page && perPage ? perPage * (page - 1) : undefined,
-        take: perPage,
+        take,
+        skip: cursor ? 1 : undefined,
+        cursor: cursor ? { userId: cursor } : undefined,
         orderBy: {
           nickname: 'asc',
         },
