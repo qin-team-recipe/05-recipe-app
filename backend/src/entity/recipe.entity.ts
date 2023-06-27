@@ -1,11 +1,11 @@
-import type { Prisma, Recipe } from '@prisma/client';
+import type { Prisma, Recipe, RecipeImage } from '@prisma/client';
 import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
 
 const recipe = z.object({
   id: z.string().cuid(),
   userId: z.string().cuid(),
-  name: z.string().max(191, '191字未満で入力してください'),
+  title: z.string().max(191, '191字未満で入力してください'),
   description: z.string().max(1000, '1000字未満で入力してください'),
   servingCount: z
     .number()
@@ -32,7 +32,7 @@ export type RecipeCreateInput = Required<
   Pick<
     z.infer<typeof RecipeCreateInputSchema>,
     | 'userId'
-    | 'name'
+    | 'title'
     | 'description'
     | 'servingCount'
     | 'favoriteCount'
@@ -48,6 +48,13 @@ export type RecipeUpdateInput = z.infer<typeof RecipeUpdateInputSchema>;
 
 export type RecipeResponse = z.infer<typeof RecipeResponseSchema>;
 
+export type PickupListRecipeResponse = (Pick<
+  RecipeResponse,
+  'id' | 'title' | 'description' | 'favoriteCount'
+> & {
+  recipeImages: Pick<RecipeImage, 'path'>[];
+})[];
+
 export class RecipeCreateInputDto extends createZodDto(
   RecipeCreateInputSchema,
 ) {}
@@ -55,3 +62,8 @@ export class RecipeCreateInputDto extends createZodDto(
 export class RecipeUpdateInputDto extends createZodDto(
   RecipeUpdateInputSchema,
 ) {}
+
+export type PaginateRecipe = Pick<
+  Recipe,
+  'title' | 'description' | 'favoriteCount'
+>;

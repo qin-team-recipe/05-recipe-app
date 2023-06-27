@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {
+  PaginateRecipeResponse,
   RecipeCreateInput,
   RecipeResponse,
   RecipeUpdateInput,
@@ -40,6 +41,38 @@ export class RecipeRepository {
       return await this.orm.recipe.update({
         where: { id: recipeProps.id },
         data: recipeProps,
+      });
+    } catch (error) {
+      this.logger.error(error);
+      prismaErrorHandling(error);
+      throw error;
+    }
+  }
+
+  // 話題のレシピ一覧をページネーションで取得する
+  async pickupList(
+    take: number,
+    cursor?: string,
+  ): Promise<PaginateRecipeResponse> {
+    try {
+      return await this.orm.recipe.findMany({
+        take,
+        skip: cursor ? 1 : undefined,
+        cursor: cursor ? { id: cursor } : undefined,
+        orderBy: {
+          favoriteCount: 'desc',
+        },
+        select: {
+          id: true,
+          title: true,
+          description: true,
+          favoriteCount: true,
+          recipeImages: {
+            select: {
+              path: true,
+            },
+          },
+        },
       });
     } catch (error) {
       this.logger.error(error);
