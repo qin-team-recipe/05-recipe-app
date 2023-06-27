@@ -96,8 +96,6 @@ describe('UserProfileRepository.paginate()', () => {
           const { userId } = cursor;
           const start = userId ? findIndexByUserId(userId) + 1 : 0;
           const end = start + take;
-          console.log('start: ', start);
-          console.log('end: ', end);
           const results = paginateResults.slice(start, end);
           return Promise.resolve(results);
         });
