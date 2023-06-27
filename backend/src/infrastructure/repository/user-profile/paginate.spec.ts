@@ -45,6 +45,7 @@ beforeAll(async () => {
 
 describe('UserProfileRepository.paginate()', () => {
   const commonOrmProps = {
+    take: 5,
     orderBy: {
       nickname: 'asc',
     },
@@ -67,11 +68,10 @@ describe('UserProfileRepository.paginate()', () => {
     test('0 user profiles', async () => {
       const ormProps = {
         ...commonOrmProps,
-        skip: undefined,
-        take: undefined,
+        cursor: undefined,
       };
       // Exercise: call the function
-      const userProfiles = await repository.paginate();
+      const userProfiles = await repository.paginate(ormProps.take);
 
       // Verify: ensure user.paginate was called with correct arguments
       expect(ormMock.userProfile.findMany).toHaveBeenCalledWith(ormProps);
@@ -82,70 +82,85 @@ describe('UserProfileRepository.paginate()', () => {
   });
 
   describe('when the user exists', () => {
-    const perPage = 5;
+    const findIndexByUserId = (userId: string): number => {
+      return paginateResults.findIndex(
+        (userProfile) => userProfile.userId === userId,
+      );
+    };
+
     beforeAll(async () => {
       // Mock user.findMany method
-      ormMock.userProfile.findMany = jest.fn().mockImplementation((props) => {
-        const start = props.skip;
-        const end = start + props.take;
-        const results = paginateResults.slice(start, end);
-        return Promise.resolve(results);
-      });
+      ormMock.userProfile.findMany = jest
+        .fn()
+        .mockImplementation(({ take, cursor = {} }) => {
+          const { userId } = cursor;
+          const start = userId ? findIndexByUserId(userId) + 1 : 0;
+          const end = start + take;
+          console.log('start: ', start);
+          console.log('end: ', end);
+          const results = paginateResults.slice(start, end);
+          return Promise.resolve(results);
+        });
     });
     test('UserProfiles on page 1', async () => {
-      const page = 1;
       const ormProps = {
         ...commonOrmProps,
-        skip: perPage * (page - 1),
-        take: perPage,
       };
       // Exercise: call the function
-      const userProfiles = await repository.paginate(page, perPage);
+      const userProfiles = await repository.paginate(ormProps.take);
 
       // Verify: ensure user.paginate was called with correct arguments
       expect(ormMock.userProfile.findMany).toHaveBeenCalledWith(ormProps);
 
       // Verify: ensure the function returns the data we specified
-      const start = perPage * (page - 1);
-      const end = start + perPage;
-      expect(userProfiles).toStrictEqual(paginateResults.slice(start, end));
-      expect(userProfiles.length).toStrictEqual(perPage);
+      expect(userProfiles).toStrictEqual(
+        paginateResults.slice(0, ormProps.take),
+      );
+      expect(userProfiles.length).toStrictEqual(ormProps.take);
     });
     test('UserProfiles on page 2', async () => {
-      const page = 2;
       const ormProps = {
         ...commonOrmProps,
-        skip: perPage * (page - 1),
-        take: perPage,
+        skip: 1,
+        cursor: { userId: paginateResults[commonOrmProps.take - 1].userId },
       };
+      const {
+        take,
+        cursor: { userId },
+      } = ormProps;
+
       // Exercise: call the function
-      const userProfiles = await repository.paginate(page, perPage);
+      const userProfiles = await repository.paginate(take, userId);
 
       // Verify: ensure user.paginate was called with correct arguments
       expect(ormMock.userProfile.findMany).toHaveBeenCalledWith(ormProps);
 
       // Verify: ensure the function returns the data we specified
-      const start = perPage * (page - 1);
-      const end = start + perPage;
+      const start = findIndexByUserId(userId) + 1;
+      const end = start + take;
       expect(userProfiles).toStrictEqual(paginateResults.slice(start, end));
-      expect(userProfiles.length).toStrictEqual(perPage);
+      expect(userProfiles.length).toStrictEqual(take);
     });
     test('UserProfiles on page 3', async () => {
-      const page = 3;
       const ormProps = {
         ...commonOrmProps,
-        skip: perPage * (page - 1),
-        take: perPage,
+        skip: 1,
+        cursor: { userId: paginateResults[commonOrmProps.take * 2 - 1].userId },
       };
+      const {
+        take,
+        cursor: { userId },
+      } = ormProps;
+
       // Exercise: call the function
-      const userProfiles = await repository.paginate(page, perPage);
+      const userProfiles = await repository.paginate(take, userId);
 
       // Verify: ensure user.paginate was called with correct arguments
       expect(ormMock.userProfile.findMany).toHaveBeenCalledWith(ormProps);
 
       // Verify: ensure the function returns the data we specified
-      const start = perPage * (page - 1);
-      const end = start + perPage;
+      const start = findIndexByUserId(userId) + 1;
+      const end = start + take;
       expect(userProfiles).toStrictEqual(paginateResults.slice(start, end));
       expect(userProfiles.length).toStrictEqual(1);
     });
