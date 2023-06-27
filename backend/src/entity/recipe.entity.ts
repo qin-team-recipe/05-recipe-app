@@ -55,6 +55,13 @@ export type PickupListRecipeResponse = (Pick<
   recipeImages: Pick<RecipeImage, 'path'>[];
 })[];
 
+export type findManyByUserIdRecipeResponse = (Pick<
+  RecipeResponse,
+  'id' | 'title' | 'description' | 'favoriteCount'
+> & {
+  recipeImages: Pick<RecipeImage, 'path'>[];
+})[];
+
 export class RecipeCreateInputDto extends createZodDto(
   RecipeCreateInputSchema,
 ) {}

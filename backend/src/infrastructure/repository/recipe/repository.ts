@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {
+  findManyByUserIdRecipeResponse,
   PickupListRecipeResponse,
   RecipeCreateInput,
   RecipeResponse,
@@ -61,6 +62,42 @@ export class RecipeRepository {
         cursor: cursor ? { id: cursor } : undefined,
         orderBy: {
           favoriteCount: 'desc',
+        },
+        select: {
+          id: true,
+          title: true,
+          description: true,
+          favoriteCount: true,
+          recipeImages: {
+            select: {
+              path: true,
+            },
+          },
+        },
+      });
+    } catch (error) {
+      this.logger.error(error);
+      prismaErrorHandling(error);
+      throw error;
+    }
+  }
+
+  // ユーザーのレシピ一覧をページネーションで取得する
+  async findManyByUserId(
+    userId: string,
+    take: number,
+    cursor?: string,
+  ): Promise<findManyByUserIdRecipeResponse> {
+    try {
+      return await this.orm.recipe.findMany({
+        take,
+        skip: cursor ? 1 : undefined,
+        cursor: cursor ? { id: cursor } : undefined,
+        where: {
+          userId,
+        },
+        orderBy: {
+          createdAt: 'desc',
         },
         select: {
           id: true,
