@@ -12,7 +12,7 @@ let ormMock: OrmClient;
 const updateResult: RecipeUpdateInput = {
   id: 'cuid',
   userId: 'cuid',
-  name: 'initial name',
+  title: 'initial title',
   description: 'initial description',
   servingCount: 0,
   favoriteCount: 0,
@@ -64,7 +64,7 @@ describe('RecipeRepository.update()', () => {
     const recipeProps: RecipeUpdateInput = {
       id: undefined,
       userId: updateResult.userId,
-      name: 'test name',
+      title: 'test title',
       description: 'test description',
       servingCount: 1,
       favoriteCount: 1,
@@ -80,7 +80,7 @@ describe('RecipeRepository.update()', () => {
     const recipeProps: RecipeUpdateInput = {
       id: 'non-existent-id',
       userId: updateResult.userId,
-      name: 'test name',
+      title: 'test title',
       description: 'test description',
       servingCount: 1234,
       favoriteCount: 4321,
@@ -96,7 +96,7 @@ describe('RecipeRepository.update()', () => {
     const recipeProps: RecipeUpdateInput = {
       id: updateResult.id,
       userId: updateResult.userId,
-      name: 'test name',
+      title: 'test title',
       description: 'test description',
       servingCount: 1,
       favoriteCount: 1,
@@ -112,7 +112,7 @@ describe('RecipeRepository.update()', () => {
     // Verify: ensure the function returns the data we specified
     expect(recipe?.id).toStrictEqual(recipeProps.id);
     expect(recipe?.userId).toStrictEqual(recipeProps.userId);
-    expect(recipe?.name).toStrictEqual(recipeProps.name);
+    expect(recipe?.title).toStrictEqual(recipeProps.title);
     expect(recipe?.description).toStrictEqual(recipeProps.description);
     expect(recipe?.servingCount).toStrictEqual(recipeProps.servingCount);
     expect(recipe?.favoriteCount).toStrictEqual(recipeProps.favoriteCount);
