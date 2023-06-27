@@ -44,29 +44,63 @@ describe('RecipeRepository.create()', () => {
       favoriteCount: 1,
       draftFlag: true,
       recipeImages: {
-        create: {
-          id: 1234567890,
-          path: 'test/img/path',
+        createMany: {
+          data: [
+            {
+              id: 1234567890,
+              path: 'test/img/path',
+            },
+            {
+              id: 9876543210,
+              path: 'test/img/path',
+            },
+          ],
         },
       },
       recipeSteps: {
-        create: {
-          id: 1234567890,
-          description: 'test description',
-          stepNum: 1,
+        createMany: {
+          data: [
+            {
+              id: 1234567890,
+              description: 'test description',
+              stepNum: 1,
+            },
+            {
+              id: 9876543210,
+              description: 'test description',
+              stepNum: 2,
+            },
+          ],
         },
       },
       recipeLinks: {
-        create: {
-          id: 1234567890,
-          url: 'https://test.com',
+        createMany: {
+          data: [
+            {
+              id: 1234567890,
+              url: 'https://test.com',
+            },
+            {
+              id: 9876543210,
+              url: 'https://test.com',
+            },
+          ],
         },
       },
       recipeItems: {
-        create: {
-          id: 1234567890,
-          name: 'test name',
-          description: 'test description',
+        createMany: {
+          data: [
+            {
+              id: 1234567890,
+              name: 'test name',
+              description: 'test description',
+            },
+            {
+              id: 9876543210,
+              name: 'test name',
+              description: 'test description',
+            },
+          ],
         },
       },
     };
@@ -96,29 +130,63 @@ describe('RecipeRepository.create()', () => {
       favoriteCount: 0,
       draftFlag: true,
       recipeImages: {
-        create: {
-          id: 1234567890,
-          path: 'test/img/path',
+        createMany: {
+          data: [
+            {
+              id: 1234567890,
+              path: 'test/img/path',
+            },
+            {
+              id: 9876543210,
+              path: 'test/img/path',
+            },
+          ],
         },
       },
       recipeSteps: {
-        create: {
-          id: 1234567890,
-          description: 'test description',
-          stepNum: 1,
+        createMany: {
+          data: [
+            {
+              id: 1234567890,
+              description: 'test description',
+              stepNum: 1,
+            },
+            {
+              id: 9876543210,
+              description: 'test description',
+              stepNum: 2,
+            },
+          ],
         },
       },
       recipeLinks: {
-        create: {
-          id: 1234567890,
-          url: 'https://test.com',
+        createMany: {
+          data: [
+            {
+              id: 1234567890,
+              url: 'https://test.com',
+            },
+            {
+              id: 9876543210,
+              url: 'https://test.com',
+            },
+          ],
         },
       },
       recipeItems: {
-        create: {
-          id: 1234567890,
-          name: 'test name',
-          description: 'test description',
+        createMany: {
+          data: [
+            {
+              id: 1234567890,
+              name: 'test name',
+              description: 'test description',
+            },
+            {
+              id: 9876543210,
+              name: 'test name',
+              description: 'test description',
+            },
+          ],
         },
       },
     };
