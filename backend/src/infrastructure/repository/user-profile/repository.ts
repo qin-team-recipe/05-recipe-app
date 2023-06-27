@@ -63,7 +63,7 @@ export class UserProfileRepository {
           recipes: {
             select: {
               id: true,
-              name: true,
+              title: true,
               description: true,
               favoriteCount: true,
             },
