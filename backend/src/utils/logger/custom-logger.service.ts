@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable, LoggerService } from '@nestjs/common';
 import pino from 'pino';
 
