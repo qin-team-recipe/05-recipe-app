@@ -41,7 +41,7 @@ const ChefPage: FC<ChefPageProps> = (props) => {
       <div className="py-7">
         <TwoTab linkList={linkList}>
           <ContentContainer>
-            <div className="grid grid-cols-2 gap-2">{recipeCards}</div>
+            <div className="grid grid-cols-2 gap-2 pt-5">{recipeCards}</div>
           </ContentContainer>
         </TwoTab>
       </div>
