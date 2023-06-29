@@ -1,6 +1,11 @@
 import React, { FC } from "react"
 
-import { PageDetailHeader } from "@/app/(app)/_component/header"
+import { ContentContainer } from "@/app/(app)/_component/container"
+import {
+  PageDetailHeader,
+  SectionHeader,
+  SubButtonLink,
+} from "@/app/(app)/_component/header"
 import { RecipeItem } from "@/app/(app)/_component/recipeItem"
 import { TwoTab } from "@/app/(app)/_component/twoTab"
 import { twoTabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
@@ -46,16 +51,22 @@ const LinkTabPage: FC<LinkTabPageProps> = (props) => {
     userImg: "/chef.jpg",
   }
 
+  const subButtonLink = {
+    href: "/favorite",
+    label: "まとめてお買物に追加",
+  } as const satisfies SubButtonLink
+
   return (
     <div>
       <PageDetailHeader data={recipeData} pageType="recipe" />
       <div className="py-7">
         <TwoTab linkList={linkList}>
-          {/* <ContentContainer> */}
-          <div className="grid grid-cols-1 divide-y divide-mauve-8">
+          <ContentContainer>
+            <SectionHeader label="２人前" subButtonLink={subButtonLink} />
+          </ContentContainer>
+          <div className="my-2 grid grid-cols-1 divide-y divide-mauve-8">
             {recipeItems}
           </div>
-          {/* </ContentContainer> */}
         </TwoTab>
       </div>
     </div>
