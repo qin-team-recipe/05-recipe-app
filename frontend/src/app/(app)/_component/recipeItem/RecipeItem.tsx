@@ -10,7 +10,7 @@ type RecipeItem = {
 }
 
 const color = tv({
-  base: "w-10 pr-4",
+  base: "w-16 px-2",
   variants: {
     isFollow: {
       false: "text-gray-11",
@@ -33,7 +33,6 @@ export const RecipeItem: FC<RecipeItem> = (props) => {
     <div className="flex h-12 items-center justify-between">
       <div className="pl-4">{note}</div>
       <button onClick={handleClick} className={color({ isFollow })}>
-        {/* <button onClick={handleClick} className="text-tomato-7"> */}
         <IconShoppingCartPlus className="w-full" strokeWidth={2} />
       </button>
     </div>
