@@ -1,5 +1,8 @@
 import React, { FC } from "react"
 
+import { IconCopy } from "@tabler/icons-react"
+
+import { ContentContainer } from "@/app/(app)/_component/container"
 import { PageDetailHeader } from "@/app/(app)/_component/header"
 import { TwoTab } from "@/app/(app)/_component/twoTab"
 import { twoTabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
@@ -35,10 +38,16 @@ const RecipePage: FC<RecipePageProps> = (props) => {
 
       <div className="py-7">
         <TwoTab linkList={linkList}>
-          {/* <ContentContainer>
+          <ContentContainer>
             <div className="grid grid-cols-2 gap-2"></div>
-          </ContentContainer> */}
+          </ContentContainer>
         </TwoTab>
+        <div className="flex justify-end px-4">
+          <button className="flex text-blue-11 active:opacity-95">
+            <IconCopy />
+            コピーする
+          </button>
+        </div>
       </div>
     </div>
   )
