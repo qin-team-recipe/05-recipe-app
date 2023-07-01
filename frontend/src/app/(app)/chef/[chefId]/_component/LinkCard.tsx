@@ -18,12 +18,15 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
   const { accountId, linkType, siteName, snsFollower, url } = props
 
   return (
-    <a href={url} className="flex gap-4 p-4">
+    <a
+      href={url}
+      className="flex gap-4 border border-0 border-b border-mauve-6 p-4"
+    >
       <SnsIcon linkType={linkType} />
       <SiteInfo
         accountId={accountId}
         linkType={linkType}
-        snsFollwer={snsFollower}
+        snsFollower={snsFollower}
         siteName={siteName}
         url={url}
       />
@@ -59,10 +62,10 @@ const SiteInfo: FC<{
   accountId?: LinkCardProps["accountId"]
   linkType: LinkCardProps["linkType"]
   siteName?: LinkCardProps["siteName"]
-  snsFollwer?: LinkCardProps["snsFollower"]
+  snsFollower?: LinkCardProps["snsFollower"]
   url?: LinkCardProps["url"]
 }> = (props) => {
-  const { accountId, linkType, siteName, snsFollwer, url } = props
+  const { accountId, linkType, siteName, snsFollower, url } = props
 
   const convertTitle = (
     linkType: LinkCardProps["linkType"],
@@ -88,7 +91,7 @@ const SiteInfo: FC<{
         <p>
           {isSns ? (
             <>
-              {snsFollwer}フォロワー<span>・</span>
+              {snsFollower}フォロワー<span>・</span>
               {accountId}
             </>
           ) : (

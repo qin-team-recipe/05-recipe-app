@@ -1,6 +1,5 @@
 import React, { FC } from "react"
 
-import { ContentContainer } from "@/app/(app)/_component/container"
 import { PageDetailHeader } from "@/app/(app)/_component/header"
 import { TwoTab } from "@/app/(app)/_component/twoTab"
 import { LinkCard } from "@/app/(app)/chef/[chefId]/_component"
@@ -78,9 +77,7 @@ const LinkTabPage: FC<LinkTabPageProps> = (props) => {
       <PageDetailHeader data={chefData} pageType="chef" />
       <div className="py-7">
         <TwoTab linkList={linkList}>
-          <ContentContainer>
-            <div>{chefCards}</div>
-          </ContentContainer>
+          <div>{chefCards}</div>
         </TwoTab>
       </div>
     </div>
