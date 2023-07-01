@@ -6,7 +6,7 @@ import { ChefImg } from "./ChefImg"
 import { ChefInfo } from "./ChefInfo"
 
 type ChefCardProps = {
-  hasDescription: boolean
+  cardType?: "withDescription" | "withoutDescription" | "round"
   img?: string
   introduction?: string
   name: string
@@ -15,23 +15,44 @@ type ChefCardProps = {
 
 /** @package */
 export const ChefCard: FC<ChefCardProps> = (props) => {
-  const { hasDescription, img, introduction, name, recipeCount } = props
+  const {
+    cardType = "withoutDescription",
+    img,
+    introduction,
+    name,
+    recipeCount,
+  } = props
 
-  return hasDescription ? (
-    <div className="flex h-28 w-full items-start gap-4 overflow-hidden">
-      <div className="h-full w-28">
-        <ChefImg img={img} />
+  if (cardType === "withDescription") {
+    return (
+      <div className="flex h-28 w-full items-start gap-4 overflow-hidden">
+        <div className="h-full w-28">
+          <ChefImg img={img} />
+        </div>
+        <ChefInfo
+          introduction={introduction}
+          name={name}
+          count={recipeCount ?? 0}
+        />
       </div>
-      <ChefInfo
-        introduction={introduction}
-        name={name}
-        count={recipeCount ?? 0}
-      />
-    </div>
-  ) : (
+    )
+  }
+
+  if (cardType === "round") {
+    return (
+      <div className="flex flex-col items-center gap-2 overflow-hidden">
+        <div className="h-20 w-20">
+          <ChefImg img={img} rounded="full" />
+        </div>
+        <p className="text-mauve-normal text-xs font-semibold">{name}</p>
+      </div>
+    )
+  }
+
+  return (
     <div className="min-w-32 relative flex h-56 w-32 overflow-hidden">
       <ChefImg img={img} />
-      <p className="absolute bottom-3 left-2 text-xl font-semibold text-gray-1 ">
+      <p className="absolute bottom-3 left-2 text-xl font-semibold text-mauve-1">
         {name}
       </p>
     </div>

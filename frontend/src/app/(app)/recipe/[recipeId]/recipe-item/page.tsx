@@ -3,24 +3,45 @@ import React, { FC } from "react"
 import { IconCopy } from "@tabler/icons-react"
 
 import { ContentContainer } from "@/app/(app)/_component/container"
-import { PageDetailHeader } from "@/app/(app)/_component/header"
+import {
+  PageDetailHeader,
+  SectionHeader,
+  SubButtonLink,
+} from "@/app/(app)/_component/header"
+import { RecipeItem } from "@/app/(app)/_component/recipeItem"
 import { TwoTab } from "@/app/(app)/_component/twoTab"
 import { twoTabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
 export const metadata = {
-  title: "レシピ詳細",
+  title: "レシピ詳細 | 材料",
 }
 
-type RecipePageProps = {
+type LinkTabPageProps = {
   params: {
     recipeId: string
   }
 }
 
-const RecipePage: FC<RecipePageProps> = (props) => {
-  const { params } = props
+type RecipeItem = {
+  note: string
+}
 
+export type RecipeItemList = {
+  recipeItemList: RecipeItem[]
+}
+
+const LinkTabPage: FC<LinkTabPageProps> = (props) => {
+  const { params } = props
   const linkList = twoTabLinkList(params.recipeId)
+  const recipeItemList: RecipeItem[] = [
+    { note: "トマト１個" },
+    { note: "チーズ２枚" },
+    { note: "オリーブオイル少々" },
+  ]
+
+  const recipeItems = recipeItemList.map((recipeItem, i) => {
+    return <RecipeItem note={recipeItem.note} key={i} />
+  })
 
   const recipeData = {
     favoriteCount: 222,
@@ -32,15 +53,22 @@ const RecipePage: FC<RecipePageProps> = (props) => {
     userImg: "/chef.jpg",
   }
 
+  const subButtonLink = {
+    href: "/favorite",
+    label: "まとめてお買物に追加",
+  } as const satisfies SubButtonLink
+
   return (
     <div>
       <PageDetailHeader data={recipeData} pageType="recipe" />
-
       <div className="py-7">
         <TwoTab linkList={linkList}>
           <ContentContainer>
-            <div className="grid grid-cols-2 gap-2"></div>
+            <SectionHeader label="２人前" subButtonLink={subButtonLink} />
           </ContentContainer>
+          <div className="my-2 grid grid-cols-1 divide-y divide-mauve-8">
+            {recipeItems}
+          </div>
         </TwoTab>
         <div className="flex justify-end px-4">
           <button className="flex text-blue-11 active:opacity-95">
@@ -53,4 +81,4 @@ const RecipePage: FC<RecipePageProps> = (props) => {
   )
 }
 
-export default RecipePage
+export default LinkTabPage
