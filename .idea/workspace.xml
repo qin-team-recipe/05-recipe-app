@@ -4,20 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d08ea990-139f-4dba-9e27-def48cafbfd3" name="変更" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/(app)/_component/instruction/Instruction.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/(app)/_component/instruction/Step.test.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/(app)/_component/instruction/Step.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/(app)/_component/instruction/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/(app)/_lib/htmlTag/Paragraph.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/(app)/_lib/htmlTag/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/(app)/_lib/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/(app)/_lib/parseHtml.ts" afterDir="false" />
+    <list default="true" id="d08ea990-139f-4dba-9e27-def48cafbfd3" name="変更" comment="feat: 作り方コンポーネントを実装">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/(app)/_component/twoTab/TwoTab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/(app)/_component/twoTab/TwoTab.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/(app)/recipe/[recipeId]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/(app)/recipe/[recipeId]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/(app)/_lib/parseHtml.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/(app)/_lib/parseHtml.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +142,7 @@
       <updated>1687865527018</updated>
       <workItem from="1687865528450" duration="7919000" />
       <workItem from="1687945537707" duration="5297000" />
-      <workItem from="1688122245859" duration="15190000" />
+      <workItem from="1688122245859" duration="15853000" />
     </task>
     <task id="LOCAL-00001" summary="style: Linkカードコンポーネント周りのスペル修正やpaddingの修正">
       <created>1687945903004</created>
@@ -176,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688124488689</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: 作り方コンポーネントを実装">
+      <created>1688193008972</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1688193008972</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -185,6 +181,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="style: Linkカードコンポーネント周りのスペル修正やpaddingの修正" />
     <MESSAGE value="APIレスポンスの型定義" />
-    <option name="LAST_COMMIT_MESSAGE" value="APIレスポンスの型定義" />
+    <MESSAGE value="feat: 作り方コンポーネントを実装" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 作り方コンポーネントを実装" />
   </component>
 </project>
