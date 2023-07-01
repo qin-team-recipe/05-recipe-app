@@ -1,4 +1,9 @@
-import { createElement, Fragment } from "react"
+import {
+  createElement,
+  Fragment,
+  JSXElementConstructor,
+  ReactElement,
+} from "react"
 
 import parse from "rehype-parse"
 import rehypeReact, { Options as RehypeReactOptions } from "rehype-react"
@@ -15,11 +20,11 @@ const rehypeOptions: RehypeReactOptions = {
 }
 
 /** @package */
-export const parseHtml = (content: string) => {
-  const htmlAst = unified()
+export const parseHtml = (
+  content: string,
+): ReactElement<unknown, string | JSXElementConstructor<any>> => {
+  return unified()
     .use(parse, { fragment: true })
     .use(rehypeReact, rehypeOptions)
     .processSync(content).result
-
-  return htmlAst
 }
