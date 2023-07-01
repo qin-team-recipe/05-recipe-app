@@ -4,9 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d08ea990-139f-4dba-9e27-def48cafbfd3" name="変更" comment="feat: 作り方コンポーネントを実装">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/(app)/_lib/parseHtml.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/(app)/_lib/parseHtml.ts" afterDir="false" />
+    <list default="true" id="d08ea990-139f-4dba-9e27-def48cafbfd3" name="変更" comment="chore: ignoreファイルに追記">
+      <change afterPath="$PROJECT_DIR$/backend/src/entity/user-auth-provider.entity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/infrastructure/repository/user-auth-provider/create.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/infrastructure/repository/user-auth-provider/repository.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/infrastructure/repository/user-auth-provider/repository.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/infrastructure/repository/user/find-by-email.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/(app)/_component/recipeItem/RecipeItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/entity/user.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/entity/user.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/infrastructure/repository/user-profile/paginate.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/infrastructure/repository/user-profile/paginate.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/infrastructure/repository/user-profile/repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/infrastructure/repository/user-profile/repository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/infrastructure/repository/user/create.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/infrastructure/repository/user/create-with-auth-provider.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/infrastructure/repository/user/repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/infrastructure/repository/user/repository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/usecase/user/usecase.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/usecase/user/usecase.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/(app)/recipe/[recipeId]/_component/RecipeItem.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/(app)/recipe/[recipeId]/_component/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/(app)/_component/recipeItem/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/(app)/recipe/[recipeId]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/(app)/recipe/[recipeId]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/(app)/recipe/[recipeId]/recipe-item/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/(app)/recipe/[recipeId]/recipe-item/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,27 +60,27 @@
     <option name="showScratchesAndConsoles" value="false" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feat/instruction-list&quot;,
-    &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;/Users/yamamotoyugo/Documents/develop/qin/05-recipe-app/node_modules/eslint&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs.jest.jest_package&quot;: &quot;/Users/yamamotoyugo/Documents/develop/qin/05-recipe-app/node_modules/jest&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/yamamotoyugo/Documents/develop/qin/05-recipe-app/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/yamamotoyugo/Documents/develop/qin/05-recipe-app/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "feat/instruction-list をマージ中",
+    "js.linters.configure.manually.selectedeslint": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "/Users/yamamotoyugo/Documents/develop/qin/05-recipe-app/node_modules/eslint",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "/Users/yamamotoyugo/Documents/develop/qin/05-recipe-app/node_modules/jest",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/yamamotoyugo/Documents/develop/qin/05-recipe-app/node_modules/prettier",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "ts.external.directory.path": "/Users/yamamotoyugo/Documents/develop/qin/05-recipe-app/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/frontend/src/app/(app)/_lib/htmlTag" />

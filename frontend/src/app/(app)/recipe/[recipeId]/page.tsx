@@ -1,5 +1,7 @@
 import React, { FC } from "react"
 
+import { IconCopy } from "@tabler/icons-react"
+
 import { PageDetailHeader } from "@/app/(app)/_component/header"
 import { Instruction } from "@/app/(app)/_component/instruction"
 import { TwoTab } from "@/app/(app)/_component/twoTab"
@@ -67,6 +69,12 @@ const RecipePage: FC<RecipePageProps> = (props) => {
         <TwoTab linkList={linkList}>
           <div>{recipeItems}</div>
         </TwoTab>
+        <div className="flex justify-end px-4">
+          <button className="flex text-blue-11 active:opacity-95">
+            <IconCopy />
+            コピーする
+          </button>
+        </div>
       </div>
     </div>
   )
