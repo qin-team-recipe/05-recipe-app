@@ -30,7 +30,7 @@ export const TwoTab: FC<TwoTabProps> = (props) => {
   const pathname = usePathname()
 
   return (
-    <div className="flex flex-col space-y-5">
+    <div className="flex flex-col">
       <div className="grid w-full grid-cols-2">
         {linkList.map((link) => {
           return (
