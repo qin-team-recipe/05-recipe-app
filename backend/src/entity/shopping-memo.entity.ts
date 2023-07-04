@@ -14,13 +14,16 @@ const shoppingMemo = z.object({
 export const ShoppingMemoCreateInputSchema: z.ZodType<Prisma.ShoppingMemoUncheckedCreateInput> =
   shoppingMemo.omit({ createdAt: true, updatedAt: true });
 
-export const ShoppingMemoUpdateInputSchema: z.ZodType<Prisma.ShoppingMemoUpdateInput> =
+export const ShoppingMemoUpdateInputSchema: z.ZodType<Prisma.ShoppingMemoUncheckedUpdateInput> =
   shoppingMemo.omit({ createdAt: true, updatedAt: true });
 
 export const ShoppingMemoResponseSchema: z.ZodType<ShoppingMemo> = shoppingMemo;
 
 export type ShoppingMemoCreateInput = z.infer<
   typeof ShoppingMemoCreateInputSchema
+>;
+export type ShoppingMemoUpdateInput = z.infer<
+  typeof ShoppingMemoUpdateInputSchema
 >;
 export type ShoppingMemoResponse = z.infer<typeof ShoppingMemoResponseSchema>;
 
