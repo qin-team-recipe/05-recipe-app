@@ -1,13 +1,26 @@
 import React, { FC } from "react"
 import Image from "next/image"
 
+import { tv } from "tailwind-variants"
+
 type ChefImgProps = {
   img?: string
+  rounded?: "full" | "default"
 }
+
+const image = tv({
+  base: "h-full w-full bg-amber-5",
+  variants: {
+    rounded: {
+      default: "rounded-2xl",
+      full: "rounded-full",
+    },
+  },
+})
 
 /** @package */
 export const ChefImg: FC<ChefImgProps> = (props) => {
-  const { img } = props
+  const { img, rounded = "default" } = props
 
   return (
     <div className="h-full w-full">
@@ -20,7 +33,7 @@ export const ChefImg: FC<ChefImgProps> = (props) => {
         style={{
           objectFit: "cover",
         }}
-        className="h-full w-full rounded-2xl bg-amber-5"
+        className={image({ rounded })}
       />
     </div>
   )
