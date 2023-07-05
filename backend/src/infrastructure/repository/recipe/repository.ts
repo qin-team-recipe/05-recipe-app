@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import {
   findManyByUserIdRecipeResponse,
+  FindRecipeResponse,
   PickupListRecipeResponse,
   RecipeCreateInput,
   RecipeResponse,
@@ -42,6 +43,57 @@ export class RecipeRepository {
       return await this.orm.recipe.update({
         where: { id: recipeProps.id },
         data: recipeProps,
+      });
+    } catch (error) {
+      this.logger.error(error);
+      prismaErrorHandling(error);
+      throw error;
+    }
+  }
+
+  // レシピをIDで取得する
+  async findById(id: string): Promise<FindRecipeResponse | null> {
+    try {
+      return await this.orm.recipe.findUnique({
+        where: { id },
+        select: {
+          id: true,
+          userId: true,
+          title: true,
+          description: true,
+          servingCount: true,
+          favoriteCount: true,
+          draftFlag: true,
+          createdAt: true,
+          updatedAt: true,
+          recipeImages: {
+            select: {
+              path: true,
+            },
+          },
+          recipeSteps: {
+            select: {
+              description: true,
+              stepNum: true,
+            },
+          },
+          recipeLinks: {
+            select: {
+              url: true,
+            },
+          },
+          recipeItems: {
+            select: {
+              name: true,
+              description: true,
+            },
+          },
+          favorites: {
+            select: {
+              userId: true,
+            },
+          },
+        },
       });
     } catch (error) {
       this.logger.error(error);

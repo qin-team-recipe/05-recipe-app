@@ -1,4 +1,12 @@
-import type { Prisma, Recipe, RecipeImage } from '@prisma/client';
+import type {
+  Favorite,
+  Prisma,
+  Recipe,
+  RecipeImage,
+  RecipeItem,
+  RecipeLink,
+  RecipeStep,
+} from '@prisma/client';
 import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
 
@@ -47,6 +55,14 @@ export type RecipeCreateInput = Required<
 export type RecipeUpdateInput = z.infer<typeof RecipeUpdateInputSchema>;
 
 export type RecipeResponse = z.infer<typeof RecipeResponseSchema>;
+
+export type FindRecipeResponse = RecipeResponse & {
+  recipeImages: Pick<RecipeImage, 'path'>[];
+  recipeSteps: Pick<RecipeStep, 'description' | 'stepNum'>[];
+  recipeLinks: Pick<RecipeLink, 'url'>[];
+  recipeItems: Pick<RecipeItem, 'name' | 'description'>[];
+  favorites: Pick<Favorite, 'userId'>[];
+};
 
 export type PickupListRecipeResponse = (Pick<
   RecipeResponse,
