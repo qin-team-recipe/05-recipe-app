@@ -1,0 +1,1 @@
+export { FavoritePageHeader } from "./FavoritePageHeader"
