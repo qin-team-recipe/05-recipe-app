@@ -90,7 +90,7 @@ beforeAll(async () => {
       return Promise.resolve(findResult);
     }
 
-    // If the user does not exist, return null
+    // If the recipe does not exist, return null
     return Promise.resolve(null);
   });
 });
@@ -156,7 +156,7 @@ describe('RecipeRepository.findById()', () => {
     // Exercise: call the function
     const recipe = await repository.findById(findResult.id);
 
-    // Verify: ensure user.findById was called with correct arguments
+    // Verify: ensure recipe.findById was called with correct arguments
     expect(ormMock.recipe.findUnique).toHaveBeenCalledWith({
       where: { id: findResult.id },
       ...ormProps,
