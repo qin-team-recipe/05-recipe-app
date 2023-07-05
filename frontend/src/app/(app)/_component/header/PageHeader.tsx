@@ -2,10 +2,22 @@ import React, { FC, ReactNode } from "react"
 
 import { tv } from "tailwind-variants"
 
+type Title =
+  | "お気に入り"
+  | "買い物リスト"
+  | "マイページ"
+  | "マイレシピ"
+  | "新着レシピ"
+  | "新規登録"
+  | "設定"
+  | "利用規約"
+  | "編集"
+  | "下書き"
+
 type PageHeaderProps = {
   leftSectionChildren?: ReactNode
   rightSectionChildren?: ReactNode
-  title?: "お気に入り" | "買い物リスト" | "マイページ"
+  title?: Title
   titleAlign?: "center" | "left"
 }
 
