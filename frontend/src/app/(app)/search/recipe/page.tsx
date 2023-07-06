@@ -3,21 +3,21 @@
 import React, { FC } from "react"
 import { useSearchParams } from "next/navigation"
 
-import { TwoTab } from "@/app/(app)/_component/twoTab"
-import { removeLastEqualSign, twoTabLinkList } from "@/app/(app)/search/_lib"
+import { Tab } from "@/app/(app)/_component/tab"
+import { removeLastEqualSign, tabLinkList } from "@/app/(app)/search/_lib"
 
 const SearchRecipePage: FC = () => {
   const searchParams = useSearchParams()
 
   const convertedSearchParams = removeLastEqualSign(String(searchParams))
 
-  const linkList = twoTabLinkList({ queryParams: searchParams })
+  const linkList = tabLinkList({ queryParams: searchParams })
 
   return (
     <div>
-      <TwoTab linkList={linkList}>
+      <Tab linkList={linkList}>
         <h3>{`パラメータ : ${convertedSearchParams}`}</h3>
-      </TwoTab>
+      </Tab>
     </div>
   )
 }
