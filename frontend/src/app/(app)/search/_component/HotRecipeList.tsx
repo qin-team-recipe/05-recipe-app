@@ -8,7 +8,14 @@ import { RecipeCard } from "@/app/(app)/_component/recipeCard"
 /** @package */
 export const HotRecipeList = () => {
   const chefCards = Array.from({ length: 10 }).map((_, i) => {
-    return <RecipeCard key={i} hasHotRecipe={true} />
+    return (
+      <RecipeCard
+        summary="補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章"
+        title="メイン文章メイン文章メイン文章メイン文章メイン文章メイン文章メイン文章"
+        key={i}
+        hasHotRecipe={true}
+      />
+    )
   })
 
   const subButtonLink = {
