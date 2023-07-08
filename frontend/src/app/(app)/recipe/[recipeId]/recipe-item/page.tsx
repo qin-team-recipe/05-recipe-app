@@ -9,8 +9,8 @@ import {
   SubButtonLink,
 } from "@/app/(app)/_component/header"
 import { RecipeItem } from "@/app/(app)/_component/recipeItem"
-import { TwoTab } from "@/app/(app)/_component/twoTab"
-import { twoTabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
+import { Tab } from "@/app/(app)/_component/tab"
+import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
 export const metadata = {
   title: "レシピ詳細 | 材料",
@@ -32,7 +32,7 @@ export type RecipeItemList = {
 
 const LinkTabPage: FC<LinkTabPageProps> = (props) => {
   const { params } = props
-  const linkList = twoTabLinkList(params.recipeId)
+  const linkList = tabLinkList(params.recipeId)
   const recipeItemList: RecipeItem[] = [
     { note: "トマト１個" },
     { note: "チーズ２枚" },
@@ -62,14 +62,14 @@ const LinkTabPage: FC<LinkTabPageProps> = (props) => {
     <div>
       <PageDetailHeader data={recipeData} pageType="recipe" />
       <div className="py-7">
-        <TwoTab linkList={linkList}>
-          <ContentContainer>
-            <SectionHeader label="２人前" subButtonLink={subButtonLink} />
-          </ContentContainer>
+        <Tab linkList={linkList}>
           <div className="my-2 grid grid-cols-1 divide-y divide-mauve-8">
+            <ContentContainer>
+              <SectionHeader label="２人前" subButtonLink={subButtonLink} />
+            </ContentContainer>
             {recipeItems}
           </div>
-        </TwoTab>
+        </Tab>
         <div className="flex justify-end px-4">
           <button className="flex text-blue-11 active:opacity-95">
             <IconCopy />

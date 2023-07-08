@@ -1,28 +1,22 @@
 "use client"
 
 import React from "react"
-import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 import { IconArrowLeft } from "@tabler/icons-react"
 
 import { PageHeader } from "@/app/(app)/_component/header"
 
 /** @package */
-export const SettingsPageHeader = () => {
-  const router = useRouter()
-
+export const MyPageHeader = () => {
   return (
     <PageHeader
-      title="設定"
+      title="マイページ"
       titleAlign="left"
       leftSectionChildren={
-        <button
-          onClick={() => {
-            return router.back()
-          }}
-        >
+        <Link href="/favorite">
           <IconArrowLeft className="h-6 w-6 text-mauve-12" />
-        </button>
+        </Link>
       }
     />
   )

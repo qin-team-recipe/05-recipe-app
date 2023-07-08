@@ -3,9 +3,9 @@ import React from "react"
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 
-import { Link, TwoTab } from "@/app/(app)/_component/twoTab"
+import { Link, Tab } from "@/app/(app)/_component/tab"
 
-describe("TwoTabコンポーネントが正しくレンダリングされている", () => {
+describe("Tabコンポーネントが正しくレンダリングされている", () => {
   const linkList: Link[] = [
     {
       href: "/chef/1",
@@ -19,9 +19,9 @@ describe("TwoTabコンポーネントが正しくレンダリングされてい�
   describe("propsで受け取ったlinkListのtabLabelが正しく表示されている", () => {
     test("tabLabelで受け取った「レシピ」と「リンク」がタブとして表示されている", () => {
       render(
-        <TwoTab linkList={linkList}>
+        <Tab linkList={linkList}>
           <div>レシピ一覧</div>
-        </TwoTab>,
+        </Tab>,
       )
 
       expect(screen.getByText("レシピ")).toBeInTheDocument()
@@ -29,9 +29,9 @@ describe("TwoTabコンポーネントが正しくレンダリングされてい�
     })
     test("childrenで受け取った「レシピ一覧」要素が表示されている", () => {
       render(
-        <TwoTab linkList={linkList}>
+        <Tab linkList={linkList}>
           <div>レシピ一覧</div>
-        </TwoTab>,
+        </Tab>,
       )
 
       expect(screen.getByText("レシピ一覧")).toBeInTheDocument()
@@ -40,9 +40,9 @@ describe("TwoTabコンポーネントが正しくレンダリングされてい�
   describe("childrenで受け取ったページの要素が正しく表示されている", () => {
     test("「レシピ一覧」ページが表示されている", () => {
       render(
-        <TwoTab linkList={linkList}>
+        <Tab linkList={linkList}>
           <div>レシピ一覧</div>
-        </TwoTab>,
+        </Tab>,
       )
 
       expect(screen.getByText("レシピ一覧")).toBeInTheDocument()
@@ -53,12 +53,13 @@ describe("TwoTabコンポーネントが正しくレンダリングされてい�
     「レシピ」タブが有効な状態で「リンク」タブをクリックしたら「/chef/1」から「chef/1/link」に遷移し、
     「レシピ一覧」ページからリンク一覧のページに切り替わる`, () => {
       render(
-        <TwoTab linkList={linkList}>
+        <Tab linkList={linkList}>
           <div>レシピ一覧</div>
-        </TwoTab>,
+        </Tab>,
       )
 
       expect(screen.getByText("レシピ一覧")).toBeInTheDocument()
+
       userEvent.click(screen.getByText("リンク"))
 
       const pathname = location.pathname
@@ -69,9 +70,9 @@ describe("TwoTabコンポーネントが正しくレンダリングされてい�
     「リンク」タブが有効な状態で「レシピ」タブをクリックしたら「/chef/1/link」から「chef/1」に遷移し、
     「リンク一覧」ページからレシピ一覧のページに切り替わる`, () => {
       render(
-        <TwoTab linkList={linkList}>
+        <Tab linkList={linkList}>
           <div>リンク一覧</div>
-        </TwoTab>,
+        </Tab>,
       )
 
       expect(screen.getByText("リンク一覧")).toBeInTheDocument()

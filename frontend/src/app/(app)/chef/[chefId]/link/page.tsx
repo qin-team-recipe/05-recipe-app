@@ -1,9 +1,9 @@
 import React, { FC } from "react"
 
 import { PageDetailHeader } from "@/app/(app)/_component/header"
-import { TwoTab } from "@/app/(app)/_component/twoTab"
+import { Tab } from "@/app/(app)/_component/tab"
 import { LinkCard } from "@/app/(app)/chef/[chefId]/_component"
-import { twoTabLinkList } from "@/app/(app)/chef/[chefId]/_lib"
+import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
 export const metadata = {
   title: "シェフ詳細 | リンク",
@@ -61,7 +61,7 @@ const LinkTabPage: FC<LinkTabPageProps> = (props) => {
     )
   })
 
-  const linkList = twoTabLinkList(params.chefId)
+  const linkList = tabLinkList(params.chefId)
 
   const chefData = {
     follower: 1234,
@@ -76,9 +76,9 @@ const LinkTabPage: FC<LinkTabPageProps> = (props) => {
     <div>
       <PageDetailHeader data={chefData} pageType="chef" />
       <div className="py-7">
-        <TwoTab linkList={linkList}>
+        <Tab linkList={linkList}>
           <div>{chefCards}</div>
-        </TwoTab>
+        </Tab>
       </div>
     </div>
   )
