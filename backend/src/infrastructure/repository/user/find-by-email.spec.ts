@@ -26,13 +26,13 @@ const findResult: FindUserResponse = {
   recipes: [
     {
       id: 'recipe-cuid1',
-      name: 'recipe-name1',
+      title: 'recipe-title1',
       description: 'recipe-description1',
       favoriteCount: 1,
     },
     {
       id: 'recipe-cuid2',
-      name: 'recipe-name2',
+      title: 'recipe-title2',
       description: 'recipe-description2',
       favoriteCount: 2,
     },
@@ -92,7 +92,7 @@ describe('UserRepository.findByEmail()', () => {
       recipes: {
         select: {
           id: true,
-          name: true,
+          title: true,
           description: true,
           favoriteCount: true,
         },
