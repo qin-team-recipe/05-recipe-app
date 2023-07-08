@@ -6,15 +6,15 @@ import { usePathname } from "next/navigation"
 
 import { tv } from "tailwind-variants"
 
-import { Link as LinkType } from "@/app/(app)/_component/twoTab"
+import { Link as LinkType } from "@/app/(app)/_component/tab"
 
-type TwoTabProps = {
+type TabProps = {
   children: ReactNode
   linkList: LinkType[]
 }
 
-const twoTabLink = tv({
-  base: "border-b-2 text-center text-mauve-normal border-gray-11 pb-3",
+const tabLink = tv({
+  base: "w-full border-b-2 text-center text-mauve-normal border-gray-11 pb-3",
   variants: {
     isActive: {
       false: "border-mauve-normal",
@@ -24,20 +24,20 @@ const twoTabLink = tv({
 })
 
 /** @package */
-export const TwoTab: FC<TwoTabProps> = (props) => {
+export const Tab: FC<TabProps> = (props) => {
   const { children, linkList } = props
 
   const pathname = usePathname()
 
   return (
     <div className="flex flex-col">
-      <div className="grid w-full grid-cols-2">
+      <div className="flex w-full justify-between">
         {linkList.map((link) => {
           return (
             <Link
               key={String(link.href)}
               href={link.href}
-              className={twoTabLink({
+              className={tabLink({
                 isActive: pathname === link.href,
               })}
             >

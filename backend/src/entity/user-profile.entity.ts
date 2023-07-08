@@ -55,5 +55,5 @@ export class UserProfileUpdateInputDto extends createZodDto(
 
 type FindUserProfileRecipe = Pick<
   Recipe,
-  'id' | 'name' | 'description' | 'favoriteCount'
+  'id' | 'title' | 'description' | 'favoriteCount'
 >;

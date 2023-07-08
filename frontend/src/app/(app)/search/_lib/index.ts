@@ -1,2 +1,2 @@
-export { twoTabLinkList } from "./TwoTabLinkList"
+export { tabLinkList } from "./tabLinkList"
 export { removeLastEqualSign } from "./helper"

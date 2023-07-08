@@ -62,9 +62,6 @@ jobs:
       - name: Install npm ${{ matrix.npm-version }}
         run: npm install -g npm@${{ matrix.npm-version }}
 
-      - name: Install dependencies
-        run: npm i
-
       - name: Cache node modules
         uses: actions/cache@v2
         with:
@@ -72,6 +69,9 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm i
 
       - name: Run DB migration
         run: npm run migrate -w backend
@@ -101,9 +101,6 @@ jobs:
       - name: Install npm ${{ matrix.npm-version }}
         run: npm install -g npm@${{ matrix.npm-version }}
 
-      - name: Install dependencies
-        run: npm i
-
       - name: Cache node modules
         uses: actions/cache@v2
         with:
@@ -111,6 +108,9 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm i
 
       - name: Run ESLint
         run: npm run lint -w frontend
