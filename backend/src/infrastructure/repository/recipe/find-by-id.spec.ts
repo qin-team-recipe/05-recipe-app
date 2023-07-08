@@ -20,36 +20,44 @@ const findResult: FindRecipeResponse = {
   updatedAt: new Date(),
   recipeImages: [
     {
+      id: 1234567890,
       path: 'test/img/path1',
     },
     {
+      id: 9876543210,
       path: 'test/img/path2',
     },
   ],
   recipeSteps: [
     {
+      id: 1234567890,
       description: 'test description1',
       stepNum: 1,
     },
     {
+      id: 9876543210,
       description: 'test description2',
       stepNum: 2,
     },
   ],
   recipeLinks: [
     {
+      id: 1234567890,
       url: 'https://test1.com',
     },
     {
+      id: 9876543210,
       url: 'https://test2.com',
     },
   ],
   recipeItems: [
     {
+      id: 1234567890,
       name: 'test name1',
       description: 'test description1',
     },
     {
+      id: 9876543210,
       name: 'test name2',
       description: 'test description2',
     },
@@ -109,22 +117,26 @@ describe('RecipeRepository.findById()', () => {
       updatedAt: true,
       recipeImages: {
         select: {
+          id: true,
           path: true,
         },
       },
       recipeSteps: {
         select: {
+          id: true,
           description: true,
           stepNum: true,
         },
       },
       recipeLinks: {
         select: {
+          id: true,
           url: true,
         },
       },
       recipeItems: {
         select: {
+          id: true,
           name: true,
           description: true,
         },

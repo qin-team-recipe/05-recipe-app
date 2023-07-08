@@ -68,22 +68,26 @@ export class RecipeRepository {
           updatedAt: true,
           recipeImages: {
             select: {
+              id: true,
               path: true,
             },
           },
           recipeSteps: {
             select: {
+              id: true,
               description: true,
               stepNum: true,
             },
           },
           recipeLinks: {
             select: {
+              id: true,
               url: true,
             },
           },
           recipeItems: {
             select: {
+              id: true,
               name: true,
               description: true,
             },

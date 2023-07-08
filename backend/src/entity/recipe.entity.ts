@@ -57,10 +57,10 @@ export type RecipeUpdateInput = z.infer<typeof RecipeUpdateInputSchema>;
 export type RecipeResponse = z.infer<typeof RecipeResponseSchema>;
 
 export type FindRecipeResponse = RecipeResponse & {
-  recipeImages: Pick<RecipeImage, 'path'>[];
-  recipeSteps: Pick<RecipeStep, 'description' | 'stepNum'>[];
-  recipeLinks: Pick<RecipeLink, 'url'>[];
-  recipeItems: Pick<RecipeItem, 'name' | 'description'>[];
+  recipeImages: Pick<RecipeImage, 'id' | 'path'>[];
+  recipeSteps: Pick<RecipeStep, 'id' | 'description' | 'stepNum'>[];
+  recipeLinks: Pick<RecipeLink, 'id' | 'url'>[];
+  recipeItems: Pick<RecipeItem, 'id' | 'name' | 'description'>[];
   favorites: Pick<Favorite, 'userId'>[];
 };
 
