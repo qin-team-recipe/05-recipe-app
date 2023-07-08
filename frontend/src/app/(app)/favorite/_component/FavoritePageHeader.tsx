@@ -1,8 +1,9 @@
 "use client"
 
 import React from "react"
+import Link from "next/link"
 
-import { IconMenu } from "@tabler/icons-react"
+import { IconMenu, IconUserCircle } from "@tabler/icons-react"
 
 import { PageHeader } from "@/app/(app)/_component/header"
 
@@ -16,6 +17,11 @@ export const FavoritePageHeader = () => {
         <button>
           <IconMenu className="h-6 w-6 text-mauve-12" />
         </button>
+      }
+      rightSectionChildren={
+        <Link href="/myPage">
+          <IconUserCircle className="h-6 w-6 text-mauve-12" />
+        </Link>
       }
     />
   )
