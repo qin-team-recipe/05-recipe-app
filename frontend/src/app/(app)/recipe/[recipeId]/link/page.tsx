@@ -6,12 +6,12 @@ import { LinkCard } from "@/app/(app)/chef/[chefId]/_component"
 import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
 export const metadata = {
-  title: "シェフ詳細 | リンク",
+  title: "レシピ詳細 | リンク",
 }
 
 type LinkTabPageProps = {
   params: {
-    chefId: string
+    recipeId: string
   }
 }
 
@@ -61,20 +61,21 @@ const LinkTabPage: FC<LinkTabPageProps> = (props) => {
     )
   })
 
-  const linkList = tabLinkList(params.chefId)
+  const linkList = tabLinkList(params.recipeId)
 
-  const chefData = {
-    follower: 1234,
-    img: "/chef.jpg",
+  const recipeData = {
+    favoriteCount: 222,
+    img: "/pizza.jpg",
     introduction:
-      "初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり主婦の友社より３月３日、２冊同時発売！絶賛発売中！",
-    name: "山田シェフ",
-    recipeCount: 2345,
+      "おいしいおいしいマルゲリータピザ。トマトたっぷり・チーズたっぷり！生地はさくさくもっちもち",
+    name: "山田の特製マルゲリータ",
+    user: "山田シェフ",
+    userImg: "/chef.jpg",
   }
 
   return (
     <div>
-      <PageDetailHeader data={chefData} pageType="chef" />
+      <PageDetailHeader data={recipeData} pageType="recipe" />
       <div className="py-7">
         <Tab linkList={linkList}>
           <div>{chefCards}</div>

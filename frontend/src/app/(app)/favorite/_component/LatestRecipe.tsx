@@ -6,7 +6,7 @@ import { SectionHeader, SubButtonLink } from "@/app/(app)/_component/header"
 import { RecipeCard } from "@/app/(app)/_component/recipeCard"
 
 /** @package */
-export const HotRecipeList = () => {
+export const LatestRecipe = () => {
   const chefCards = Array.from({ length: 10 }).map((_, i) => {
     return (
       <RecipeCard
@@ -19,20 +19,19 @@ export const HotRecipeList = () => {
   })
 
   const subButtonLink = {
-    href: "/favorite",
+    // TODO: hrefの値を変更
+    href: "/",
     label: "もっと見る",
   } as const satisfies SubButtonLink
 
   return (
     <div className="space-y-4">
       <ContentContainer>
-        <SectionHeader label="話題のレシピ" subButtonLink={subButtonLink} />
+        <SectionHeader label="新着のレシピ" subButtonLink={subButtonLink} />
       </ContentContainer>
 
-      {/* 横スクロールエリアには右paddingをつけない */}
       <ContentContainer isPaddingRight={false}>
         <ScrollAreaWrapper>
-          {/* カードリストの右にだけpaddingがつくように */}
           <ContentContainer isPaddingLeft={false}>
             <div className="flex space-x-4">{chefCards}</div>
           </ContentContainer>
