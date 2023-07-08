@@ -3,8 +3,8 @@ import React, { FC } from "react"
 import { ContentContainer } from "@/app/(app)/_component/container"
 import { PageDetailHeader } from "@/app/(app)/_component/header"
 import { RecipeCard } from "@/app/(app)/_component/recipeCard"
-import { TwoTab } from "@/app/(app)/_component/twoTab"
-import { twoTabLinkList } from "@/app/(app)/chef/[chefId]/_lib"
+import { Tab } from "@/app/(app)/_component/tab"
+import { tabLinkList } from "@/app/(app)/chef/[chefId]/_lib"
 
 export const metadata = {
   title: "シェフ詳細 | シェフ一覧",
@@ -23,7 +23,7 @@ const ChefPage: FC<ChefPageProps> = (props) => {
     return <RecipeCard key={i} />
   })
 
-  const linkList = twoTabLinkList(params.chefId)
+  const linkList = tabLinkList(params.chefId)
 
   const chefData = {
     follower: 1234,
@@ -39,11 +39,11 @@ const ChefPage: FC<ChefPageProps> = (props) => {
       <PageDetailHeader data={chefData} pageType="chef" />
 
       <div className="py-7">
-        <TwoTab linkList={linkList}>
+        <Tab linkList={linkList}>
           <ContentContainer>
             <div className="grid grid-cols-2 gap-2 pt-5">{recipeCards}</div>
           </ContentContainer>
-        </TwoTab>
+        </Tab>
       </div>
     </div>
   )
