@@ -24,7 +24,7 @@ export default function FavoritePage() {
             <LatestRecipe />
           </section>
           <section>
-            <VerticalRecipeList />
+            <VerticalRecipeList label="お気に入りレシピ" />
           </section>
         </div>
       </div>

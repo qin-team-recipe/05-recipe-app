@@ -7,8 +7,14 @@ import { ContentContainer } from "@/app/(app)/_component/container"
 import { SectionHeader } from "@/app/(app)/_component/header"
 import { RecipeCard } from "@/app/(app)/_component/recipeCard/RecipeCard"
 
+type VerticalRecipeListProps = {
+  label: string
+}
+
 /** @package */
-export const VerticalRecipeList = () => {
+export const VerticalRecipeList = (props: VerticalRecipeListProps) => {
+  const { label } = props
+
   const chefCards = Array.from({ length: 20 }).map((_, i) => {
     return (
       <RecipeCard
@@ -22,7 +28,7 @@ export const VerticalRecipeList = () => {
   return (
     <div className="space-y-4">
       <ContentContainer>
-        <SectionHeader label="シェフ" />
+        <SectionHeader label={label} />
       </ContentContainer>
       <ContentContainer isPaddingRight={false}>
         <ScrollAreaWrapper orientation="vertical">
