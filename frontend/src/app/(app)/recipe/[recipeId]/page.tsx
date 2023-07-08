@@ -4,8 +4,8 @@ import { IconCopy } from "@tabler/icons-react"
 
 import { PageDetailHeader } from "@/app/(app)/_component/header"
 import { Instruction } from "@/app/(app)/_component/instruction"
-import { TwoTab } from "@/app/(app)/_component/twoTab"
-import { twoTabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
+import { Tab } from "@/app/(app)/_component/tab"
+import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
 export const metadata = {
   title: "レシピ詳細",
@@ -49,7 +49,7 @@ const RecipePage: FC<RecipePageProps> = (props) => {
     return <Instruction key={i} instruction={demoInstruction} step={i + 1} />
   })
 
-  const linkList = twoTabLinkList(params.recipeId)
+  const linkList = tabLinkList(params.recipeId)
 
   const recipeData = {
     favoriteCount: 222,
@@ -66,9 +66,9 @@ const RecipePage: FC<RecipePageProps> = (props) => {
       <PageDetailHeader data={recipeData} pageType="recipe" />
 
       <div className="py-7">
-        <TwoTab linkList={linkList}>
+        <Tab linkList={linkList}>
           <div>{recipeItems}</div>
-        </TwoTab>
+        </Tab>
         <div className="flex justify-end px-4">
           <button className="flex text-blue-11 active:opacity-95">
             <IconCopy />
