@@ -1,1 +1,1 @@
-export { twoTabLinkList } from "./TwoTabLinkList"
+export { tabLinkList } from "./tabLinkList"
