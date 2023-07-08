@@ -31,7 +31,7 @@ const recipe = z.object({
 export const RecipeCreateInputSchema: z.ZodType<Prisma.RecipeUncheckedCreateInput> =
   recipe.omit({ id: true, createdAt: true, updatedAt: true });
 
-export const RecipeUpdateInputSchema: z.ZodType<Prisma.RecipeUncheckedCreateInput> =
+export const RecipeUpdateInputSchema: z.ZodType<Prisma.RecipeUncheckedUpdateInput> =
   recipe.omit({ createdAt: true, updatedAt: true });
 
 export const RecipeResponseSchema: z.ZodType<Recipe> = recipe;
