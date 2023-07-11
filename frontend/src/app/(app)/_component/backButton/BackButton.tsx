@@ -24,7 +24,7 @@ const backButton = tv({
       },
       true: {
         button:
-          "absolute left-4 top-4 rounded-full bg-mauve-12 text-mauve-1 bg-opacity-20 h-8 w-8",
+          "absolute left-4 top-4 rounded-full bg-[#000] text-mauve-1 bg-opacity-20 h-8 w-8",
       },
     },
   },
