@@ -11,5 +11,9 @@ export const tabLinkList = (paramsId: string): Link[] => {
       href: `/recipe/${paramsId}/recipe-item`,
       tabLabel: "材料",
     },
+    {
+      href: `/recipe/${paramsId}/link`,
+      tabLabel: "リンク",
+    },
   ]
 }
