@@ -75,4 +75,15 @@ export class ShoppingMemoRepository {
       throw error;
     }
   }
+  async delete(id: string): Promise<void> {
+    try {
+      await this.orm.shoppingMemo.delete({
+        where: { id },
+      });
+    } catch (error) {
+      this.logger.error(error);
+      prismaErrorHandling(error);
+      throw error;
+    }
+  }
 }
