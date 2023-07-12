@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {
+  FindManyShoppingMemoResponse,
   ShoppingMemoCreateInput,
   ShoppingMemoResponse,
   ShoppingMemoUpdateInput,
@@ -44,6 +45,29 @@ export class ShoppingMemoRepository {
       return await this.orm.shoppingMemo.update({
         where: { id: shoppingMemoProps.id },
         data: shoppingMemoProps,
+      });
+    } catch (error) {
+      this.logger.error(error);
+      prismaErrorHandling(error);
+      throw error;
+    }
+  }
+
+  // ユーザーに紐づくじぶんメモ一覧を取得する
+  async findMany(userId: string): Promise<FindManyShoppingMemoResponse> {
+    try {
+      return await this.orm.shoppingMemo.findMany({
+        where: { userId },
+        orderBy: {
+          createdAt: 'desc',
+        },
+        select: {
+          id: true,
+          userId: true,
+          name: true,
+          boughtFlag: true,
+          createdAt: true,
+        },
       });
     } catch (error) {
       this.logger.error(error);
