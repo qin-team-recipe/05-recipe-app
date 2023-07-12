@@ -27,6 +27,11 @@ export type ShoppingMemoUpdateInput = z.infer<
 >;
 export type ShoppingMemoResponse = z.infer<typeof ShoppingMemoResponseSchema>;
 
+export type FindManyShoppingMemoResponse = Pick<
+  ShoppingMemoResponse,
+  'id' | 'userId' | 'name' | 'boughtFlag' | 'createdAt'
+>[];
+
 export class ShoppingMemoCreateInputDto extends createZodDto(
   ShoppingMemoCreateInputSchema,
 ) {}
