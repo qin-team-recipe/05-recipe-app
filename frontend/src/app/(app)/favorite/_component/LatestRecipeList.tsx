@@ -6,8 +6,8 @@ import { SectionHeader, SubButtonLink } from "@/app/(app)/_component/header"
 import { RecipeCard } from "@/app/(app)/_component/recipeCard"
 
 /** @package */
-export const LatestRecipe = () => {
-  const chefCards = Array.from({ length: 10 }).map((_, i) => {
+export const LatestRecipeList = () => {
+  const recipeCards = Array.from({ length: 10 }).map((_, i) => {
     return (
       <RecipeCard
         summary="補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章"
@@ -33,7 +33,7 @@ export const LatestRecipe = () => {
       <ContentContainer isPaddingRight={false}>
         <ScrollAreaWrapper>
           <ContentContainer isPaddingLeft={false}>
-            <div className="flex space-x-4">{chefCards}</div>
+            <div className="flex space-x-4">{recipeCards}</div>
           </ContentContainer>
         </ScrollAreaWrapper>
       </ContentContainer>

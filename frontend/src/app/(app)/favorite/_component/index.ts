@@ -1,3 +1,4 @@
 export { FavoritePageHeader } from "./FavoritePageHeader"
-export { LatestRecipe } from "./LatestRecipe"
-export { ChefList } from "./ChefList"
+export { LatestRecipeList } from "./LatestRecipeList"
+export { FavoriteChefList } from "./FavoriteChefList"
+export { FavoriteRecipeList } from "./FavoriteRecipeList"

@@ -6,7 +6,7 @@ import { ContentContainer } from "@/app/(app)/_component/container"
 import { SectionHeader } from "@/app/(app)/_component/header"
 
 /** @package */
-export const ChefList = () => {
+export const FavoriteChefList = () => {
   const name = "山田シェフ"
   const img = "/chef.jpeg"
   const chefCards = Array.from({ length: 10 }).map((_, i) => {

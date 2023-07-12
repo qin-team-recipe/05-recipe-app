@@ -1,10 +1,10 @@
 import React from "react"
 
-import { VerticalRecipeList } from "@/app/(app)/_component/recipeCard"
 import {
-  ChefList,
+  FavoriteChefList,
   FavoritePageHeader,
-  LatestRecipe,
+  FavoriteRecipeList,
+  LatestRecipeList,
 } from "@/app/(app)/favorite/_component"
 
 export const metadata = {
@@ -18,13 +18,13 @@ export default function FavoritePage() {
       <div className="flex-1 overflow-y-auto pb-16 pt-5 sm:py-5">
         <div className="space-y-12">
           <section>
-            <ChefList />
+            <FavoriteChefList />
           </section>
           <section>
-            <LatestRecipe />
+            <LatestRecipeList />
           </section>
           <section>
-            <VerticalRecipeList label="お気に入りレシピ" />
+            <FavoriteRecipeList />
           </section>
         </div>
       </div>

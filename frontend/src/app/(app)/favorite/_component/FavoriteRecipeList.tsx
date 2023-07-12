@@ -1,20 +1,12 @@
-"use client"
-
 import React from "react"
 
 import { ScrollAreaWrapper } from "@/app/_component"
 import { ContentContainer } from "@/app/(app)/_component/container"
 import { SectionHeader } from "@/app/(app)/_component/header"
-import { RecipeCard } from "@/app/(app)/_component/recipeCard/RecipeCard"
-
-type VerticalRecipeListProps = {
-  label: string
-}
+import { RecipeCard } from "@/app/(app)/_component/recipeCard"
 
 /** @package */
-export const VerticalRecipeList = (props: VerticalRecipeListProps) => {
-  const { label } = props
-
+export const FavoriteRecipeList = () => {
   const chefCards = Array.from({ length: 20 }).map((_, i) => {
     return (
       <RecipeCard
@@ -28,7 +20,7 @@ export const VerticalRecipeList = (props: VerticalRecipeListProps) => {
   return (
     <div className="space-y-4">
       <ContentContainer>
-        <SectionHeader label={label} />
+        <SectionHeader label="お気に入りレシピ" />
       </ContentContainer>
       <ContentContainer isPaddingRight={false}>
         <ScrollAreaWrapper orientation="vertical">
