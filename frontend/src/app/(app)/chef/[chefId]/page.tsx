@@ -20,7 +20,13 @@ const ChefPage: FC<ChefPageProps> = (props) => {
   const { params } = props
 
   const recipeCards = Array.from({ length: 10 }).map((_, i) => {
-    return <RecipeCard key={i} />
+    return (
+      <RecipeCard
+        summary="補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章"
+        title="メイン文章メイン文章メイン文章メイン文章メイン文章メイン文章メイン文章"
+        key={i}
+      />
+    )
   })
 
   const linkList = tabLinkList(params.chefId)
