@@ -1,7 +1,7 @@
-import { Link } from "@/app/(app)/_component/twoTab"
+import { Link } from "@/app/(app)/_component/tab"
 
 /** @package */
-export const twoTabLinkList = (paramsId: string): Link[] => {
+export const tabLinkList = (paramsId: string): Link[] => {
   return [
     {
       href: `/recipe/${paramsId}`,
@@ -10,6 +10,10 @@ export const twoTabLinkList = (paramsId: string): Link[] => {
     {
       href: `/recipe/${paramsId}/recipe-item`,
       tabLabel: "材料",
+    },
+    {
+      href: `/recipe/${paramsId}/link`,
+      tabLabel: "リンク",
     },
   ]
 }

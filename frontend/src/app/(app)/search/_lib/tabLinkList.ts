@@ -1,13 +1,13 @@
 import { ReadonlyURLSearchParams } from "next/navigation"
 
-import { Link } from "@/app/(app)/_component/twoTab"
+import { Link } from "@/app/(app)/_component/tab"
 
-type TwoTabLinkListArgs = {
+type TabLinkListArgs = {
   queryParams?: ReadonlyURLSearchParams
 }
 
 /** @package */
-export const twoTabLinkList = (args: TwoTabLinkListArgs): Link[] => {
+export const tabLinkList = (args: TabLinkListArgs): Link[] => {
   const { queryParams } = args
 
   const q = queryParams ? `/?q=${queryParams}` : ""

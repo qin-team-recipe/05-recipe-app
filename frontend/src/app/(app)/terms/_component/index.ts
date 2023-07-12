@@ -1,0 +1,1 @@
+export { TermsPageHeader } from "./TermsPageHeader"
