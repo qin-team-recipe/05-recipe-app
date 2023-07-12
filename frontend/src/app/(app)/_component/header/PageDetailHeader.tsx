@@ -36,7 +36,7 @@ export const PageDetailHeader: FC<DetailHeroProps<"chef" | "recipe">> = (
     <div>
       <div className="relative aspect-square max-h-screen w-full">
         <Image src={data.img} alt={data.name} fill className="object-cover" />
-        <BackButton />
+        <BackButton isFloating />
       </div>
       <ContentContainer>
         <div className="text-mauve-normal">
