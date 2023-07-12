@@ -9,6 +9,7 @@ type ContentContainerProps = {
 }
 
 const container = tv({
+  base: "min-h-screen",
   variants: {
     isPaddingLeft: {
       true: "pl-4",
