@@ -26,7 +26,7 @@ export default function MainLayout(props: MainLayoutProps) {
           <BottomNavItem navLabel="お買い物リスト" href="/shopping" />
         </BottomNavBar>
       </nav>
-      <main className="sm:border-x-1 mb-auto mt-0 flex flex-1 flex-col overflow-y-auto sm:border sm:border-y-0 sm:border-solid sm:border-mauve-6">
+      <main className="sm:border-x-1 mb-auto mt-0 flex min-h-screen flex-1 flex-col overflow-y-auto sm:border sm:border-y-0 sm:border-solid sm:border-mauve-6">
         {children}
       </main>
     </div>
