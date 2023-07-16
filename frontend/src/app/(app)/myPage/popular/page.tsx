@@ -3,22 +3,14 @@ import React, { FC } from "react"
 import { ContentContainer } from "@/app/(app)/_component/container"
 import { RecipeCard } from "@/app/(app)/_component/recipeCard"
 import { Tab } from "@/app/(app)/_component/tab"
-import { MyPageHeader } from "@/app/(app)/myPage/[myPage]/_component"
-import { tabLinkList } from "@/app/(app)/myPage/[myPage]/_lib"
+import { MyPageHeader } from "@/app/(app)/myPage/_component"
+import { tabLinkList } from "@/app/(app)/myPage/_lib"
 
 export const metadata = {
   title: "人気レシピ｜マイページ",
 }
 
-type PopularPageProps = {
-  params: {
-    chefId: string
-  }
-}
-
-const MyPage: FC<PopularPageProps> = (props) => {
-  const { params } = props
-
+const MyPage: FC = () => {
   const recipeCards = Array.from({ length: 10 }).map((_, i) => {
     return (
       <RecipeCard
@@ -29,7 +21,7 @@ const MyPage: FC<PopularPageProps> = (props) => {
     )
   })
 
-  const linkList = tabLinkList(params.chefId)
+  const linkList = tabLinkList()
 
   return (
     <div>

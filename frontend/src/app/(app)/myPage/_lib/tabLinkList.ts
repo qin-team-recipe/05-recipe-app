@@ -1,14 +1,14 @@
 import { Link } from "@/app/(app)/_component/tab"
 
 /** @package */
-export const tabLinkList = (paramsId: string): Link[] => {
+export const tabLinkList = (): Link[] => {
   return [
     {
-      href: `/myPage/${paramsId}`,
+      href: `/myPage`,
       tabLabel: "新着レシピ",
     },
     {
-      href: `/myPage/${paramsId}/popular`,
+      href: `/myPage/popular`,
       tabLabel: "人気レシピ",
     },
   ]
