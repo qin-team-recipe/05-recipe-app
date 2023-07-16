@@ -7,7 +7,7 @@ import { MyPageHeader } from "@/app/(app)/myPage/[myPage]/_component"
 import { tabLinkList } from "@/app/(app)/myPage/[myPage]/_lib"
 
 export const metadata = {
-  title: "マイページ",
+  title: "新着レシピ｜マイページ",
 }
 
 type MyPageProps = {
