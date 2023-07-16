@@ -3,13 +3,10 @@ import React, { FC } from "react"
 import { IconCopy } from "@tabler/icons-react"
 
 import { ContentContainer } from "@/app/(app)/_component/container"
-import {
-  PageDetailHeader,
-  SectionHeader,
-  SubButtonLink,
-} from "@/app/(app)/_component/header"
+import { SectionHeader, SubButtonLink } from "@/app/(app)/_component/header"
 import { RecipeItem } from "@/app/(app)/_component/recipeItem"
 import { Tab } from "@/app/(app)/_component/tab"
+import { RecipePageDetail } from "@/app/(app)/recipe/[recipeId]/_component/RecipePageDetail"
 import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
 export const metadata = {
@@ -60,7 +57,8 @@ const LinkTabPage: FC<LinkTabPageProps> = (props) => {
 
   return (
     <div>
-      <PageDetailHeader data={recipeData} pageType="recipe" />
+      <RecipePageDetail data={recipeData} />
+
       <div className="py-7">
         <Tab linkList={linkList}>
           <div className="my-2 grid grid-cols-1 divide-y divide-mauve-8">

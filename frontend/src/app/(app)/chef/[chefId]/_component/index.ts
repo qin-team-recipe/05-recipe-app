@@ -1,2 +1,2 @@
 export { LinkCard } from "./LinkCard"
-export { FollowButton } from "./FollowButton"
+export { ChefPageDetail } from "./ChefPageDetail"

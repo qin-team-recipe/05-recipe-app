@@ -2,9 +2,9 @@ import React, { FC } from "react"
 
 import { IconCopy } from "@tabler/icons-react"
 
-import { PageDetailHeader } from "@/app/(app)/_component/header"
 import { Instruction } from "@/app/(app)/_component/instruction"
 import { Tab } from "@/app/(app)/_component/tab"
+import { RecipePageDetail } from "@/app/(app)/recipe/[recipeId]/_component/RecipePageDetail"
 import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
 export const metadata = {
@@ -63,7 +63,7 @@ const RecipePage: FC<RecipePageProps> = (props) => {
 
   return (
     <div>
-      <PageDetailHeader data={recipeData} pageType="recipe" />
+      <RecipePageDetail data={recipeData} />
 
       <div className="py-7">
         <Tab linkList={linkList}>
