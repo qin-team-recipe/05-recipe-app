@@ -1,12 +1,16 @@
-import React from "react"
+import React, { FC } from "react"
 
+import { ContentContainer } from "@/app/(app)/_component/container"
+import { RecipeCard } from "@/app/(app)/_component/recipeCard"
+import { Tab } from "@/app/(app)/_component/tab"
 import { MyPageDetail } from "@/app/(app)/myPage/_component"
+import { tabLinkList } from "@/app/(app)/myPage/_lib"
 
 export const metadata = {
-  title: "マイページ",
+  title: "新着レシピ｜マイページ",
 }
 
-const MyPage = () => {
+const MyPage: FC = () => {
   const chefData = {
     chefId: "foobarid",
     follower: 1234,
@@ -17,10 +21,29 @@ const MyPage = () => {
     recipeCount: 2345,
   }
 
+  const recipeCards = Array.from({ length: 10 }).map((_, i) => {
+    return (
+      <RecipeCard
+        summary="補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章"
+        title="メイン文章メイン文章メイン文章メイン文章メイン文章メイン文章メイン文章"
+        key={i}
+      />
+    )
+  })
+
+  const linkList = tabLinkList()
+
   return (
     <div>
       <MyPageDetail data={chefData} />
-      マイページ
+
+      <div className="py-7">
+        <Tab linkList={linkList}>
+          <ContentContainer>
+            <div className="grid grid-cols-2 gap-2 pt-5">{recipeCards}</div>
+          </ContentContainer>
+        </Tab>
+      </div>
     </div>
   )
 }

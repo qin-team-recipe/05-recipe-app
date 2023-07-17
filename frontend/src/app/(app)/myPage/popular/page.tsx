@@ -3,21 +3,23 @@ import React, { FC } from "react"
 import { ContentContainer } from "@/app/(app)/_component/container"
 import { RecipeCard } from "@/app/(app)/_component/recipeCard"
 import { Tab } from "@/app/(app)/_component/tab"
-import { ChefPageDetail } from "@/app/(app)/chef/[chefId]/_component"
-import { tabLinkList } from "@/app/(app)/chef/[chefId]/_lib"
+import { MyPageDetail } from "@/app/(app)/myPage/_component"
+import { tabLinkList } from "@/app/(app)/myPage/_lib"
 
 export const metadata = {
-  title: "シェフ詳細 | シェフ一覧",
+  title: "人気レシピ｜マイページ",
 }
 
-type ChefPageProps = {
-  params: {
-    chefId: string
+const MyPage: FC = () => {
+  const chefData = {
+    chefId: "foobarid",
+    follower: 1234,
+    img: "/chef.jpg",
+    introduction:
+      "初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり主婦の友社より３月３日、２冊同時発売！絶賛発売中！",
+    name: "山田シェフ",
+    recipeCount: 2345,
   }
-}
-
-const ChefPage: FC<ChefPageProps> = (props) => {
-  const { params } = props
 
   const recipeCards = Array.from({ length: 10 }).map((_, i) => {
     return (
@@ -29,21 +31,11 @@ const ChefPage: FC<ChefPageProps> = (props) => {
     )
   })
 
-  const linkList = tabLinkList(params.chefId)
-
-  const chefData = {
-    chefId: params.chefId,
-    follower: 1234,
-    img: "/chef.jpg",
-    introduction:
-      "初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり主婦の友社より３月３日、２冊同時発売！絶賛発売中！",
-    name: "山田シェフ",
-    recipeCount: 2345,
-  }
+  const linkList = tabLinkList()
 
   return (
     <div>
-      <ChefPageDetail data={chefData} />
+      <MyPageDetail data={chefData} />
 
       <div className="py-7">
         <Tab linkList={linkList}>
@@ -56,4 +48,4 @@ const ChefPage: FC<ChefPageProps> = (props) => {
   )
 }
 
-export default ChefPage
+export default MyPage

@@ -2,22 +2,24 @@ import React, { FC } from "react"
 
 import { tv } from "tailwind-variants"
 
-import { RecipeFavButton } from "@/app/(app)/_component/recipeCard"
+import { RecipeFavButton } from "@/app/(app)/_component/recipeCard/RecipeFavButton"
 
 type RecipeCardProps = {
   hasHotRecipe?: boolean
+  summary: string
+  title: string
 }
 
 const recipeCard = tv({
   base: "text-mauve-normal w-fll",
   variants: {
-    hasHotRecipe: { true: "w-36" },
+    hasHotRecipe: { true: "w-40" },
   },
 })
 
 /** @package */
 export const RecipeCard: FC<RecipeCardProps> = (props) => {
-  const { hasHotRecipe = false } = props
+  const { hasHotRecipe = false, summary, title } = props
 
   return (
     <div className={recipeCard({ hasHotRecipe })}>
@@ -25,12 +27,8 @@ export const RecipeCard: FC<RecipeCardProps> = (props) => {
         <RecipeFavButton />
       </div>
       <div className="p-1">
-        <div className="text-sm font-bold line-clamp-2">
-          メイン文章メイン文章メイン文章メイン文章メイン文章メイン文章メイン文章
-        </div>
-        <div className=" truncate text-xs">
-          補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章
-        </div>
+        <div className="text-sm font-bold line-clamp-2">{title}</div>
+        <div className=" truncate text-xs text-mauve-11">{summary}</div>
       </div>
     </div>
   )
