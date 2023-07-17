@@ -26,6 +26,7 @@ const ChefPage: FC<ChefPageProps> = (props) => {
   const linkList = tabLinkList(params.chefId)
 
   const chefData = {
+    chefId: params.chefId,
     follower: 1234,
     img: "/chef.jpg",
     introduction:

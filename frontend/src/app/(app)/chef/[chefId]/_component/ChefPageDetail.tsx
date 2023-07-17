@@ -1,6 +1,8 @@
 import React, { FC } from "react"
 import Image from "next/image"
 
+import { IconDotsCircleHorizontal } from "@tabler/icons-react"
+
 import { BackButton } from "@/app/(app)/_component/backButton"
 import { FollowButton } from "@/app/(app)/_component/button"
 import { ContentContainer } from "@/app/(app)/_component/container"
@@ -21,20 +23,41 @@ export const ChefPageDetail: FC<ChefPageDetailProps> = (props) => {
 
   return (
     <div>
-      <div className="text- relative aspect-square max-h-screen w-full">
-        <Image src={data.img} alt={data.name} fill className="object-cover" />
-        <BackButton isFloating />
-      </div>
       <ContentContainer>
-        <div className="pt-4">
-          <Title label={data.name} />
+        <div className="flex items-center justify-between pt-3">
+          {/* TODO: historyがある場合はback、ない場合はsearchへ */}
+          <BackButton href="/search" />
+
+          {/* NOTE: 各リンクのアイコンを横並びにする */}
+          <div>
+            <IconDotsCircleHorizontal className="h-6 w-6 text-mauve-12" />
+          </div>
         </div>
 
-        <div className="py-4">
-          <Introduction label={data.introduction} />
+        <div className="flex items-start justify-between pt-4">
+          <div>
+            <Title label={data.name} />
+            <p>{data.chefId}</p>
+          </div>
+
+          {data.img ? (
+            <Image
+              src={data.img}
+              alt="profile"
+              width={63}
+              height={63}
+              className="object-fit aspect-square rounded-full"
+            />
+          ) : null}
         </div>
 
-        <div className="align-center flex gap-2">
+        {data.introduction ? (
+          <div className="pt-2">
+            <Introduction label={data.introduction} />
+          </div>
+        ) : null}
+
+        <div className="align-center flex gap-2 pt-2">
           <CountWithLabel count={data.recipeCount} label="レシピ" />
           <CountWithLabel count={data.follower} label="フォロワー" />
         </div>

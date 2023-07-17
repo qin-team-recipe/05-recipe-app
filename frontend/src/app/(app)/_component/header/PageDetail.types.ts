@@ -1,3 +1,4 @@
+// TODO: img, introductionはオプショナルにする必要がある
 /** @package */
 export type Common = {
   img: string
@@ -7,6 +8,7 @@ export type Common = {
 
 /** @package */
 export type Chef = {
+  chefId: string
   follower: number
   recipeCount: number
 } & Common
@@ -17,3 +19,6 @@ export type Recipe = {
   user: string
   userImg: string
 } & Common
+
+/** @package */
+export type MyPage = Chef
