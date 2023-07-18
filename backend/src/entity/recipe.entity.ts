@@ -78,6 +78,19 @@ export type findManyByUserIdRecipeResponse = (Pick<
   recipeImages: Pick<RecipeImage, 'path'>[];
 })[];
 
+export type DeleteRecipeResponse = RecipeResponse & {
+  recipeImages: Pick<RecipeImage, 'id' | 'path'>[];
+  recipeSteps: Pick<RecipeStep, 'id' | 'description' | 'stepNum'>[];
+  recipeLinks: Pick<RecipeLink, 'id' | 'url'>[];
+  recipeItems: Pick<RecipeItem, 'id' | 'name' | 'description'>[];
+  favorites: Pick<Favorite, 'userId'>[];
+};
+
+export type PaginateRecipe = Pick<
+  Recipe,
+  'title' | 'description' | 'favoriteCount'
+>;
+
 export class RecipeCreateInputDto extends createZodDto(
   RecipeCreateInputSchema,
 ) {}
@@ -85,8 +98,3 @@ export class RecipeCreateInputDto extends createZodDto(
 export class RecipeUpdateInputDto extends createZodDto(
   RecipeUpdateInputSchema,
 ) {}
-
-export type PaginateRecipe = Pick<
-  Recipe,
-  'title' | 'description' | 'favoriteCount'
->;
