@@ -1,1 +1,1 @@
-export { MyPageHeader } from "./MyPageHeader"
+export { MyPageDetail } from "./MyPageDetail"

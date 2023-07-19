@@ -1,4 +1,4 @@
 export { SectionHeader } from "./SectionHeader"
-export { PageDetailHeader } from "./PageDetailHeader"
 export { type SubButtonLink } from "./SectionHeader.types"
 export { PageHeader } from "./PageHeader"
+export type { Common, Chef, Recipe, MyPage } from "./PageDetail.types"

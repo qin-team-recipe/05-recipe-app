@@ -1,9 +1,9 @@
 import React, { FC } from "react"
 
 import { ContentContainer } from "@/app/(app)/_component/container"
-import { PageDetailHeader } from "@/app/(app)/_component/header"
 import { RecipeCard } from "@/app/(app)/_component/recipeCard"
 import { Tab } from "@/app/(app)/_component/tab"
+import { ChefPageDetail } from "@/app/(app)/chef/[chefId]/_component"
 import { tabLinkList } from "@/app/(app)/chef/[chefId]/_lib"
 
 export const metadata = {
@@ -32,6 +32,7 @@ const ChefPage: FC<ChefPageProps> = (props) => {
   const linkList = tabLinkList(params.chefId)
 
   const chefData = {
+    chefId: params.chefId,
     follower: 1234,
     img: "/chef.jpg",
     introduction:
@@ -42,7 +43,7 @@ const ChefPage: FC<ChefPageProps> = (props) => {
 
   return (
     <div>
-      <PageDetailHeader data={chefData} pageType="chef" />
+      <ChefPageDetail data={chefData} />
 
       <div className="py-7">
         <Tab linkList={linkList}>
