@@ -4,7 +4,7 @@ import { IconCopy } from "@tabler/icons-react"
 
 import { Instruction } from "@/app/(app)/_component/instruction"
 import { Tab } from "@/app/(app)/_component/tab"
-import { RecipePageDetail } from "@/app/(app)/recipe/[recipeId]/_component/RecipePageDetail"
+import { RecipePageDetail } from "@/app/(app)/recipe/[recipeId]/_component"
 import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
 export const metadata = {
