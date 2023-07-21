@@ -2,7 +2,7 @@ import React, { FC } from "react"
 
 import { Tab } from "@/app/(app)/_component/tab"
 import { LinkCard } from "@/app/(app)/chef/[chefId]/_component"
-import { RecipePageDetail } from "@/app/(app)/recipe/[recipeId]/_component/RecipePageDetail"
+import { RecipePageDetail } from "@/app/(app)/recipe/[recipeId]/_component"
 import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
 export const metadata = {
