@@ -1,12 +1,16 @@
 import React, { FC } from "react"
 import Image from "next/image"
 
-import { IconDotsCircleHorizontal } from "@tabler/icons-react"
+import {
+  IconBrandInstagram,
+  IconBrandYoutube,
+  IconDotsCircleHorizontal,
+} from "@tabler/icons-react"
 
 import { BackButton } from "@/app/(app)/_component/backButton"
 import { FollowButton } from "@/app/(app)/_component/button"
 import { ContentContainer } from "@/app/(app)/_component/container"
-import { Chef } from "@/app/(app)/_component/header"
+import { Chef, Link } from "@/app/(app)/_component/header"
 import {
   CountWithLabel,
   Introduction,
@@ -21,6 +25,20 @@ type ChefPageDetailProps = {
 export const ChefPageDetail: FC<ChefPageDetailProps> = (props) => {
   const { data } = props
 
+  const displayLinkIconList = (link: Link) => {
+    // if (link.linkType === "twitter") {
+    //   return <IconBrandTwitter className="h-6 w-6 text-mauve-12" />
+    // }
+    if (link.linkType === "instagram") {
+      return <IconBrandInstagram className="h-6 w-6 text-mauve-12" />
+    }
+    if (link.linkType === "youtube") {
+      return <IconBrandYoutube className="h-6 w-6 text-mauve-12" />
+    }
+
+    return null
+  }
+
   return (
     <div>
       <ContentContainer>
@@ -28,8 +46,18 @@ export const ChefPageDetail: FC<ChefPageDetailProps> = (props) => {
           {/* TODO: historyがある場合はback、ない場合はsearchへ */}
           <BackButton href="/search" />
 
-          {/* NOTE: 各リンクのアイコンを横並びにする */}
-          <div>
+          <div className="flex gap-3">
+            {data.linkList
+              .filter((link) => {
+                return link.linkType !== "others"
+              })
+              .map((link) => {
+                return (
+                  <a key={link.url} href={link.url}>
+                    {displayLinkIconList(link)}
+                  </a>
+                )
+              })}
             <IconDotsCircleHorizontal className="h-6 w-6 text-mauve-12" />
           </div>
         </div>
