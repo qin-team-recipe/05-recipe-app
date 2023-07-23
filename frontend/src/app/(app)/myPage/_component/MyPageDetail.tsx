@@ -16,6 +16,7 @@ import {
   Introduction,
   Title,
 } from "@/app/(app)/_component/label"
+import { MyPageDDMenu } from "@/app/(app)/myPage/_component/MyPageDDMenu"
 
 type MyPageDetailProps = {
   data: MyPage
@@ -57,7 +58,9 @@ export const MyPageDetail: FC<MyPageDetailProps> = (props) => {
                   </a>
                 )
               })}
-            <IconDotsCircleHorizontal className="h-6 w-6 text-mauve-12" />
+            <MyPageDDMenu>
+              <IconDotsCircleHorizontal className="h-6 w-6 cursor-pointer text-mauve-12" />
+            </MyPageDDMenu>
           </div>
         </div>
 
