@@ -1,12 +1,16 @@
 import React, { FC } from "react"
 import Image from "next/image"
 
-import { IconDotsCircleHorizontal } from "@tabler/icons-react"
+import {
+  IconBrandInstagram,
+  IconBrandYoutube,
+  IconDotsCircleHorizontal,
+} from "@tabler/icons-react"
 
 import { BackButton } from "@/app/(app)/_component/backButton"
 import { EditButton } from "@/app/(app)/_component/button"
 import { ContentContainer } from "@/app/(app)/_component/container"
-import { MyPage } from "@/app/(app)/_component/header"
+import { Link, MyPage } from "@/app/(app)/_component/header"
 import {
   CountWithLabel,
   Introduction,
@@ -22,14 +26,42 @@ type MyPageDetailProps = {
 export const MyPageDetail: FC<MyPageDetailProps> = (props) => {
   const { data } = props
 
+  const displayLinkIconList = (link: Link) => {
+    // if (link.linkType === "twitter") {
+    //   return <IconBrandTwitter className="h-6 w-6 text-mauve-12" />
+    // }
+    if (link.linkType === "instagram") {
+      return <IconBrandInstagram className="h-6 w-6 text-mauve-12" />
+    }
+    if (link.linkType === "youtube") {
+      return <IconBrandYoutube className="h-6 w-6 text-mauve-12" />
+    }
+
+    return null
+  }
+
   return (
     <div>
       <ContentContainer>
         <div className="flex items-center justify-between pt-3">
           <BackButton href="/favorite" />
-          <MyPageDDMenu>
-            <IconDotsCircleHorizontal className="h-6 w-6 cursor-pointer text-mauve-12" />
-          </MyPageDDMenu>
+
+          <div className="flex gap-3">
+            {data.linkList
+              .filter((link) => {
+                return link.linkType !== "others"
+              })
+              .map((link) => {
+                return (
+                  <a key={link.url} href={link.url}>
+                    {displayLinkIconList(link)}
+                  </a>
+                )
+              })}
+            <MyPageDDMenu>
+              <IconDotsCircleHorizontal className="h-6 w-6 cursor-pointer text-mauve-12" />
+            </MyPageDDMenu>
+          </div>
         </div>
 
         <div className="flex items-start justify-between pt-4">

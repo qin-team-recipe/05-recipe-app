@@ -7,9 +7,17 @@ export type Common = {
 }
 
 /** @package */
+export type Link = {
+  linkType: "twitter" | "instagram" | "youtube" | "others"
+  siteName?: string
+  url: string
+}
+
+/** @package */
 export type Chef = {
   chefId: string
   follower: number
+  linkList: Link[]
   recipeCount: number
 } & Common
 
