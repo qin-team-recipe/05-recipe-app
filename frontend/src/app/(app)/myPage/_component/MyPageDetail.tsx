@@ -3,7 +3,6 @@ import Image from "next/image"
 
 import { IconDotsCircleHorizontal } from "@tabler/icons-react"
 
-import { DDMenuWrapper } from "@/app/_component"
 import { BackButton } from "@/app/(app)/_component/backButton"
 import { EditButton } from "@/app/(app)/_component/button"
 import { ContentContainer } from "@/app/(app)/_component/container"
@@ -13,50 +12,24 @@ import {
   Introduction,
   Title,
 } from "@/app/(app)/_component/label"
+import { MyPageDDMenu } from "@/app/(app)/myPage/_component/MyPageDDMenu"
 
 type MyPageDetailProps = {
   data: MyPage
-}
-
-type Border = "border"
-
-type Item = {
-  iconName?:
-    | "pencil"
-    | "copy"
-    | "trash"
-    | "lock"
-    | "up"
-    | "down"
-    | "check"
-    | "chef"
-  mainText: string
-  subText?: string
 }
 
 /** @package */
 export const MyPageDetail: FC<MyPageDetailProps> = (props) => {
   const { data } = props
 
-  const menuContent: (Border | Item)[] = [
-    {
-      iconName: "pencil",
-      mainText: "プロフィールを編集する",
-      subText: "サブテキストです",
-    },
-    { iconName: "copy", mainText: "URLをコピーする" },
-  ]
-
   return (
     <div>
       <ContentContainer>
         <div className="flex items-center justify-between pt-3">
           <BackButton href="/favorite" />
-
-          {/* NOTE: 各リンクのアイコンを横並びにする */}
-          <DDMenuWrapper items={menuContent}>
+          <MyPageDDMenu>
             <IconDotsCircleHorizontal className="h-6 w-6 cursor-pointer text-mauve-12" />
-          </DDMenuWrapper>
+          </MyPageDDMenu>
         </div>
 
         <div className="flex items-start justify-between pt-4">
