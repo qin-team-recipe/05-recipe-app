@@ -15,6 +15,8 @@ import {
 type RecipePageDetailProps = {
   data: Recipe
 }
+
+/** @package */
 export const RecipePageDetail: FC<RecipePageDetailProps> = (props) => {
   const { data } = props
 

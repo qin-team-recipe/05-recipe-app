@@ -2,22 +2,23 @@ import React, { FC } from "react"
 
 import { IconCopy } from "@tabler/icons-react"
 
+import { MyRecipe } from "@/app/(app)/_component/header"
 import { Instruction } from "@/app/(app)/_component/instruction"
 import { Tab } from "@/app/(app)/_component/tab"
-import { RecipePageDetail } from "@/app/(app)/recipe/[recipeId]/_component"
-import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
+import { MyRecipePageDetail } from "@/app/(app)/myRecipe/[myRecipeId]/_component"
+import { tabLinkList } from "@/app/(app)/myRecipe/[myRecipeId]/_lib"
 
 export const metadata = {
-  title: "レシピ詳細",
+  title: "マイレシピ詳細 | 作り方",
 }
 
-type RecipePageProps = {
+type MyRecipePageProps = {
   params: {
-    recipeId: string
+    myRecipeId: string
   }
 }
 
-const RecipePage: FC<RecipePageProps> = (props) => {
+const MyRecipePage: FC<MyRecipePageProps> = (props) => {
   const { params } = props
 
   const demoInstruction = `
@@ -49,13 +50,14 @@ const RecipePage: FC<RecipePageProps> = (props) => {
     return <Instruction key={i} instruction={demoInstruction} step={i + 1} />
   })
 
-  const linkList = tabLinkList(params.recipeId)
+  const linkList = tabLinkList(params.myRecipeId)
 
-  const recipeData = {
+  const recipeData: MyRecipe = {
     favoriteCount: 222,
     img: "/pizza.jpg",
     introduction:
       "おいしいおいしいマルゲリータピザ。トマトたっぷり・チーズたっぷり！生地はさくさくもっちもち",
+    isPublish: true,
     name: "山田の特製マルゲリータ",
     user: "山田シェフ",
     userImg: "/chef.jpg",
@@ -63,7 +65,7 @@ const RecipePage: FC<RecipePageProps> = (props) => {
 
   return (
     <div>
-      <RecipePageDetail data={recipeData} />
+      <MyRecipePageDetail data={recipeData} />
 
       <div className="py-7">
         <Tab linkList={linkList}>
@@ -80,4 +82,4 @@ const RecipePage: FC<RecipePageProps> = (props) => {
   )
 }
 
-export default RecipePage
+export default MyRecipePage
