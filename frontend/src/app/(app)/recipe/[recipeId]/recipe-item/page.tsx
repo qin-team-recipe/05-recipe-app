@@ -7,7 +7,7 @@ import { SectionHeader, SubButtonLink } from "@/app/(app)/_component/header"
 import { RecipeItem } from "@/app/(app)/_component/recipeItem"
 import { Tab } from "@/app/(app)/_component/tab"
 import { RecipePageDetail } from "@/app/(app)/recipe/[recipeId]/_component/RecipePageDetail"
-import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
+import { getRecipe, tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
 export const metadata = {
   title: "レシピ詳細 | 材料",
@@ -27,7 +27,7 @@ export type RecipeItemList = {
   recipeItemList: RecipeItem[]
 }
 
-const LinkTabPage: FC<LinkTabPageProps> = (props) => {
+const LinkTabPage: FC<LinkTabPageProps> = async (props) => {
   const { params } = props
   const linkList = tabLinkList(params.recipeId)
   const recipeItemList: RecipeItem[] = [
@@ -40,15 +40,7 @@ const LinkTabPage: FC<LinkTabPageProps> = (props) => {
     return <RecipeItem note={recipeItem.note} key={i} />
   })
 
-  const recipeData = {
-    favoriteCount: 222,
-    img: "/pizza.jpg",
-    introduction:
-      "おいしいおいしいマルゲリータピザ。トマトたっぷり・チーズたっぷり！生地はさくさくもっちもち",
-    name: "山田の特製マルゲリータ",
-    user: "山田シェフ",
-    userImg: "/chef.jpg",
-  }
+  const recipeData = await getRecipe(params.recipeId)
 
   const subButtonLink = {
     href: "/favorite",
