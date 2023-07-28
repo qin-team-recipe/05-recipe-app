@@ -6,16 +6,16 @@ import { ContentContainer } from "@/app/(app)/_component/container"
 import { SectionHeader, SubButtonLink } from "@/app/(app)/_component/header"
 import { RecipeItem } from "@/app/(app)/_component/recipeItem"
 import { Tab } from "@/app/(app)/_component/tab"
-import { RecipePageDetail } from "@/app/(app)/recipe/[recipeId]/_component/RecipePageDetail"
-import { getRecipe, tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
+import { MyRecipePageDetail } from "@/app/(app)/myRecipe/[myRecipeId]/_component"
+import { tabLinkList } from "@/app/(app)/myRecipe/[myRecipeId]/_lib"
 
 export const metadata = {
-  title: "レシピ詳細 | 材料",
+  title: "マイレシピ詳細 | 材料",
 }
 
 type LinkTabPageProps = {
   params: {
-    recipeId: string
+    myRecipeId: string
   }
 }
 
@@ -23,13 +23,9 @@ type RecipeItem = {
   note: string
 }
 
-export type RecipeItemList = {
-  recipeItemList: RecipeItem[]
-}
-
-const LinkTabPage: FC<LinkTabPageProps> = async (props) => {
+const LinkTabPage: FC<LinkTabPageProps> = (props) => {
   const { params } = props
-  const linkList = tabLinkList(params.recipeId)
+  const linkList = tabLinkList(params.myRecipeId)
   const recipeItemList: RecipeItem[] = [
     { note: "トマト１個" },
     { note: "チーズ２枚" },
@@ -40,7 +36,16 @@ const LinkTabPage: FC<LinkTabPageProps> = async (props) => {
     return <RecipeItem note={recipeItem.note} key={i} />
   })
 
-  const recipeData = await getRecipe(params.recipeId)
+  const recipeData = {
+    favoriteCount: 222,
+    img: "/pizza.jpg",
+    introduction:
+      "おいしいおいしいマルゲリータピザ。トマトたっぷり・チーズたっぷり！生地はさくさくもっちもち",
+    isPublish: true,
+    name: "山田の特製マルゲリータ",
+    user: "山田シェフ",
+    userImg: "/chef.jpg",
+  }
 
   const subButtonLink = {
     href: "/favorite",
@@ -49,7 +54,7 @@ const LinkTabPage: FC<LinkTabPageProps> = async (props) => {
 
   return (
     <div>
-      <RecipePageDetail data={recipeData} />
+      <MyRecipePageDetail data={recipeData} />
 
       <div className="py-7">
         <Tab linkList={linkList}>
