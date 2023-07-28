@@ -30,3 +30,8 @@ export type Recipe = {
 
 /** @package */
 export type MyPage = Chef
+
+/** @package */
+export type MyRecipe = Recipe & {
+  isPublish: boolean
+}

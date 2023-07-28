@@ -4,16 +4,12 @@ import { Link } from "@/app/(app)/_component/tab"
 export const tabLinkList = (paramsId: string): Link[] => {
   return [
     {
-      href: `/recipe/${paramsId}`,
+      href: `/myRecipe/${paramsId}`,
       tabLabel: "作り方",
     },
     {
-      href: `/recipe/${paramsId}/recipeItem`,
+      href: `/myRecipe/${paramsId}/recipeItem`,
       tabLabel: "材料",
-    },
-    {
-      href: `/recipe/${paramsId}/link`,
-      tabLabel: "リンク",
     },
   ]
 }

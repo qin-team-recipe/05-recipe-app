@@ -2,7 +2,7 @@ import React, { FC } from "react"
 
 import { Tab } from "@/app/(app)/_component/tab"
 import { LinkCard } from "@/app/(app)/chef/[chefId]/_component"
-import { RecipePageDetail } from "@/app/(app)/recipe/[recipeId]/_component/RecipePageDetail"
+import { RecipePageDetail } from "@/app/(app)/recipe/[recipeId]/_component"
 import { getRecipe, tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
 export const metadata = {
@@ -15,6 +15,7 @@ type LinkTabPageProps = {
   }
 }
 
+const LinkTabPage: FC<LinkTabPageProps> = async (props) => {
 const LinkTabPage: FC<LinkTabPageProps> = async (props) => {
   const { params } = props
 
@@ -63,6 +64,7 @@ const LinkTabPage: FC<LinkTabPageProps> = async (props) => {
 
   const linkList = tabLinkList(params.recipeId)
 
+  const recipeData = await getRecipe(params.recipeId)
   const recipeData = await getRecipe(params.recipeId)
 
   return (
