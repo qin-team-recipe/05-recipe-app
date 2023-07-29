@@ -59,7 +59,7 @@ export const MyRecipePageDetail: FC<MyRecipePageDetailProps> = (props) => {
 
         <div className="flex justify-between gap-3 pt-4">
           <Title label={data.name} />
-          <MyRecipeDDMenu>
+          <MyRecipeDDMenu isPublish={data.isPublish}>
             <IconDotsCircleHorizontal className="h-6 w-6 min-w-fit cursor-pointer text-mauve-12" />
           </MyRecipeDDMenu>
         </div>
