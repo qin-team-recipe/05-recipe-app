@@ -13,6 +13,7 @@ import {
   Introduction,
   Title,
 } from "@/app/(app)/_component/label"
+import { MyRecipeDDMenu } from "@/app/(app)/myRecipe/[myRecipeId]/_component/MyRecipeDDMenu"
 
 type MyRecipePageDetailProps = {
   data: MyRecipe
@@ -58,7 +59,9 @@ export const MyRecipePageDetail: FC<MyRecipePageDetailProps> = (props) => {
 
         <div className="flex justify-between gap-3 pt-4">
           <Title label={data.name} />
-          <IconDotsCircleHorizontal className="h-6 w-6 min-w-fit text-mauve-12" />
+          <MyRecipeDDMenu>
+            <IconDotsCircleHorizontal className="h-6 w-6 min-w-fit cursor-pointer text-mauve-12" />
+          </MyRecipeDDMenu>
         </div>
 
         <div className="py-4">
