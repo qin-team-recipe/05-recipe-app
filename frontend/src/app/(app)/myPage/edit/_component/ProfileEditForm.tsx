@@ -35,7 +35,7 @@ export const ProfileEditForm: FC = () => {
         name="profileImage"
       />
       <TextAreaCommon name="introduntion" title="自己紹介" />
-      <LinkList />
+      <LinkList title="リンク" />
 
       <div className="flex items-center justify-center gap-4 px-4">
         <UpdateButton isSave>登録する</UpdateButton>
