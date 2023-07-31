@@ -5,7 +5,7 @@ import { IconCopy } from "@tabler/icons-react"
 import { Instruction } from "@/app/(app)/_component/instruction"
 import { Tab } from "@/app/(app)/_component/tab"
 import { RecipePageDetail } from "@/app/(app)/recipe/[recipeId]/_component"
-import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
+import { getRecipe, tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
 export const metadata = {
   title: "レシピ詳細",
@@ -17,7 +17,8 @@ type RecipePageProps = {
   }
 }
 
-const RecipePage: FC<RecipePageProps> = (props) => {
+const RecipePage: FC<RecipePageProps> = async (props) => {
+const RecipePage: FC<RecipePageProps> = async (props) => {
   const { params } = props
 
   const demoInstruction = `
@@ -51,15 +52,8 @@ const RecipePage: FC<RecipePageProps> = (props) => {
 
   const linkList = tabLinkList(params.recipeId)
 
-  const recipeData = {
-    favoriteCount: 222,
-    img: "/pizza.jpg",
-    introduction:
-      "おいしいおいしいマルゲリータピザ。トマトたっぷり・チーズたっぷり！生地はさくさくもっちもち",
-    name: "山田の特製マルゲリータ",
-    user: "山田シェフ",
-    userImg: "/chef.jpg",
-  }
+  const recipeData = await getRecipe(params.recipeId)
+  const recipeData = await getRecipe(params.recipeId)
 
   return (
     <div>
