@@ -22,5 +22,8 @@
   "dependencies": {
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-unused-imports": "^2.0.0"
+  },
+  "msw": {
+    "workerDirectory": "frontend/public"
   }
 }

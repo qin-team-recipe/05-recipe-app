@@ -1,9 +1,8 @@
 import React, { FC } from "react"
 
-import { Chef } from "@/app/(app)/_component/header"
 import { Tab } from "@/app/(app)/_component/tab"
 import { ChefPageDetail, LinkCard } from "@/app/(app)/chef/[chefId]/_component"
-import { tabLinkList } from "@/app/(app)/chef/[chefId]/_lib"
+import { getChef, tabLinkList } from "@/app/(app)/chef/[chefId]/_lib"
 
 export const metadata = {
   title: "シェフ詳細 | リンク",
@@ -15,7 +14,7 @@ type LinkTabPageProps = {
   }
 }
 
-const LinkTabPage: FC<LinkTabPageProps> = (props) => {
+const LinkTabPage: FC<LinkTabPageProps> = async (props) => {
   const { params } = props
 
   const chefCards = Array.from({ length: 4 }).map((_, i) => {
@@ -63,32 +62,7 @@ const LinkTabPage: FC<LinkTabPageProps> = (props) => {
 
   const linkList = tabLinkList(params.chefId)
 
-  const chefData: Chef = {
-    chefId: "foobarid",
-    follower: 1234,
-    img: "/chef.jpg",
-    introduction:
-      "初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり主婦の友社より３月３日、２冊同時発売！絶賛発売中！",
-    linkList: [
-      {
-        linkType: "twitter",
-        siteName: "Twitter",
-        url: "https://twitter.com/",
-      },
-      {
-        linkType: "youtube",
-        siteName: "YouTube",
-        url: "https://www.youtube.com/",
-      },
-      {
-        linkType: "instagram",
-        siteName: "Instagram",
-        url: "https://www.instagram.com/",
-      },
-    ],
-    name: "山田シェフ",
-    recipeCount: 2345,
-  }
+  const chefData = await getChef(params.chefId)
 
   return (
     <div>
