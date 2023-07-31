@@ -3,7 +3,7 @@ import React, { FC } from "react"
 import { Tab } from "@/app/(app)/_component/tab"
 import { LinkCard } from "@/app/(app)/chef/[chefId]/_component"
 import { RecipePageDetail } from "@/app/(app)/recipe/[recipeId]/_component"
-import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
+import { getRecipe, tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
 export const metadata = {
   title: "レシピ詳細 | リンク",
@@ -15,7 +15,7 @@ type LinkTabPageProps = {
   }
 }
 
-const LinkTabPage: FC<LinkTabPageProps> = (props) => {
+const LinkTabPage: FC<LinkTabPageProps> = async (props) => {
   const { params } = props
 
   const chefCards = Array.from({ length: 4 }).map((_, i) => {
@@ -63,15 +63,7 @@ const LinkTabPage: FC<LinkTabPageProps> = (props) => {
 
   const linkList = tabLinkList(params.recipeId)
 
-  const recipeData = {
-    favoriteCount: 222,
-    img: "/pizza.jpg",
-    introduction:
-      "おいしいおいしいマルゲリータピザ。トマトたっぷり・チーズたっぷり！生地はさくさくもっちもち",
-    name: "山田の特製マルゲリータ",
-    user: "山田シェフ",
-    userImg: "/chef.jpg",
-  }
+  const recipeData = await getRecipe(params.recipeId)
 
   return (
     <div>
