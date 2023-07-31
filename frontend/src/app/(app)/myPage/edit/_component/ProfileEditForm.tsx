@@ -33,8 +33,9 @@ export const ProfileEditForm: FC = () => {
         title="プロフィール画像"
         type="image"
         name="profileImage"
+        isRequired
       />
-      <TextAreaCommon name="introduntion" title="自己紹介" />
+      <TextAreaCommon isRequired name="introduntion" title="自己紹介" />
       <LinkList title="リンク" />
 
       <div className="flex items-center justify-center gap-4 px-4">
