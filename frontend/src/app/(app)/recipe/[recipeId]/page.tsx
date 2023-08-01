@@ -18,7 +18,6 @@ type RecipePageProps = {
 }
 
 const RecipePage: FC<RecipePageProps> = async (props) => {
-const RecipePage: FC<RecipePageProps> = async (props) => {
   const { params } = props
 
   const demoInstruction = `
@@ -52,7 +51,6 @@ const RecipePage: FC<RecipePageProps> = async (props) => {
 
   const linkList = tabLinkList(params.recipeId)
 
-  const recipeData = await getRecipe(params.recipeId)
   const recipeData = await getRecipe(params.recipeId)
 
   return (

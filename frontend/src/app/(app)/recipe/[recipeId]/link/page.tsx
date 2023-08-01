@@ -16,7 +16,6 @@ type LinkTabPageProps = {
 }
 
 const LinkTabPage: FC<LinkTabPageProps> = async (props) => {
-const LinkTabPage: FC<LinkTabPageProps> = async (props) => {
   const { params } = props
 
   const chefCards = Array.from({ length: 4 }).map((_, i) => {
@@ -64,7 +63,6 @@ const LinkTabPage: FC<LinkTabPageProps> = async (props) => {
 
   const linkList = tabLinkList(params.recipeId)
 
-  const recipeData = await getRecipe(params.recipeId)
   const recipeData = await getRecipe(params.recipeId)
 
   return (
