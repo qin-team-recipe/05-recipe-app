@@ -24,9 +24,7 @@ export const EditButton: FC<EditButtonProps> = (props) => {
 
   const handleClick = () => {
     if (label === "プロフィールを編集") {
-      // TODO: プロフィールの編集ページへの遷移
-      // router.push("/myPage/edit")
-      router.push("/search")
+      router.push("/myPage/edit")
     } else {
       // TODO: レシピの編集ページへの遷移
       // router.push("/recipe/edit")
