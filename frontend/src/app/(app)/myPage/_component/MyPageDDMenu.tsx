@@ -27,6 +27,7 @@ const myPageDDMenu = tv({
   extend: baseDDMenu,
 })
 
+/** @package */
 export const MyPageDDMenu: FC<MyPageDDMenuProps> = (props) => {
   const { children } = props
 

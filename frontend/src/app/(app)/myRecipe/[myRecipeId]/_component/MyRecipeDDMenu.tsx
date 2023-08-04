@@ -28,6 +28,7 @@ const myRecipeDDMenu = tv({
   extend: baseDDMenu,
 })
 
+/** @package */
 export const MyRecipeDDMenu: FC<MyRecipeDDMenuProps> = (props) => {
   const { children, isPublish } = props
 
