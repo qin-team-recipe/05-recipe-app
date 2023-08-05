@@ -173,4 +173,17 @@ export class RecipeRepository {
       throw error;
     }
   }
+
+  // レシピををIDで削除する
+  async delete(id: string): Promise<void> {
+    try {
+      await this.orm.recipe.delete({
+        where: { id },
+      });
+    } catch (error) {
+      this.logger.error(error);
+      prismaErrorHandling(error);
+      throw error;
+    }
+  }
 }
