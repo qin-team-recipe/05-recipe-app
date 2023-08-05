@@ -38,7 +38,6 @@ describe('UserRepository.createWithAuthProvider()', () => {
     include: {
       userAuthProviders: {
         select: {
-          userId: true,
           provider: true,
           providerId: true,
         },
@@ -49,18 +48,22 @@ describe('UserRepository.createWithAuthProvider()', () => {
     // Exercise: call the function
     const userProps: UserCreateInput = {
       email: 'test@test.com',
-      userAuthProviders: {
-        create: {
-          provider: 'GOOGLE',
-          providerId: '1234567890',
-        },
-      },
+      provider: 'GOOGLE',
+      providerId: '1234567890',
     };
     const user = await repository.createWithAuthProvider(userProps);
 
     // Verify: ensure user.create was called with correct arguments
     expect(ormMock.user.create).toHaveBeenCalledWith({
-      data: userProps,
+      data: {
+        email: userProps.email,
+        userAuthProviders: {
+          create: {
+            provider: userProps.provider,
+            providerId: userProps.providerId,
+          },
+        },
+      },
       ...commonOrmProps,
     });
 
@@ -74,18 +77,22 @@ describe('UserRepository.createWithAuthProvider()', () => {
     // Exercise: call the function
     const userProps: UserCreateInput = {
       email: 'test@test.com',
-      userAuthProviders: {
-        create: {
-          provider: 'APPLE',
-          providerId: 'abcdefghijk',
-        },
-      },
+      provider: 'APPLE',
+      providerId: 'abcdefghijk',
     };
     const user = await repository.createWithAuthProvider(userProps);
 
     // Verify: ensure user.create was called with correct arguments
     expect(ormMock.user.create).toHaveBeenCalledWith({
-      data: userProps,
+      data: {
+        email: userProps.email,
+        userAuthProviders: {
+          create: {
+            provider: userProps.provider,
+            providerId: userProps.providerId,
+          },
+        },
+      },
       ...commonOrmProps,
     });
 

@@ -25,9 +25,8 @@ export const UserResponseSchema: z.ZodType<User> = user;
 
 export const UserResponseWithRecipesSchema: z.ZodType<User> = user;
 
-export type UserCreateInput = Required<
-  Pick<z.infer<typeof UserCreateInputSchema>, 'email' | 'userAuthProviders'>
->;
+export type UserCreateInput = Prisma.UserCreateInput &
+  Pick<Prisma.UserAuthProviderCreateInput, 'provider' | 'providerId'>;
 
 export type UserUpdateInput = Pick<
   z.infer<typeof UserUpdateInputSchema>,
@@ -36,8 +35,8 @@ export type UserUpdateInput = Pick<
 
 export type UserResponse = z.infer<typeof UserResponseSchema>;
 
-export type UserCreatedResponse = UserResponse & {
-  userAuthProviders: Omit<UserAuthProvider, 'id' | 'createdAt'>[];
+export type UserWithAuthProvidersResponse = UserResponse & {
+  userAuthProviders: Pick<UserAuthProvider, 'provider' | 'providerId'>[];
 };
 
 export type FindUserResponse = UserResponse & {

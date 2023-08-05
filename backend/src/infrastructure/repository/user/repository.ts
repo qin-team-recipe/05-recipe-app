@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common';
 import {
   FindUserResponse,
   PaginateUserResponse,
-  UserCreatedResponse,
   UserCreateInput,
   UserResponse,
   UserUpdateInput,
+  UserWithAuthProvidersResponse,
 } from 'src/entity/user.entity';
 import { OrmClient } from 'src/infrastructure/orm/orm.client';
 import { prismaErrorHandling } from 'src/infrastructure/repository/prisma-error-handling';
@@ -20,16 +20,25 @@ export class UserRepository {
   ) {}
 
   // ユーザーと認証プロバイダを作成する
-  async createWithAuthProvider(
-    userProps: UserCreateInput,
-  ): Promise<UserCreatedResponse> {
+  async createWithAuthProvider({
+    email,
+    provider,
+    providerId,
+  }: UserCreateInput): Promise<UserWithAuthProvidersResponse> {
     try {
       return await this.orm.user.create({
-        data: userProps,
+        data: {
+          email,
+          userAuthProviders: {
+            create: {
+              provider,
+              providerId,
+            },
+          },
+        },
         include: {
           userAuthProviders: {
             select: {
-              userId: true,
               provider: true,
               providerId: true,
             },
@@ -100,29 +109,18 @@ export class UserRepository {
   }
 
   // ユーザーをemailで取得する
-  async findByEmail(email: string): Promise<FindUserResponse | null> {
+  async findByEmail(
+    email: string,
+  ): Promise<UserWithAuthProvidersResponse | null> {
     try {
       return await this.orm.user.findUnique({
         where: { email },
         include: {
-          userProfile: {
+          userAuthProviders: {
             select: {
-              nickname: true,
-              imgPath: true,
-              introduction: true,
-              twitterId: true,
-              instagramId: true,
-              siteUrl: true,
-              followerCount: true,
-              recipeCount: true,
-            },
-          },
-          recipes: {
-            select: {
-              id: true,
-              name: true,
-              description: true,
-              favoriteCount: true,
+              userId: true,
+              provider: true,
+              providerId: true,
             },
           },
         },
