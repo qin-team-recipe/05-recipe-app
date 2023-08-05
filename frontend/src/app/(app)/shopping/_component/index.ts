@@ -1,0 +1,1 @@
+export { ShoppingPageHeader } from "./ShoppingPageHeader"
