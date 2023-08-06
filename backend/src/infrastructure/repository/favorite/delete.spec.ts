@@ -58,7 +58,7 @@ describe('FavoriteRepository.delete()', () => {
     await repository.delete(deleteFavoriteId);
     // Verify: ensure favorite.delete was called with correct arguments
     expect(ormMock.favorite.delete).toHaveBeenCalledWith({
-      where: { deleteFavoriteId },
+      where: { id: deleteFavoriteId },
     });
 
     // Verify: ensure the function returns the data we specified
