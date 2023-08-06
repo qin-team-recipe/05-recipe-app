@@ -15,7 +15,7 @@ export default function FavoritePage() {
       <ShoppingPageHeader />
       <form>
         <ShoppingItem isCheckedInitial key="id_1">
-          キャベツ
+          キャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツ
         </ShoppingItem>
         <ShoppingItem isCheckedInitial={false} key="id_2">
           キャベツ

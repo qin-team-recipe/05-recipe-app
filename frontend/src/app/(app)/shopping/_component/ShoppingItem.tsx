@@ -18,8 +18,8 @@ const item = tv({
   slots: {
     checkboxIndicator: "",
     checkboxRoot:
-      "flex items-center justify-center rounded-full border-2 w-6 h-6",
-    wrapper: "flex items-center justify-between px-4 py-2",
+      "flex items-center justify-center rounded-full border-2 w-6 h-6 shrink-0",
+    wrapper: "flex items-center justify-between px-4 py-2 gap-1",
   },
   variants: {
     isChecked: {
@@ -65,9 +65,11 @@ export const ShoppingItem: FC<ShoppingItemProps> = (props) => {
         </Checkbox.Root>
         <label htmlFor={key}>{children}</label>
       </div>
-      <ShoppingItemDDMenu>
-        <IconDotsVertical className="h-6 w-6 cursor-pointer text-mauve-12" />
-      </ShoppingItemDDMenu>
+      <div className="shrink-0">
+        <ShoppingItemDDMenu>
+          <IconDotsVertical className="h-6 w-6 cursor-pointer text-mauve-12" />
+        </ShoppingItemDDMenu>
+      </div>
     </div>
   )
 }
