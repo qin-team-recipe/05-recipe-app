@@ -65,7 +65,7 @@ model UserAuthProvider {
 model Recipe {
   id            String         @id @default(cuid()) @db.Char(25)
   userId        String         @map("user_id") @db.Char(25)
-  name          String
+  title         String
   description   String         @db.Text
   servingCount  Int            @map("serving_count") @db.UnsignedTinyInt
   favoriteCount Int            @map("favorite_count") @db.UnsignedInt
@@ -81,21 +81,31 @@ model Recipe {
   favorites     Favorite[]
   shoppingMenus ShoppingMenu[]
 
-  @@fulltext([name, description])
+  @@fulltext([title, description])
   @@map("recipes")
 }
 
 model RecipeStep {
-  id          Int      @id @default(autoincrement())
-  recipeId    String   @map("recipe_id") @db.Char(25)
-  description String   @db.Text
-  stepNum     Int      @map("step_num") @db.UnsignedTinyInt
-  createdAt   DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
-  updatedAt   DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
-  recipe      Recipe   @relation(fields: [recipeId], references: [id])
+  id               Int               @id @default(autoincrement())
+  recipeId         String            @map("recipe_id") @db.Char(25)
+  description      String            @db.Text
+  stepNum          Int               @map("step_num") @db.UnsignedTinyInt
+  createdAt        DateTime          @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt        DateTime          @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
+  recipe           Recipe            @relation(fields: [recipeId], references: [id])
+  RecipeStepImages RecipeStepImage[]
 
   @@fulltext([description])
   @@map("recipe_steps")
+}
+
+model RecipeStepImage {
+  id           Int        @id @default(autoincrement())
+  recipeStepId Int        @map("recipe_steps")
+  path         String     @db.Text
+  recipeStep   RecipeStep @relation(fields: [recipeStepId], references: [id])
+
+  @@map("recipe_step_images")
 }
 
 model RecipeLink {

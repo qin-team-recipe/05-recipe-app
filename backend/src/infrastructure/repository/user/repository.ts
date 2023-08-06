@@ -94,7 +94,7 @@ export class UserRepository {
           recipes: {
             select: {
               id: true,
-              name: true,
+              title: true,
               description: true,
               favoriteCount: true,
             },

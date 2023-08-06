@@ -55,7 +55,7 @@ export class UserUpdateInputDto extends createZodDto(UserUpdateInputSchema) {}
 type FindUserProfile = Omit<UserProfile, 'userId' | 'createdAt' | 'updatedAt'>;
 type FindUserRecipe = Pick<
   Recipe,
-  'id' | 'name' | 'description' | 'favoriteCount'
+  'id' | 'title' | 'description' | 'favoriteCount'
 >;
 type PaginateUserProfile = Pick<
   UserProfile,

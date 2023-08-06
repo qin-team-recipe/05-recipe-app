@@ -22,9 +22,9 @@ export type UserAuthProviderCreateInput = Omit<
   'id' | 'createdAt'
 >;
 
-export type UserAuthProviderResponse = Pick<
+export type UserAuthProviderResponse = Omit<
   z.infer<typeof UserAuthProviderResponseSchema>,
-  'provider' | 'providerId'
+  'id' | 'createdAt' | 'updatedAt'
 >;
 
 export class UserAuthProviderCreateInputDto extends createZodDto(

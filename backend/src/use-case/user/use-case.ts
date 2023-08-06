@@ -1,8 +1,6 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import {
   UserCreateInput,
-  UserResponse,
-  UserUpdateInput,
   UserWithAuthProvidersResponse,
 } from 'src/entity/user.entity';
 import { UserAuthProviderRepository } from 'src/infrastructure/repository/user-auth-provider/repository';

@@ -1,5 +1,15 @@
 import React from "react"
 
-export default function ShoppingPage() {
-  return <div>お買物リストページ</div>
+import { ShoppingPageHeader } from "@/app/(app)/shopping/_component"
+
+export const metadata = {
+  title: "お気に入り",
+}
+
+export default function FavoritePage() {
+  return (
+    <div>
+      <ShoppingPageHeader />
+    </div>
+  )
 }
