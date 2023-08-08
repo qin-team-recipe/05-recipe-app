@@ -51,4 +51,21 @@ export class ShoppingMenuRepository {
       throw error;
     }
   }
+  // 買い物材料を更新する
+  async updateItem({
+    shoppingItemId,
+    recipeItemName,
+    boughtFlag,
+  }: ShoppingItemUpdateInput): Promise<ShoppingItemResponse | null> {
+    try {
+      return await this.orm.shoppingItem.update({
+        where: { id: shoppingItemId },
+        data: { recipeItemName, boughtFlag },
+      });
+    } catch (error) {
+      this.logger.error(error);
+      prismaErrorHandling(error);
+      throw error;
+    }
+  }
 }
