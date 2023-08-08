@@ -5,6 +5,9 @@ const nextConfig = {
     typedRoutes: true,
     serverActions: true,
   },
+  images: {
+    domains: ["plus.unsplash.com"],
+  },
   async redirects() {
     return [
       {
