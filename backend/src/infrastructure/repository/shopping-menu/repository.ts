@@ -1,5 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import {
+  ShoppingItemResponse,
+  ShoppingItemUpdateInput,
+} from 'src/entity/shopping-item.entity';
+import {
   ShoppingMenuCreateInput,
   ShoppingMenuResponse,
   ShoppingMenuUpdateInput,
@@ -74,6 +78,19 @@ export class ShoppingMenuRepository {
     try {
       await this.orm.shoppingMenu.delete({
         where: { id },
+      });
+    } catch (error) {
+      this.logger.error(error);
+      prismaErrorHandling(error);
+      throw error;
+    }
+  }
+
+  // 買い物材料を削除する
+  async bulkDeleteItems(itemIdList: number[]): Promise<void> {
+    try {
+      await this.orm.shoppingItem.deleteMany({
+        where: { id: { in: itemIdList } },
       });
     } catch (error) {
       this.logger.error(error);
