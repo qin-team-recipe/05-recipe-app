@@ -30,7 +30,7 @@ export class ShoppingMenuRepository {
   }
 
   // 買い物メニューを更新する
-  async update(
+  async updateMenu(
     shoppingMenuProps: ShoppingMenuUpdateInput,
   ): Promise<ShoppingMenuResponse | null> {
     if (typeof shoppingMenuProps.id !== 'string') {
