@@ -68,4 +68,17 @@ export class ShoppingMenuRepository {
       throw error;
     }
   }
+
+  // 買い物メニューを削除する
+  async deleteMenu(id: string): Promise<void> {
+    try {
+      await this.orm.shoppingMenu.delete({
+        where: { id },
+      });
+    } catch (error) {
+      this.logger.error(error);
+      prismaErrorHandling(error);
+      throw error;
+    }
+  }
 }
