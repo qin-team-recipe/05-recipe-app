@@ -21,7 +21,7 @@ export default function RootLayout(props: RootLayoutProps) {
 
   return (
     <html lang="ja">
-      <body className="bg-slate-app">{children}</body>
+      <body>{children}</body>
     </html>
   )
 }
