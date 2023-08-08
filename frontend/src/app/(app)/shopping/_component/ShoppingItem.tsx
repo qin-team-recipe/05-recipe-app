@@ -19,7 +19,7 @@ const item = tv({
     checkboxIndicator: "",
     checkboxRoot:
       "flex items-center justify-center rounded-full border-2 w-6 h-6 shrink-0",
-    wrapper: "flex items-center justify-between px-4 py-2 gap-1",
+    wrapper: "flex items-center justify-between px-4 py-2 gap-1 bg-mauve-1",
   },
   variants: {
     isChecked: {
