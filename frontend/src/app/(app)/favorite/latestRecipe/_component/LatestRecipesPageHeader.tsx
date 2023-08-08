@@ -1,22 +1,28 @@
 "use client"
 
 import React from "react"
-import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 import { IconArrowLeft } from "@tabler/icons-react"
 
 import { PageHeader } from "@/app/(app)/_component/header"
 
 /** @package */
-export const MyPageHeader = () => {
+export const LatestRecipesPageHeader = () => {
+  const router = useRouter()
+
   return (
     <PageHeader
-      title="マイページ"
+      title="新着レシピ"
       titleAlign="left"
       leftSectionChildren={
-        <Link href="/favorite">
+        <button
+          onClick={() => {
+            return router.push("/favorite")
+          }}
+        >
           <IconArrowLeft className="h-6 w-6 text-mauve-12" />
-        </Link>
+        </button>
       }
     />
   )

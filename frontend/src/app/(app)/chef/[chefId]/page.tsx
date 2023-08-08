@@ -1,10 +1,10 @@
 import React, { FC } from "react"
 
 import { ContentContainer } from "@/app/(app)/_component/container"
-import { PageDetailHeader } from "@/app/(app)/_component/header"
 import { RecipeCard } from "@/app/(app)/_component/recipeCard"
 import { Tab } from "@/app/(app)/_component/tab"
-import { tabLinkList } from "@/app/(app)/chef/[chefId]/_lib"
+import { ChefPageDetail } from "@/app/(app)/chef/[chefId]/_component"
+import { getChef, tabLinkList } from "@/app/(app)/chef/[chefId]/_lib"
 
 export const metadata = {
   title: "シェフ詳細 | シェフ一覧",
@@ -16,7 +16,7 @@ type ChefPageProps = {
   }
 }
 
-const ChefPage: FC<ChefPageProps> = (props) => {
+const ChefPage: FC<ChefPageProps> = async (props) => {
   const { params } = props
 
   const recipeCards = Array.from({ length: 10 }).map((_, i) => {
@@ -31,18 +31,11 @@ const ChefPage: FC<ChefPageProps> = (props) => {
 
   const linkList = tabLinkList(params.chefId)
 
-  const chefData = {
-    follower: 1234,
-    img: "/chef.jpg",
-    introduction:
-      "初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり主婦の友社より３月３日、２冊同時発売！絶賛発売中！",
-    name: "山田シェフ",
-    recipeCount: 2345,
-  }
+  const chefData = await getChef(params.chefId)
 
   return (
     <div>
-      <PageDetailHeader data={chefData} pageType="chef" />
+      <ChefPageDetail data={chefData} />
 
       <div className="py-7">
         <Tab linkList={linkList}>

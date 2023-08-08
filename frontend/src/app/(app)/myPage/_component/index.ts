@@ -1,1 +1,2 @@
-export { MyPageHeader } from "./MyPageHeader"
+export { MyPageDetail } from "./MyPageDetail"
+export { MyPageDDMenu } from "./MyPageDDMenu"

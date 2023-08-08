@@ -3,22 +3,19 @@ import React, { FC } from "react"
 import { IconCopy } from "@tabler/icons-react"
 
 import { ContentContainer } from "@/app/(app)/_component/container"
-import {
-  PageDetailHeader,
-  SectionHeader,
-  SubButtonLink,
-} from "@/app/(app)/_component/header"
+import { SectionHeader, SubButtonLink } from "@/app/(app)/_component/header"
 import { RecipeItem } from "@/app/(app)/_component/recipeItem"
 import { Tab } from "@/app/(app)/_component/tab"
-import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
+import { MyRecipePageDetail } from "@/app/(app)/myRecipe/[myRecipeId]/_component"
+import { tabLinkList } from "@/app/(app)/myRecipe/[myRecipeId]/_lib"
 
 export const metadata = {
-  title: "レシピ詳細 | 材料",
+  title: "マイレシピ詳細 | 材料",
 }
 
 type LinkTabPageProps = {
   params: {
-    recipeId: string
+    myRecipeId: string
   }
 }
 
@@ -26,13 +23,9 @@ type RecipeItem = {
   note: string
 }
 
-export type RecipeItemList = {
-  recipeItemList: RecipeItem[]
-}
-
 const LinkTabPage: FC<LinkTabPageProps> = (props) => {
   const { params } = props
-  const linkList = tabLinkList(params.recipeId)
+  const linkList = tabLinkList(params.myRecipeId)
   const recipeItemList: RecipeItem[] = [
     { note: "トマト１個" },
     { note: "チーズ２枚" },
@@ -48,6 +41,7 @@ const LinkTabPage: FC<LinkTabPageProps> = (props) => {
     img: "/pizza.jpg",
     introduction:
       "おいしいおいしいマルゲリータピザ。トマトたっぷり・チーズたっぷり！生地はさくさくもっちもち",
+    isPublish: true,
     name: "山田の特製マルゲリータ",
     user: "山田シェフ",
     userImg: "/chef.jpg",
@@ -60,7 +54,8 @@ const LinkTabPage: FC<LinkTabPageProps> = (props) => {
 
   return (
     <div>
-      <PageDetailHeader data={recipeData} pageType="recipe" />
+      <MyRecipePageDetail data={recipeData} />
+
       <div className="py-7">
         <Tab linkList={linkList}>
           <div className="my-2 grid grid-cols-1 divide-y divide-mauve-8">

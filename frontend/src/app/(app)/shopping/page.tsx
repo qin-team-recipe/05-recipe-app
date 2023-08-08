@@ -1,5 +1,26 @@
 import React from "react"
 
-export default function ShoppingPage() {
-  return <div>お買物リストページ</div>
+import {
+  ShoppingItem,
+  ShoppingPageHeader,
+} from "@/app/(app)/shopping/_component"
+
+export const metadata = {
+  title: "お気に入り",
+}
+
+export default function FavoritePage() {
+  return (
+    <div>
+      <ShoppingPageHeader />
+      <form>
+        <ShoppingItem isCheckedInitial key="id_1">
+          キャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツ
+        </ShoppingItem>
+        <ShoppingItem isCheckedInitial={false} key="id_2">
+          キャベツ
+        </ShoppingItem>
+      </form>
+    </div>
+  )
 }

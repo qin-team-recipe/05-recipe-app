@@ -15,6 +15,7 @@ type Title =
   | "下書き"
 
 type PageHeaderProps = {
+  hasBorder?: boolean
   leftSectionChildren?: ReactNode
   rightSectionChildren?: ReactNode
   title?: Title
@@ -22,11 +23,23 @@ type PageHeaderProps = {
 }
 
 const pageHeaderTitle = tv({
-  base: "absolute inset-x-0 w-fit font-bold",
+  slots: {
+    container: "relative flex h-12 items-center justify-between px-4",
+    title: "absolute inset-x-0 w-fit font-bold",
+  },
   variants: {
-    align: {
-      center: "mx-auto",
-      left: "ml-14",
+    hasBorder: {
+      true: {
+        container: "border-b border-mauve-6",
+      },
+    },
+    titleAlign: {
+      center: {
+        title: "mx-auto",
+      },
+      left: {
+        title: "ml-14",
+      },
     },
   },
 })
@@ -34,19 +47,25 @@ const pageHeaderTitle = tv({
 /** @package */
 export const PageHeader: FC<PageHeaderProps> = (props) => {
   const {
+    hasBorder = true,
     leftSectionChildren,
     rightSectionChildren,
     title,
     titleAlign = "center",
   } = props
 
+  const { container, title: titleClass } = pageHeaderTitle({
+    hasBorder,
+    titleAlign,
+  })
+
   return (
-    <div className="relative flex h-12 items-center justify-between border-b border-mauve-6 px-4">
+    <div className={container()}>
       {leftSectionChildren ? (
         <div className="flex items-center">{leftSectionChildren}</div>
       ) : null}
       {title ? (
-        <div className={pageHeaderTitle({ align: titleAlign })}>
+        <div className={titleClass()}>
           <h1 className="whitespace-nowrap text-xl font-bold leading-6 text-mauve-12">
             {title}
           </h1>

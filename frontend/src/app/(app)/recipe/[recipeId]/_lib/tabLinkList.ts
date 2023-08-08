@@ -8,7 +8,7 @@ export const tabLinkList = (paramsId: string): Link[] => {
       tabLabel: "作り方",
     },
     {
-      href: `/recipe/${paramsId}/recipe-item`,
+      href: `/recipe/${paramsId}/recipeItem`,
       tabLabel: "材料",
     },
     {
