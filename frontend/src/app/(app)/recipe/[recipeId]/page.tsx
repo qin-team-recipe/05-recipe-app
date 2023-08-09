@@ -1,12 +1,12 @@
 import React, { FC } from "react"
 
-import { getRecipeItemList } from "@/mock/api"
+import { getRecipe, getRecipeItemList } from "@/mock/api"
 import { IconCopy } from "@tabler/icons-react"
 
 import { Instruction } from "@/app/(app)/_component/instruction"
 import { Tab } from "@/app/(app)/_component/tab"
 import { RecipePageDetail } from "@/app/(app)/recipe/[recipeId]/_component"
-import { getRecipe, tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
+import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
 export const metadata = {
   title: "レシピ詳細",
@@ -23,7 +23,7 @@ const RecipePage: FC<RecipePageProps> = async (props) => {
 
   const recipeItemList = getRecipeItemList()
   const linkList = tabLinkList(params.recipeId)
-  const recipeData = await getRecipe(params.recipeId)
+  const recipeData = getRecipe()
 
   return (
     <div>
