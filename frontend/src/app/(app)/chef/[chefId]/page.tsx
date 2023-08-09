@@ -1,10 +1,12 @@
 import React, { FC } from "react"
 
+import { getChef } from "@/mock/api"
+
 import { ContentContainer } from "@/app/(app)/_component/container"
 import { RecipeCard } from "@/app/(app)/_component/recipeCard"
 import { Tab } from "@/app/(app)/_component/tab"
 import { ChefPageDetail } from "@/app/(app)/chef/[chefId]/_component"
-import { getChef, tabLinkList } from "@/app/(app)/chef/[chefId]/_lib"
+import { tabLinkList } from "@/app/(app)/chef/[chefId]/_lib"
 
 export const metadata = {
   title: "シェフ詳細 | シェフ一覧",
@@ -30,8 +32,7 @@ const ChefPage: FC<ChefPageProps> = async (props) => {
   })
 
   const linkList = tabLinkList(params.chefId)
-
-  const chefData = await getChef(params.chefId)
+  const chefData = getChef(params.chefId)
 
   return (
     <div>
