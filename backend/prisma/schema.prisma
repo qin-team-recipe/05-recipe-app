@@ -131,13 +131,13 @@ model RecipeImage {
 }
 
 model RecipeItem {
-  id            Int            @id @default(autoincrement())
-  recipeId      String         @map("recipe_id") @db.Char(25)
-  name          String
-  description   String         @db.Text
-  createdAt     DateTime       @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
-  updatedAt     DateTime       @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
-  recipe        Recipe         @relation(fields: [recipeId], references: [id])
+  id          Int      @id @default(autoincrement())
+  recipeId    String   @map("recipe_id") @db.Char(25)
+  name        String
+  description String   @db.Text
+  createdAt   DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt   DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
+  recipe      Recipe   @relation(fields: [recipeId], references: [id])
 
   @@fulltext([name])
   @@map("recipe_items")
@@ -184,7 +184,7 @@ model ShoppingMenu {
 model ShoppingItem {
   id             Int          @id @default(autoincrement())
   shoppingMenuId String       @map("shopping_menu_id") @db.Char(25)
-  recipeItemName   String          @map("recipe_item_name")
+  recipeItemName String       @map("recipe_item_name")
   boughtFlag     Boolean      @default(false) @map("bought_flag")
   createdAt      DateTime     @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
   updatedAt      DateTime     @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
