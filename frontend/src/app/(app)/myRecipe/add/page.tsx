@@ -1,6 +1,6 @@
 import React, { FC } from "react"
 
-import { getRecipeItemList } from "@/mock/api"
+import { getInstructionList } from "@/mock/api"
 import { IconDotsVertical } from "@tabler/icons-react"
 
 import { ContentContainer } from "@/app/(app)/_component/container"
@@ -12,7 +12,7 @@ import {
 } from "@/app/(app)/myRecipe/add/_component"
 
 const AddMyRecipePage: FC = async () => {
-  const recipeItemList = getRecipeItemList()
+  const instructionList = getInstructionList()
 
   return (
     <div>
@@ -27,16 +27,16 @@ const AddMyRecipePage: FC = async () => {
             </h3>
           </ContentContainer>
           <div>
-            {recipeItemList.map((recipeItem, index) => {
+            {instructionList.map((instruction, index) => {
               return (
-                <div key={recipeItem} className="relative flex">
+                <div key={index + 1} className="relative flex">
                   <AddMyRecipeDrawer
-                    instruction={recipeItem}
+                    instruction={instruction}
                     instructionStep={index + 1}
                   >
                     <div className="w-full items-start break-all">
                       <Instruction
-                        instruction={recipeItem}
+                        instruction={instruction}
                         isBorderTop={index + 1 === 1}
                         isVisibleAll={false}
                         step={index + 1}

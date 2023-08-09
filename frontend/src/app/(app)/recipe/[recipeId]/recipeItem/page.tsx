@@ -26,19 +26,17 @@ type RecipeItem = {
 
 const LinkTabPage: FC<LinkTabPageProps> = async (props) => {
   const { params } = props
+
   const linkList = tabLinkList(params.recipeId)
   const recipeItemList: RecipeItem[] = [
     { note: "トマト１個" },
     { note: "チーズ２枚" },
     { note: "オリーブオイル少々" },
   ]
-
   const recipeItems = recipeItemList.map((recipeItem, i) => {
     return <RecipeItem note={recipeItem.note} key={i} />
   })
-
   const recipeData = getRecipe()
-
   const subButtonLink = {
     href: "/favorite",
     label: "まとめてお買物に追加",
