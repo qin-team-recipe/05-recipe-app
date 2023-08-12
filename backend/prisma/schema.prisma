@@ -46,6 +46,8 @@ model UserLink {
   id          Int         @id @default(autoincrement())
   userId      String      @map("user_id") @db.Char(25)
   url         String      @db.Text
+  createdAt   DateTime    @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt   DateTime    @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
   userProfile UserProfile @relation(fields: [userId], references: [userId])
 
   @@map("user_links")
