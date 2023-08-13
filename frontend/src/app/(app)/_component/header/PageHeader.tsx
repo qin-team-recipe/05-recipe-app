@@ -24,7 +24,8 @@ type PageHeaderProps = {
 
 const pageHeaderTitle = tv({
   slots: {
-    container: "relative flex h-12 items-center justify-between px-4",
+    container:
+      "relative flex h-12 items-center justify-between px-4 background-white",
     title: "absolute inset-x-0 w-fit font-bold",
   },
   variants: {

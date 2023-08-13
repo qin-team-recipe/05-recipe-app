@@ -11,6 +11,7 @@ module.exports = withTV({
     extend: {
       boxShadow: {
         base: "0px -2px 4px 0px rgba(0, 0, 0, 0.12)",
+        drawer: "0px -4px 20px 0px rgba(0, 0, 0, 0.30);",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

@@ -9,10 +9,20 @@ import parse from "rehype-parse"
 import rehypeReact, { Options as RehypeReactOptions } from "rehype-react"
 import { unified } from "unified"
 
-import { Paragraph } from "@/app/(app)/_lib/htmlTag"
+import { HiddenImage, Paragraph, VisibleImage } from "@/app/(app)/_lib/htmlTag"
 
-const rehypeOptions: RehypeReactOptions = {
+const visibleImageOptions: RehypeReactOptions = {
   components: {
+    img: VisibleImage,
+    p: Paragraph,
+  },
+  createElement,
+  Fragment,
+}
+
+const hiddenImageOptions: RehypeReactOptions = {
+  components: {
+    img: HiddenImage,
     p: Paragraph,
   },
   createElement,
@@ -22,9 +32,13 @@ const rehypeOptions: RehypeReactOptions = {
 /** @package */
 export const parseHtml = (
   content: string,
+  type: "visibleImage" | "hiddenImage" = "hiddenImage",
 ): ReactElement<unknown, string | JSXElementConstructor<any>> => {
   return unified()
     .use(parse, { fragment: true })
-    .use(rehypeReact, rehypeOptions)
+    .use(
+      rehypeReact,
+      type === "visibleImage" ? visibleImageOptions : hiddenImageOptions,
+    )
     .processSync(content).result
 }
