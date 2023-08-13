@@ -1,8 +1,10 @@
 import React, { FC } from "react"
 
+import { getChef } from "@/mock/api"
+
 import { Tab } from "@/app/(app)/_component/tab"
 import { ChefPageDetail, LinkCard } from "@/app/(app)/chef/[chefId]/_component"
-import { getChef, tabLinkList } from "@/app/(app)/chef/[chefId]/_lib"
+import { tabLinkList } from "@/app/(app)/chef/[chefId]/_lib"
 
 export const metadata = {
   title: "シェフ詳細 | リンク",
@@ -62,7 +64,7 @@ const LinkTabPage: FC<LinkTabPageProps> = async (props) => {
 
   const linkList = tabLinkList(params.chefId)
 
-  const chefData = await getChef(params.chefId)
+  const chefData = getChef(params.chefId)
 
   return (
     <div>

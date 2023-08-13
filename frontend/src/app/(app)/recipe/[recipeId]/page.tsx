@@ -1,12 +1,12 @@
 import React, { FC } from "react"
 
-import { getRecipeItemList } from "@/mock/api"
+import { getInstructionList, getRecipe } from "@/mock/api"
 import { IconCopy } from "@tabler/icons-react"
 
 import { Instruction } from "@/app/(app)/_component/instruction"
 import { Tab } from "@/app/(app)/_component/tab"
 import { RecipePageDetail } from "@/app/(app)/recipe/[recipeId]/_component"
-import { getRecipe, tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
+import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
 export const metadata = {
   title: "レシピ詳細",
@@ -21,9 +21,9 @@ type RecipePageProps = {
 const RecipePage: FC<RecipePageProps> = async (props) => {
   const { params } = props
 
-  const recipeItemList = getRecipeItemList()
+  const instructionList = getInstructionList()
   const linkList = tabLinkList(params.recipeId)
-  const recipeData = await getRecipe(params.recipeId)
+  const recipeData = getRecipe()
 
   return (
     <div>
@@ -32,11 +32,11 @@ const RecipePage: FC<RecipePageProps> = async (props) => {
       <div className="py-7">
         <Tab linkList={linkList}>
           <div>
-            {recipeItemList.map((recipeItem, index) => {
+            {instructionList.map((instruction, index) => {
               return (
                 <Instruction
-                  key={recipeItem}
-                  instruction={recipeItem}
+                  key={instruction}
+                  instruction={instruction}
                   step={index + 1}
                 />
               )

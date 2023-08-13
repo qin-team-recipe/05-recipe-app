@@ -1,5 +1,7 @@
 import React, { FC } from "react"
 
+import { getChef } from "@/mock/api"
+
 import { ContentContainer } from "@/app/(app)/_component/container"
 import { RecipeCard } from "@/app/(app)/_component/recipeCard"
 import { Tab } from "@/app/(app)/_component/tab"
@@ -11,16 +13,6 @@ export const metadata = {
 }
 
 const MyPage: FC = () => {
-  const chefData = {
-    chefId: "foobarid",
-    follower: 1234,
-    img: "/chef.jpg",
-    introduction:
-      "初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり主婦の友社より３月３日、２冊同時発売！絶賛発売中！",
-    name: "山田シェフ",
-    recipeCount: 2345,
-  }
-
   const recipeCards = Array.from({ length: 10 }).map((_, i) => {
     return (
       <RecipeCard
@@ -32,6 +24,7 @@ const MyPage: FC = () => {
   })
 
   const linkList = tabLinkList()
+  const chefData = getChef("1")
 
   return (
     <div>
