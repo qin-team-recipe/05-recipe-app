@@ -198,7 +198,9 @@ model Follow {
   followerId String   @map("follower_id") @db.Char(25)
   followedId String   @map("followed_id") @db.Char(25)
   createdAt  DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  // フォローした人
   follower   User     @relation("follower", fields: [followerId], references: [id])
+  // フォローされた人
   followed   User     @relation("followed", fields: [followedId], references: [id])
 
   @@unique([followerId, followedId])
