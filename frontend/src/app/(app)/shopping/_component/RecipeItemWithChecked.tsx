@@ -1,6 +1,6 @@
 "use client"
 
-import React, { FC, ReactNode, useState } from "react"
+import React, { FC, useState } from "react"
 
 import * as Checkbox from "@radix-ui/react-checkbox"
 import { IconCheck, IconDotsVertical } from "@tabler/icons-react"
@@ -8,17 +8,18 @@ import { tv } from "tailwind-variants"
 
 import { ShoppingItemDDMenu } from "@/app/(app)/shopping/_component/ShoppingItemDDMenu"
 
-type ShoppingItemProps = {
-  children: ReactNode
-  isCheckedInitial: boolean
-  key: string
+type RecipeItemWithCheckedProps = {
+  isDone: boolean
+  note: string
 }
 
-const item = tv({
+const style = tv({
   slots: {
     checkboxIndicator: "",
     checkboxRoot:
       "flex items-center justify-center rounded-full border-2 w-6 h-6 shrink-0",
+    item: "flex items-center gap-3",
+    menu: "shrink-0",
     wrapper: "flex items-center justify-between px-4 py-2 gap-1 bg-mauve-1",
   },
   variants: {
@@ -36,9 +37,11 @@ const item = tv({
 })
 
 /** @package */
-export const ShoppingItem: FC<ShoppingItemProps> = (props) => {
-  const { children, isCheckedInitial, key } = props
-  const [isChecked, setIsChecked] = useState<boolean>(isCheckedInitial)
+export const RecipeItemWithChecked: FC<RecipeItemWithCheckedProps> = (
+  props,
+) => {
+  const { isDone, note } = props
+  const [isChecked, setIsChecked] = useState<boolean>(isDone)
 
   const handleClick = () => {
     setIsChecked((isChecked) => {
@@ -46,26 +49,26 @@ export const ShoppingItem: FC<ShoppingItemProps> = (props) => {
     })
   }
 
-  const { checkboxIndicator, checkboxRoot, wrapper } = item({
+  const { checkboxIndicator, checkboxRoot, item, menu, wrapper } = style({
     isChecked,
   })
+
   return (
     <div className={wrapper()}>
-      <div className="flex items-center gap-3">
+      <div className={item()}>
         <Checkbox.Root
           className={checkboxRoot()}
-          defaultChecked={isCheckedInitial}
+          defaultChecked={isDone}
           checked={isChecked}
           onCheckedChange={handleClick}
-          id={key}
         >
           <Checkbox.Indicator className={checkboxIndicator()}>
             <IconCheck className="p-1" strokeWidth={3} />
           </Checkbox.Indicator>
         </Checkbox.Root>
-        <label htmlFor={key}>{children}</label>
+        <label>{note}</label>
       </div>
-      <div className="shrink-0">
+      <div className={menu()}>
         <ShoppingItemDDMenu>
           <IconDotsVertical className="h-6 w-6 cursor-pointer text-mauve-12" />
         </ShoppingItemDDMenu>

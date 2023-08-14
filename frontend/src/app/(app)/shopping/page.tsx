@@ -1,65 +1,88 @@
 import React from "react"
 
-import { IconDotsCircleHorizontal, IconPlus } from "@tabler/icons-react"
-
 import {
-  ShoppingItem,
-  ShoppingListDDMenu,
+  RecipeItemWithChecked,
   ShoppingPageHeader,
+  ToBuyListBlock,
 } from "@/app/(app)/shopping/_component"
 
 export const metadata = {
   title: "お気に入り",
 }
 
+type RecipeItemWithChecked = {
+  id: number
+  isDone: boolean
+  note: string
+}
+
+type RecipeItemList = RecipeItemWithChecked[]
+
+type ToBuyListBlock = {
+  recipeItemList: RecipeItemList
+  title: string
+}
+
+type ToBuyListResponse = ToBuyListBlock[]
+
 export default function FavoritePage() {
+  const ToBuyList: ToBuyListResponse = [
+    {
+      recipeItemList: [
+        {
+          id: 1,
+          isDone: true,
+          note: "キャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツ",
+        },
+        { id: 2, isDone: false, note: "キャベツ" },
+      ],
+      title: "じぶんメモ",
+    },
+    {
+      recipeItemList: [
+        { id: 1, isDone: true, note: "トマト１個" },
+        { id: 2, isDone: false, note: "チーズ２枚" },
+        { id: 3, isDone: true, note: "オリーブオイル少々" },
+      ],
+      title: "マルゲリータ",
+    },
+    {
+      recipeItemList: [
+        { id: 1, isDone: true, note: "じゃがいも１個" },
+        { id: 2, isDone: false, note: "にんじん１本" },
+        { id: 3, isDone: false, note: "たまねぎ１個" },
+      ],
+      title: "肉じゃが",
+    },
+    {
+      recipeItemList: [
+        { id: 1, isDone: false, note: "トマト１個" },
+        { id: 2, isDone: false, note: "チーズ２枚" },
+        { id: 3, isDone: false, note: "オリーブオイル少々" },
+        { id: 4, isDone: false, note: "オリーブオイル少々" },
+        { id: 5, isDone: false, note: "オリーブオイル少々" },
+        { id: 6, isDone: false, note: "オリーブオイル少々" },
+        { id: 7, isDone: false, note: "オリーブオイル少々" },
+        { id: 8, isDone: false, note: "オリーブオイル少々" },
+      ],
+      title: "グラタン",
+    },
+  ]
+
   return (
     <div>
       <ShoppingPageHeader />
-      <div className="bg-mauve-8 py-4">
-        <div className="flex items-center justify-between gap-2 px-4 py-3">
-          <div className="text-lg font-bold line-clamp-1">じぶんメモ</div>
-          <div className="flex items-center gap-4">
-            <button>
-              <IconPlus className="h-6 w-6 cursor-pointer text-mauve-12" />
-            </button>
-            <ShoppingListDDMenu>
-              <IconDotsCircleHorizontal className="h-6 w-6 cursor-pointer text-mauve-12" />
-            </ShoppingListDDMenu>
-          </div>
-        </div>
-        <form>
-          <ShoppingItem isCheckedInitial key="id_1">
-            キャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツ
-          </ShoppingItem>
-          <ShoppingItem isCheckedInitial={false} key="id_2">
-            キャベツ
-          </ShoppingItem>
-        </form>
-      </div>
-      <div className="bg-mauve-8 py-4">
-        <div className="flex items-center justify-between gap-2 px-4 py-3">
-          <div className="text-lg font-bold line-clamp-1">
-            長いレシピ長いレシピ長いレシピ長いレシピ長いレシピ長いレシピ長いレシピ長いレシピ
-          </div>
-          <div className="flex items-center gap-4">
-            <button>
-              <IconPlus className="h-6 w-6 cursor-pointer text-mauve-12" />
-            </button>
-            <ShoppingListDDMenu>
-              <IconDotsCircleHorizontal className="h-6 w-6 cursor-pointer text-mauve-12" />
-            </ShoppingListDDMenu>
-          </div>
-        </div>
-        <form>
-          <ShoppingItem isCheckedInitial key="id_1">
-            キャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツキャベツ
-          </ShoppingItem>
-          <ShoppingItem isCheckedInitial={false} key="id_2">
-            キャベツ
-          </ShoppingItem>
-        </form>
-      </div>
+      <form action="">
+        {ToBuyList.map((toBuyListBlock) => {
+          return (
+            <ToBuyListBlock
+              recipeItemList={toBuyListBlock.recipeItemList}
+              key={toBuyListBlock.title}
+              title={toBuyListBlock.title}
+            ></ToBuyListBlock>
+          )
+        })}
+      </form>
     </div>
   )
 }
