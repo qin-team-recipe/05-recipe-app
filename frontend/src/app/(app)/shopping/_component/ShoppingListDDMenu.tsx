@@ -6,6 +6,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
 import {
   IconChefHat,
   IconChevronDown,
+  IconChevronUp,
   IconCircleCheck,
   IconTrash,
 } from "@tabler/icons-react"
@@ -34,6 +35,12 @@ export const ShoppingListDDMenu: FC<ShoppingListDDMenuProps> = (props) => {
           <IconChefHat width={20} height={20} />
           <div>
             <div className={mainText()}>レシピ詳細を見る</div>
+          </div>
+        </DropdownMenu.Item>
+        <DropdownMenu.Item className={item()}>
+          <IconChevronUp width={20} height={20} />
+          <div>
+            <div className={mainText()}>上に移動する</div>
           </div>
         </DropdownMenu.Item>
         <DropdownMenu.Item className={item()}>
