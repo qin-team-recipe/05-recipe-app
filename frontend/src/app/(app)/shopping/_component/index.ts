@@ -1,2 +1,4 @@
 export { ShoppingPageHeader } from "./ShoppingPageHeader"
-export { ShoppingItem } from "./ShoppingItem"
+export { RecipeItemWithChecked } from "./RecipeItemWithChecked"
+export { ShoppingListDDMenu } from "./ShoppingListDDMenu"
+export { ToBuyListBlock } from "./ToBuyListBlock"
