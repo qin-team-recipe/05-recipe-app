@@ -9,6 +9,7 @@ import { baseLabel } from "@/app/(app)/_component/label"
 import {
   AddMyRecipeDrawer,
   AddMyRecipePageHeader,
+  InstructionDDMenu,
 } from "@/app/(app)/myRecipe/add/_component"
 
 const AddMyRecipePage: FC = async () => {
@@ -18,7 +19,6 @@ const AddMyRecipePage: FC = async () => {
     <div>
       <AddMyRecipePageHeader />
 
-      {/*<form className="bg-mauve-2 pb-20">*/}
       <form className="pb-20">
         <div className="bg-transparent pt-8">
           <ContentContainer>
@@ -44,9 +44,10 @@ const AddMyRecipePage: FC = async () => {
                     </div>
                   </AddMyRecipeDrawer>
 
-                  {/* divではなくDDMenuを設置する */}
                   <div>
-                    <IconDotsVertical className="absolute right-5 top-[10px] h-4 w-4 text-mauve-11" />
+                    <InstructionDDMenu>
+                      <IconDotsVertical className="absolute right-5 top-[10px] h-4 w-4 text-mauve-11" />
+                    </InstructionDDMenu>
                   </div>
                 </div>
               )
