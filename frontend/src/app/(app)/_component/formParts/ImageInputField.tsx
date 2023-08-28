@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from "react"
 
 import { IconPlus } from "@tabler/icons-react"
-import { useFormContext, type FieldValues, type Path } from "react-hook-form"
+import { type FieldValues, type Path } from "react-hook-form"
 import { tv } from "tailwind-variants"
 
 type ImageInputFieldProps<T extends FieldValues> = {
@@ -23,11 +23,9 @@ const sImageInputField = tv({
 export const ImageInputField = <T extends FieldValues>(
   props: ImageInputFieldProps<T>,
 ) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { fieldName, label } = props
+  const { label } = props
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const methods = useFormContext<T>()
+  // const methods = useFormContext<T>()
 
   const {
     icon: sIcon,

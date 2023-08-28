@@ -15,4 +15,5 @@ const ProfileEditPage: FC = () => {
     </div>
   )
 }
+
 export default ProfileEditPage
