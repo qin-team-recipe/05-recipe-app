@@ -9,7 +9,7 @@ export const metadata = {
 
 const ProfileEditPage: FC = () => {
   return (
-    <div className="h-screen bg-mauve-3">
+    <div>
       <PageHeader title="編集" titleAlign="center" />
       <ProfileEditForm />
     </div>
