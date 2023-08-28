@@ -9,6 +9,7 @@ import { baseRecipeItem } from "@/app/(app)/_component/recipeItem/baseRecipeItem
 type LinkListProps = {
   preUrl?: string
 }
+
 const linkListItem = tv({
   extend: baseRecipeItem,
 })
