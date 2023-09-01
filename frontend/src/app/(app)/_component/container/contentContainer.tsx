@@ -8,7 +8,8 @@ type ContentContainerProps = {
   isPaddingRight?: boolean
 }
 
-const container = tv({
+/** @package */
+export const SContentContainer = tv({
   variants: {
     isPaddingLeft: {
       true: "pl-4",
@@ -24,7 +25,7 @@ export const ContentContainer: FC<ContentContainerProps> = (props) => {
   const { children, isPaddingLeft = true, isPaddingRight = true } = props
 
   return (
-    <div className={container({ isPaddingLeft, isPaddingRight })}>
+    <div className={SContentContainer({ isPaddingLeft, isPaddingRight })}>
       {children}
     </div>
   )
