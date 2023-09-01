@@ -1,6 +1,7 @@
 import React, { FC } from "react"
 
 import { getRecipe } from "@/mock/api"
+import type { TRecipeItem } from "@/type"
 import { IconCopy } from "@tabler/icons-react"
 
 import { ContentContainer } from "@/app/(app)/_component/container"
@@ -20,15 +21,11 @@ type LinkTabPageProps = {
   }
 }
 
-type RecipeItem = {
-  note: string
-}
-
 const LinkTabPage: FC<LinkTabPageProps> = async (props) => {
   const { params } = props
 
   const linkList = tabLinkList(params.recipeId)
-  const recipeItemList: RecipeItem[] = [
+  const recipeItemList: TRecipeItem[] = [
     { note: "トマト１個" },
     { note: "チーズ２枚" },
     { note: "オリーブオイル少々" },

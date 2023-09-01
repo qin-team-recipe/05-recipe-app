@@ -2,12 +2,9 @@
 
 import React, { FC, useState } from "react"
 
+import { TRecipeItem } from "@/type"
 import { IconShoppingCartPlus } from "@tabler/icons-react"
 import { tv } from "tailwind-variants"
-
-type RecipeItem = {
-  note: string
-}
 
 const color = tv({
   base: "w-16 px-2",
@@ -19,7 +16,7 @@ const color = tv({
   },
 })
 
-export const RecipeItem: FC<RecipeItem> = (props) => {
+export const RecipeItem: FC<TRecipeItem> = (props) => {
   const { note } = props
   const [isFollow, setIsFollow] = useState<boolean>(false)
 
