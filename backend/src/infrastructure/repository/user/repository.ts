@@ -84,11 +84,16 @@ export class UserRepository {
               nickname: true,
               imgPath: true,
               introduction: true,
-              twitterId: true,
-              instagramId: true,
-              siteUrl: true,
               followerCount: true,
               recipeCount: true,
+            },
+            include: {
+              userLinks: {
+                select: {
+                  id: true,
+                  url: true,
+                },
+              },
             },
           },
           recipes: {
