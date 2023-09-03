@@ -23,6 +23,7 @@ export const RegisterForm: FC = () => {
         title="ニックネーム"
         type="text"
         isRequired
+        placeholder="ニックネームをご入力ください"
       />
       <div className="flex items-center justify-center gap-4 px-4">
         <UpdateButton isSave>登録する</UpdateButton>
