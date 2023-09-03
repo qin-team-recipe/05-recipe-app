@@ -27,7 +27,7 @@ export const RegisterForm: FC = () => {
       />
       <div className="flex items-center justify-center gap-4 px-4">
         <UpdateButton isSave>登録する</UpdateButton>
-        <UpdateButton>キャンセル</UpdateButton>
+        <UpdateButton>ログアウト</UpdateButton>
       </div>
     </form>
   )
