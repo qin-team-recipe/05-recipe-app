@@ -8,7 +8,7 @@ type SubmitButtonProps = {
   label: "登録する" | "保存する"
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
-const submitButton = tv({
+const sSubmitButton = tv({
   base: "text-mauve-app bg-tomato-solid border-tomato-9",
   extend: formActionButton,
 })
@@ -18,7 +18,7 @@ export const SubmitButton: FC<SubmitButtonProps> = (props) => {
   const { label, ...buttonProps } = props
 
   return (
-    <button type="submit" className={submitButton()} {...buttonProps}>
+    <button type="submit" className={sSubmitButton()} {...buttonProps}>
       {label}
     </button>
   )
