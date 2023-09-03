@@ -17,9 +17,6 @@ const updateResult: UserProfileResponse = {
   nickname: 'initial nickname',
   imgPath: 'initial/img/path',
   introduction: 'initial introduction',
-  twitterId: 'initial_twitter_id',
-  instagramId: 'initial_instagram_id',
-  siteUrl: 'https://initial.com',
   followerCount: 0,
   recipeCount: 0,
   createdAt: new Date(),
@@ -72,9 +69,6 @@ describe('UserProfileRepository.update()', () => {
       nickname: 'test nickname',
       imgPath: 'test/img/path',
       introduction: 'test introduction',
-      twitterId: 'test_twitter_id',
-      instagramId: 'test_instagram_id',
-      siteUrl: 'https://test.com',
       followerCount: 1,
       recipeCount: 1,
     };
@@ -91,9 +85,6 @@ describe('UserProfileRepository.update()', () => {
       nickname: 'test nickname2',
       imgPath: 'test/img/path2',
       introduction: 'test introduction2',
-      twitterId: 'test_twitter_id2',
-      instagramId: 'test_instagram_id2',
-      siteUrl: 'https://test.com2',
       followerCount: 1234,
       recipeCount: 4321,
     };
@@ -110,9 +101,6 @@ describe('UserProfileRepository.update()', () => {
       nickname: 'test nickname',
       imgPath: 'test/img/path',
       introduction: 'test introduction',
-      twitterId: 'test_twitter_id',
-      instagramId: 'test_instagram_id',
-      siteUrl: 'https://test.com',
       followerCount: 1,
       recipeCount: 1,
     };
@@ -121,7 +109,13 @@ describe('UserProfileRepository.update()', () => {
     // Verify: ensure user.update was called with correct arguments
     expect(ormMock.userProfile.update).toHaveBeenCalledWith({
       where: { userId: userProfileProps.userId },
-      data: userProfileProps,
+      data: {
+        ...userProfileProps,
+        userId: undefined,
+      },
+      include: {
+        userLinks: true,
+      },
     });
 
     // Verify: ensure the function returns the data we specified
@@ -131,11 +125,6 @@ describe('UserProfileRepository.update()', () => {
     expect(userProfile?.introduction).toStrictEqual(
       userProfileProps.introduction,
     );
-    expect(userProfile?.twitterId).toStrictEqual(userProfileProps.twitterId);
-    expect(userProfile?.instagramId).toStrictEqual(
-      userProfileProps.instagramId,
-    );
-    expect(userProfile?.siteUrl).toStrictEqual(userProfileProps.siteUrl);
     expect(userProfile?.followerCount).toStrictEqual(
       userProfileProps.followerCount,
     );

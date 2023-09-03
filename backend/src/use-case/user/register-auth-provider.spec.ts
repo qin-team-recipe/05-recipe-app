@@ -4,6 +4,8 @@ import {
   UserWithAuthProvidersResponse,
 } from 'src/entity/user.entity';
 import { UserAuthProviderRepository } from 'src/infrastructure/repository/user-auth-provider/repository';
+import { UserLinkRepository } from 'src/infrastructure/repository/user-link/repository';
+import { UserProfileRepository } from 'src/infrastructure/repository/user-profile/repository';
 import { UserRepository } from 'src/infrastructure/repository/user/repository';
 import { UserUseCase } from './use-case';
 
@@ -40,6 +42,14 @@ beforeEach(async () => {
         useValue: {
           create: jest.fn(),
         },
+      },
+      {
+        provide: UserProfileRepository,
+        useValue: {},
+      },
+      {
+        provide: UserLinkRepository,
+        useValue: {},
       },
     ],
   }).compile();
