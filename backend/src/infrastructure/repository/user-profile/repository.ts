@@ -5,6 +5,7 @@ import {
   UserProfileCreateInput,
   UserProfileResponse,
   UserProfileUpdateInput,
+  UserProfileWithUserLinksResponse,
 } from 'src/entity/user-profile.entity';
 import { OrmClient } from 'src/infrastructure/orm/orm.client';
 import { prismaErrorHandling } from 'src/infrastructure/repository/prisma-error-handling';
@@ -21,9 +22,21 @@ export class UserProfileRepository {
   // ユーザープロフィールを作成する
   async create(
     userProps: UserProfileCreateInput,
-  ): Promise<UserProfileResponse> {
+  ): Promise<UserProfileWithUserLinksResponse> {
     try {
-      return await this.orm.userProfile.create({ data: userProps });
+      return await this.orm.userProfile.create({
+        data: {
+          ...userProps,
+          userLinks: {
+            createMany: {
+              data: userProps.userLinks,
+            },
+          },
+        },
+        include: {
+          userLinks: true,
+        },
+      });
     } catch (error) {
       this.logger.error(error);
       prismaErrorHandling(error);
@@ -45,7 +58,16 @@ export class UserProfileRepository {
     try {
       return await this.orm.userProfile.update({
         where: { userId: userProps.userId },
-        data: userProps,
+        data: {
+          nickname: userProps.nickname,
+          imgPath: userProps.imgPath,
+          introduction: userProps.introduction,
+          followerCount: userProps.followerCount,
+          recipeCount: userProps.recipeCount,
+        },
+        include: {
+          userLinks: true,
+        },
       });
     } catch (error) {
       this.logger.error(error);
@@ -68,6 +90,7 @@ export class UserProfileRepository {
               favoriteCount: true,
             },
           },
+          userLinks: true,
         },
       });
     } catch (error) {
