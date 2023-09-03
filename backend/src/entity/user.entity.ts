@@ -47,8 +47,6 @@ export type FindUserResponse = Prisma.UserGetPayload<{
         introduction: true;
         followerCount: true;
         recipeCount: true;
-      };
-      include: {
         userLinks: {
           select: {
             id: true;

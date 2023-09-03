@@ -86,8 +86,6 @@ export class UserRepository {
               introduction: true,
               followerCount: true,
               recipeCount: true,
-            },
-            include: {
               userLinks: {
                 select: {
                   id: true,
