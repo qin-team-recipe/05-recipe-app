@@ -57,7 +57,9 @@ export type TRecipeItemList = TRecipeItem[]
 
 /** @package */
 export type TRecipe = {
-  favorite: number
+  id: string
+  createdAt: string
+  favoriteCount: number
   img: TImg
   instructionList: TInstructionList
   isDraft: boolean
