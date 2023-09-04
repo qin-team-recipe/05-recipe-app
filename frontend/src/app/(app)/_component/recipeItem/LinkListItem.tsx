@@ -9,7 +9,8 @@ import { baseRecipeItem } from "@/app/(app)/_component/recipeItem/baseRecipeItem
 type LinkListProps = {
   preUrl?: string
 }
-const linkListItem = tv({
+
+const sLinkListItem = tv({
   extend: baseRecipeItem,
 })
 
@@ -19,7 +20,7 @@ export const LinkListItem: FC<LinkListProps> = (props) => {
 
   return (
     <input
-      className={linkListItem()}
+      className={sLinkListItem()}
       value={url}
       type="text"
       onChange={(e) => {
