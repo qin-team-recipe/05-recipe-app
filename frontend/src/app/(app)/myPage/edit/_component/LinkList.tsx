@@ -12,14 +12,14 @@ type LinkListProps = {
   label: string
 }
 
-const SLinkListItem = tv({
+const sLinkListItem = tv({
   extend: baseRecipeItem,
 })
 
-const SLinkList = tv({
+const sLinkList = tv({
   slots: {
     label: "px-4 text-base font-bold leading-5",
-    linkListItem: SLinkListItem(),
+    linkListItem: sLinkListItem(),
     root: "flex flex-col gap-1",
   },
 })
@@ -43,7 +43,7 @@ export const LinkList = (props: LinkListProps) => {
     label: sLabel,
     linkListItem: sLinkListItem,
     root: sRoot,
-  } = SLinkList()
+  } = sLinkList()
 
   const onClickAppend = () => {
     appendLinkList({

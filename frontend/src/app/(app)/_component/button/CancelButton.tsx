@@ -8,7 +8,7 @@ type CancelButtonProps = {
   label: "キャンセル"
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
-const cancelButton = tv({
+const sCancelButton = tv({
   base: "text-tomato-dim bg-tomato-1 border-tomato-7 hover:bg-tomato-2 active:bg-tomato-3",
   extend: formActionButton,
 })
@@ -18,7 +18,7 @@ export const CancelButton: FC<CancelButtonProps> = (props) => {
   const { label, ...buttonProps } = props
 
   return (
-    <button type="button" className={cancelButton()} {...buttonProps}>
+    <button type="button" className={sCancelButton()} {...buttonProps}>
       {label}
     </button>
   )
