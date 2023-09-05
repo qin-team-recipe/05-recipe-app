@@ -5,7 +5,7 @@ import { tv } from "tailwind-variants"
 import { formActionButton } from "@/app/(app)/_component/button/baseButton"
 
 type SubmitButtonProps = {
-  label: "登録する" | "保存する"
+  label: "登録する" | "保存する" | "削除する"
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
 const sSubmitButton = tv({
