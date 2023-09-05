@@ -26,22 +26,31 @@ model User {
 }
 
 model UserProfile {
-  userId        String   @unique @map("user_id") @db.Char(25)
+  userId        String     @unique @map("user_id") @db.Char(25)
   nickname      String
-  imgPath       String?  @map("img_path") @db.Text
-  introduction  String   @db.Text
-  twitterId     String?  @map("twitter_id")
-  instagramId   String?  @map("instagram_id")
-  siteUrl       String?  @map("site_url") @db.Text
-  followerCount Int      @map("follower_count") @db.UnsignedInt
-  recipeCount   Int      @map("recipe_count") @db.UnsignedInt
-  createdAt     DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
-  updatedAt     DateTime @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
-  user          User     @relation(fields: [userId], references: [id])
-  recipes       Recipe[] @relation("userProfile")
+  imgPath       String?    @map("img_path") @db.Text
+  introduction  String     @db.Text
+  followerCount Int        @map("follower_count") @db.UnsignedInt
+  recipeCount   Int        @map("recipe_count") @db.UnsignedInt
+  createdAt     DateTime   @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt     DateTime   @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
+  user          User       @relation(fields: [userId], references: [id])
+  recipes       Recipe[]   @relation("userProfile")
+  userLinks     UserLink[]
 
   @@fulltext([nickname, introduction])
   @@map("user_profiles")
+}
+
+model UserLink {
+  id          Int         @id @default(autoincrement())
+  userId      String      @map("user_id") @db.Char(25)
+  url         String      @db.Text
+  createdAt   DateTime    @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime
+  updatedAt   DateTime    @default(dbgenerated("NOW() ON UPDATE NOW()")) @map("updated_at") @db.DateTime
+  userProfile UserProfile @relation(fields: [userId], references: [userId])
+
+  @@map("user_links")
 }
 
 enum AuthProvider {
