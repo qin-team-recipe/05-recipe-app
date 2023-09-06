@@ -5,7 +5,7 @@ import { tv } from "tailwind-variants"
 import { formActionButton } from "@/app/(app)/_component/button/baseButton"
 
 type CancelButtonProps = {
-  label: "キャンセル"
+  label: "キャンセル" | "ログアウト"
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
 const sCancelButton = tv({
