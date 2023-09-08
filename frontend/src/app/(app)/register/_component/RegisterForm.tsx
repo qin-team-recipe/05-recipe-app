@@ -16,10 +16,7 @@ import {
 /** @package*/
 export const RegisterForm: FC = () => {
   const router = useRouter()
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    router.push("/")
-  }
+
   const methods = useForm<TRegisterFormSchema>({
     defaultValues: {
       // nickname: "ニックネーム",
@@ -28,11 +25,18 @@ export const RegisterForm: FC = () => {
     resolver: valibotResolver(RegisterFormSchema),
   })
 
+  const handleSubmit = (data: TRegisterFormSchema) => {
+    // eslint-disable-next-line no-console
+    console.log(data)
+
+    router.push("/")
+  }
+
   return (
     <FormProvider {...methods}>
       <form
         className="flex h-full  w-full flex-col gap-8 pt-5"
-        onSubmit={handleSubmit}
+        onSubmit={methods.handleSubmit(handleSubmit)}
       >
         <TextField<TRegisterFormSchema>
           fieldName="nickname"
