@@ -1,13 +1,13 @@
 import React, { ReactNode } from "react"
 
-type ShoppingLayoutProps = {
+type RegisterAddLayoutProps = {
   children: ReactNode
 }
 
-const ShoppingLayoutAddLayout = (props: ShoppingLayoutProps) => {
+const RegisterAddLayout = (props: RegisterAddLayoutProps) => {
   const { children } = props
 
   return <div className="h-screen bg-mauve-2">{children}</div>
 }
 
-export default ShoppingLayoutAddLayout
+export default RegisterAddLayout
