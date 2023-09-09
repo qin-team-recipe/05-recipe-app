@@ -108,7 +108,6 @@ export class RecipeRepository {
   }
 
   // 話題のレシピ一覧をページネーションで取得する
-  // TODO: 直近3日間と上位10までにする
   async pickupList(
     take: number,
     cursor?: string,
@@ -158,11 +157,11 @@ export class RecipeRepository {
   }
 
   // ユーザーのレシピ一覧をページネーションで取得する
-  // 人気のレシピにも対応する keyを引数で変更
   async findManyByUserId(
     userId: string,
     take: number,
     cursor?: string,
+    orderBy?: { [key in 'createdAt' | 'favoriteCount']: 'asc' | 'desc' },
   ): Promise<findManyByUserIdRecipeResponse> {
     try {
       return await this.orm.recipe.findMany({
@@ -172,9 +171,7 @@ export class RecipeRepository {
         where: {
           userId,
         },
-        orderBy: {
-          createdAt: 'desc',
-        },
+        orderBy,
         select: {
           id: true,
           title: true,
