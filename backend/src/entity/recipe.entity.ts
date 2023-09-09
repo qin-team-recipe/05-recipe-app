@@ -69,6 +69,7 @@ export type PickupListRecipeResponse = (Pick<
   'id' | 'title' | 'description' | 'favoriteCount'
 > & {
   recipeImages: Pick<RecipeImage, 'path'>[];
+  favorites: Pick<Favorite, 'createdAt'>[];
 })[];
 
 export type findManyByUserIdRecipeResponse = (Pick<

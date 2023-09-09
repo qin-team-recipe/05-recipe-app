@@ -9,7 +9,19 @@ let repository: RecipeRepository;
 let ormMock: OrmClient;
 
 const pickupListResults: PickupListRecipeResponse = [];
-for (let i = 1; i <= 11; i++) {
+const pickupListResultsNum = 12;
+const toDateNum = 3;
+
+for (let i = 1; i <= pickupListResultsNum; i++) {
+  const resultsFavoriteDate: Date = new Date();
+  let daysAgo: number;
+  // 直近3日のデータ11件と4日前のデータを作成する処理
+  if (i <= 4) daysAgo = 0;
+  else if (i <= 8) daysAgo = 1;
+  else if (i <= 11) daysAgo = 2;
+  else daysAgo = 3;
+  resultsFavoriteDate.setDate(resultsFavoriteDate.getDate() - daysAgo);
+
   pickupListResults.push({
     id: 'cuid' + i,
     title: 'test title' + i,
@@ -18,6 +30,11 @@ for (let i = 1; i <= 11; i++) {
     recipeImages: [
       {
         path: 'test/img/path' + i,
+      },
+    ],
+    favorites: [
+      {
+        createdAt: resultsFavoriteDate,
       },
     ],
   });
@@ -48,8 +65,22 @@ beforeAll(async () => {
 });
 
 describe('RecipeRepository.pickupList()', () => {
+  const fromDate = new Date();
+  const toDate = new Date();
+  toDate.setDate(toDate.getDate() - toDateNum);
+
   const commonOrmProps = {
     take: 5,
+    where: {
+      favorites: {
+        every: {
+          createdAt: {
+            gte: fromDate,
+            lte: toDate,
+          },
+        },
+      },
+    },
     orderBy: {
       favoriteCount: 'desc',
     },
@@ -61,6 +92,11 @@ describe('RecipeRepository.pickupList()', () => {
       recipeImages: {
         select: {
           path: true,
+        },
+      },
+      favorites: {
+        select: {
+          createdAt: true,
         },
       },
     },
@@ -76,6 +112,16 @@ describe('RecipeRepository.pickupList()', () => {
     test('0 recipes', async () => {
       const ormProps = {
         ...commonOrmProps,
+        where: {
+          favorites: {
+            every: {
+              createdAt: {
+                gte: undefined,
+                lte: undefined,
+              },
+            },
+          },
+        },
         cursor: undefined,
       };
       // Exercise: call the function
@@ -97,20 +143,41 @@ describe('RecipeRepository.pickupList()', () => {
       // Mock recipe.findMany method
       ormMock.recipe.findMany = jest
         .fn()
-        .mockImplementation(({ take, cursor = {} }) => {
+        .mockImplementation(({ where: { favorites }, take, cursor = {} }) => {
+          const filterDateResults = pickupListResults.map((res) => {
+            return {
+              ...res,
+              favorites: res.favorites.filter(
+                (favorite) =>
+                  favorite.createdAt <= favorites.every.createdAt.gte &&
+                  favorite.createdAt >= favorites.every.createdAt.lte,
+              ),
+            };
+          });
+          const filterResults = filterDateResults.filter((res) => {
+            return res.favorites.length > 0;
+          });
+
           const { id } = cursor;
           const start = id ? findIndexByRecipeId(id) + 1 : 0;
           const end = start + take;
-          const results = pickupListResults.slice(start, end);
+          const results = filterResults.slice(start, end);
+
           return Promise.resolve(results);
         });
     });
+
     test('Recipes on page 1', async () => {
       const ormProps = {
         ...commonOrmProps,
       };
       // Exercise: call the function
-      const recipes = await repository.pickupList(ormProps.take);
+      const recipes = await repository.pickupList(
+        ormProps.take,
+        undefined,
+        fromDate,
+        toDate,
+      );
 
       // Verify: ensure recipe.pickupList was called with correct arguments
       expect(ormMock.recipe.findMany).toHaveBeenCalledWith(ormProps);
@@ -130,7 +197,7 @@ describe('RecipeRepository.pickupList()', () => {
         cursor: { id },
       } = ormProps;
       // Exercise: call the function
-      const recipes = await repository.pickupList(take, id);
+      const recipes = await repository.pickupList(take, id, fromDate, toDate);
 
       // Verify: ensure recipe.pickupList was called with correct arguments
       expect(ormMock.recipe.findMany).toHaveBeenCalledWith(ormProps);
@@ -151,8 +218,21 @@ describe('RecipeRepository.pickupList()', () => {
         take,
         cursor: { id },
       } = ormProps;
+      const filterDateResults = pickupListResults.map((res) => {
+        return {
+          ...res,
+          favorites: res.favorites.filter(
+            (favorite) =>
+              favorite.createdAt <= fromDate && favorite.createdAt >= toDate,
+          ),
+        };
+      });
+      const filterResults = filterDateResults.filter((res) => {
+        return res.favorites.length > 0;
+      });
+
       // Exercise: call the function
-      const recipes = await repository.pickupList(take, id);
+      const recipes = await repository.pickupList(take, id, fromDate, toDate);
 
       // Verify: ensure recipe.pickupList was called with correct arguments
       expect(ormMock.recipe.findMany).toHaveBeenCalledWith(ormProps);
@@ -160,7 +240,8 @@ describe('RecipeRepository.pickupList()', () => {
       // Verify: ensure the function returns the data we specified
       const start = findIndexByRecipeId(id) + 1;
       const end = start + take;
-      expect(recipes).toStrictEqual(pickupListResults.slice(start, end));
+
+      expect(recipes).toStrictEqual(filterResults.slice(start, end));
       expect(recipes.length).toStrictEqual(1);
     });
   });

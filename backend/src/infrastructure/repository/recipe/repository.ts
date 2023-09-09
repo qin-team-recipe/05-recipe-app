@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Recipe } from '@prisma/client';
 import {
   findManyByUserIdRecipeResponse,
   FindRecipeResponse,
@@ -31,7 +32,7 @@ export class RecipeRepository {
   }
 
   // レシピを更新する
-  async update(recipeProps: RecipeUpdateInput): Promise<RecipeResponse | null> {
+  async update(recipeProps: RecipeUpdateInput): Promise<RecipeResponse> {
     if (typeof recipeProps.id !== 'string') {
       const error = new InvalidArgsError('id must be a string');
       this.logger.error(error);
@@ -107,15 +108,28 @@ export class RecipeRepository {
   }
 
   // 話題のレシピ一覧をページネーションで取得する
+  // TODO: 直近3日間と上位10までにする
   async pickupList(
     take: number,
     cursor?: string,
+    fromDate?: Date,
+    toDate?: Date,
   ): Promise<PickupListRecipeResponse> {
     try {
       return await this.orm.recipe.findMany({
         take,
         skip: cursor ? 1 : undefined,
         cursor: cursor ? { id: cursor } : undefined,
+        where: {
+          favorites: {
+            every: {
+              createdAt: {
+                gte: fromDate,
+                lte: toDate,
+              },
+            },
+          },
+        },
         orderBy: {
           favoriteCount: 'desc',
         },
@@ -129,6 +143,11 @@ export class RecipeRepository {
               path: true,
             },
           },
+          favorites: {
+            select: {
+              createdAt: true,
+            },
+          },
         },
       });
     } catch (error) {
@@ -139,6 +158,7 @@ export class RecipeRepository {
   }
 
   // ユーザーのレシピ一覧をページネーションで取得する
+  // 人気のレシピにも対応する keyを引数で変更
   async findManyByUserId(
     userId: string,
     take: number,
@@ -175,9 +195,9 @@ export class RecipeRepository {
   }
 
   // レシピををIDで削除する
-  async delete(id: string): Promise<void> {
+  async delete(id: string): Promise<Recipe | null> {
     try {
-      await this.orm.recipe.delete({
+      return await this.orm.recipe.delete({
         where: { id },
       });
     } catch (error) {
