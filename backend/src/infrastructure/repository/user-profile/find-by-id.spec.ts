@@ -13,9 +13,6 @@ const findResult: FindUserProfileResponse = {
   nickname: 'user nickname',
   imgPath: 'user imgPath',
   introduction: 'user introduction',
-  twitterId: 'user twitterId',
-  instagramId: 'user instagramId',
-  siteUrl: 'user siteUrl',
   followerCount: 1,
   recipeCount: 1,
   createdAt: new Date(),
@@ -32,6 +29,15 @@ const findResult: FindUserProfileResponse = {
       title: 'recipe-title2',
       description: 'recipe-description2',
       favoriteCount: 2,
+    },
+  ],
+  userLinks: [
+    {
+      id: 1,
+      userId: 'cuid',
+      url: 'user-link-url1',
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
   ],
 };
@@ -82,6 +88,7 @@ describe('UserProfileRepository.findByUserId()', () => {
           favoriteCount: true,
         },
       },
+      userLinks: true,
     },
   };
 
@@ -116,9 +123,6 @@ describe('UserProfileRepository.findByUserId()', () => {
     expect(userProfile?.nickname).toStrictEqual(findResult.nickname);
     expect(userProfile?.imgPath).toStrictEqual(findResult.imgPath);
     expect(userProfile?.introduction).toStrictEqual(findResult.introduction);
-    expect(userProfile?.twitterId).toStrictEqual(findResult.twitterId);
-    expect(userProfile?.instagramId).toStrictEqual(findResult.instagramId);
-    expect(userProfile?.siteUrl).toStrictEqual(findResult.siteUrl);
     expect(userProfile?.followerCount).toStrictEqual(findResult.followerCount);
     expect(userProfile?.recipeCount).toStrictEqual(findResult.recipeCount);
     expect(userProfile?.recipes).toStrictEqual(findResult.recipes);

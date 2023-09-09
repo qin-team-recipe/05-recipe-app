@@ -14,14 +14,17 @@ const findResult: FindUserResponse = {
   createdAt: new Date(),
   updatedAt: new Date(),
   userProfile: {
-    nickname: 'user nickname',
-    imgPath: 'user imgPath',
-    introduction: 'user introduction',
-    twitterId: 'user twitterId',
-    instagramId: 'user instagramId',
-    siteUrl: 'user siteUrl',
-    followerCount: 1,
-    recipeCount: 1,
+    nickname: 'initial nickname',
+    imgPath: 'initial/img/path',
+    introduction: 'initial introduction',
+    followerCount: 0,
+    recipeCount: 0,
+    userLinks: [
+      {
+        id: 1,
+        url: 'user-link-url1',
+      },
+    ],
   },
   recipes: [
     {
@@ -82,11 +85,14 @@ describe('UserRepository.findById()', () => {
           nickname: true,
           imgPath: true,
           introduction: true,
-          twitterId: true,
-          instagramId: true,
-          siteUrl: true,
           followerCount: true,
           recipeCount: true,
+          userLinks: {
+            select: {
+              id: true,
+              url: true,
+            },
+          },
         },
       },
       recipes: {

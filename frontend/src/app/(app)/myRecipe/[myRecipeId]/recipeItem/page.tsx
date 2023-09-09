@@ -1,9 +1,14 @@
 import React, { FC } from "react"
 
+import { getRecipe } from "@/mock/api"
 import { IconCopy } from "@tabler/icons-react"
 
 import { ContentContainer } from "@/app/(app)/_component/container"
-import { SectionHeader, SubButtonLink } from "@/app/(app)/_component/header"
+import {
+  MyRecipe,
+  SectionHeader,
+  SubButtonLink,
+} from "@/app/(app)/_component/header"
 import { RecipeItem } from "@/app/(app)/_component/recipeItem"
 import { Tab } from "@/app/(app)/_component/tab"
 import { MyRecipePageDetail } from "@/app/(app)/myRecipe/[myRecipeId]/_component"
@@ -35,18 +40,7 @@ const LinkTabPage: FC<LinkTabPageProps> = (props) => {
   const recipeItems = recipeItemList.map((recipeItem, i) => {
     return <RecipeItem note={recipeItem.note} key={i} />
   })
-
-  const recipeData = {
-    favoriteCount: 222,
-    img: "/pizza.jpg",
-    introduction:
-      "おいしいおいしいマルゲリータピザ。トマトたっぷり・チーズたっぷり！生地はさくさくもっちもち",
-    isPublish: true,
-    name: "山田の特製マルゲリータ",
-    user: "山田シェフ",
-    userImg: "/chef.jpg",
-  }
-
+  const recipeData: MyRecipe = { ...getRecipe(), isPublish: true }
   const subButtonLink = {
     href: "/favorite",
     label: "まとめてお買物に追加",

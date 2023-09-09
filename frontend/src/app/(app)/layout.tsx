@@ -15,8 +15,8 @@ export default function MainLayout(props: MainLayoutProps) {
   const { children } = props
 
   return (
-    <div className="mx-auto flex min-h-screen flex-col-reverse sm:max-w-2xl sm:flex-row sm:gap-x-3 sm:px-4 sm:pl-6">
-      <nav className="bg-mauve-app fixed bottom-0 z-50 w-full shadow-base sm:sticky sm:bottom-auto sm:top-0 sm:w-auto sm:self-start sm:shadow-none">
+    <div className="background-white mx-auto flex min-h-screen flex-col-reverse sm:max-w-2xl sm:flex-row sm:gap-x-3 sm:px-4 sm:pl-6">
+      <nav className="fixed bottom-0 z-50 w-full shadow-base sm:sticky sm:bottom-auto sm:top-0 sm:w-auto sm:self-start sm:shadow-none">
         <div className="hidden py-6 sm:block sm:pl-3">
           <Link href="/search">ロゴ</Link>
         </div>

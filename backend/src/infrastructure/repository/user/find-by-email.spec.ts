@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
 import createPrismaMock from 'prisma-mock';
-import { FindUserResponse } from 'src/entity/user.entity';
+import { UserWithAuthProvidersResponse } from 'src/entity/user.entity';
 import { OrmClient } from 'src/infrastructure/orm/orm.client';
 import { CustomLoggerService } from 'src/utils/logger/custom-logger.service';
 import { UserRepository } from './repository';
@@ -8,35 +8,12 @@ import { UserRepository } from './repository';
 let repository: UserRepository;
 let ormMock: OrmClient;
 
-const findResult: FindUserResponse = {
+const findResult: UserWithAuthProvidersResponse = {
   id: 'cuid',
   email: 'initial@test.com',
   createdAt: new Date(),
   updatedAt: new Date(),
-  userProfile: {
-    nickname: 'user nickname',
-    imgPath: 'user imgPath',
-    introduction: 'user introduction',
-    twitterId: 'user twitterId',
-    instagramId: 'user instagramId',
-    siteUrl: 'user siteUrl',
-    followerCount: 1,
-    recipeCount: 1,
-  },
-  recipes: [
-    {
-      id: 'recipe-cuid1',
-      title: 'recipe-title1',
-      description: 'recipe-description1',
-      favoriteCount: 1,
-    },
-    {
-      id: 'recipe-cuid2',
-      title: 'recipe-title2',
-      description: 'recipe-description2',
-      favoriteCount: 2,
-    },
-  ],
+  userAuthProviders: [{ provider: 'GOOGLE', providerId: '1234567890' }],
 };
 
 beforeAll(async () => {
@@ -77,24 +54,11 @@ beforeAll(async () => {
 describe('UserRepository.findByEmail()', () => {
   const ormProps = {
     include: {
-      userProfile: {
+      userAuthProviders: {
         select: {
-          nickname: true,
-          imgPath: true,
-          introduction: true,
-          twitterId: true,
-          instagramId: true,
-          siteUrl: true,
-          followerCount: true,
-          recipeCount: true,
-        },
-      },
-      recipes: {
-        select: {
-          id: true,
-          title: true,
-          description: true,
-          favoriteCount: true,
+          userId: true,
+          provider: true,
+          providerId: true,
         },
       },
     },
@@ -126,9 +90,6 @@ describe('UserRepository.findByEmail()', () => {
     });
 
     // Verify: ensure the function returns the data we specified
-    expect(user?.id).toStrictEqual(findResult.id);
-    expect(user?.email).toStrictEqual(findResult.email);
-    expect(user?.userProfile).toStrictEqual(findResult.userProfile);
-    expect(user?.recipes).toStrictEqual(findResult.recipes);
+    expect(user).toStrictEqual(findResult);
   });
 });

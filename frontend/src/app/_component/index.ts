@@ -1,2 +1,2 @@
 export { ScrollAreaWrapper } from "./ScrollAreaWrapper"
-export { DDMenuWrapper } from "./DDMenuWrapper"
+export { DDMenuWrapper, baseDDMenu } from "./DDMenuWrapper"

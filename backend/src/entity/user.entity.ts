@@ -1,6 +1,5 @@
 import type {
   Prisma,
-  Recipe,
   User,
   UserAuthProvider,
   UserProfile,
@@ -25,9 +24,8 @@ export const UserResponseSchema: z.ZodType<User> = user;
 
 export const UserResponseWithRecipesSchema: z.ZodType<User> = user;
 
-export type UserCreateInput = Required<
-  Pick<z.infer<typeof UserCreateInputSchema>, 'email' | 'userAuthProviders'>
->;
+export type UserCreateInput = Prisma.UserCreateInput &
+  Pick<Prisma.UserAuthProviderCreateInput, 'provider' | 'providerId'>;
 
 export type UserUpdateInput = Pick<
   z.infer<typeof UserUpdateInputSchema>,
@@ -36,14 +34,37 @@ export type UserUpdateInput = Pick<
 
 export type UserResponse = z.infer<typeof UserResponseSchema>;
 
-export type UserCreatedResponse = UserResponse & {
-  userAuthProviders: Omit<UserAuthProvider, 'id' | 'createdAt'>[];
+export type UserWithAuthProvidersResponse = UserResponse & {
+  userAuthProviders: Pick<UserAuthProvider, 'provider' | 'providerId'>[];
 };
 
-export type FindUserResponse = UserResponse & {
-  userProfile: FindUserProfile | null;
-  recipes: FindUserRecipe[];
-};
+export type FindUserResponse = Prisma.UserGetPayload<{
+  include: {
+    userProfile: {
+      select: {
+        nickname: true;
+        imgPath: true;
+        introduction: true;
+        followerCount: true;
+        recipeCount: true;
+        userLinks: {
+          select: {
+            id: true;
+            url: true;
+          };
+        };
+      };
+    };
+    recipes: {
+      select: {
+        id: true;
+        title: true;
+        description: true;
+        favoriteCount: true;
+      };
+    };
+  };
+}>;
 
 export type PaginateUserResponse = (UserResponse & {
   userProfile: PaginateUserProfile | null;
@@ -53,11 +74,6 @@ export class UserCreateInputDto extends createZodDto(UserCreateInputSchema) {}
 
 export class UserUpdateInputDto extends createZodDto(UserUpdateInputSchema) {}
 
-type FindUserProfile = Omit<UserProfile, 'userId' | 'createdAt' | 'updatedAt'>;
-type FindUserRecipe = Pick<
-  Recipe,
-  'id' | 'title' | 'description' | 'favoriteCount'
->;
 type PaginateUserProfile = Pick<
   UserProfile,
   'nickname' | 'imgPath' | 'introduction' | 'recipeCount'

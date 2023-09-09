@@ -53,7 +53,10 @@ export class RecipeRepository {
   }
 
   // レシピをIDで取得する
-  async findById(id: string): Promise<FindRecipeResponse | null> {
+  async findById(
+    id: string,
+    userId: string,
+  ): Promise<FindRecipeResponse | null> {
     try {
       return await this.orm.recipe.findUnique({
         where: { id },
@@ -94,6 +97,9 @@ export class RecipeRepository {
             },
           },
           favorites: {
+            where: {
+              userId,
+            },
             select: {
               userId: true,
             },

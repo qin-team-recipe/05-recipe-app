@@ -41,17 +41,29 @@ describe('UserProfileRepository.create()', () => {
       nickname: 'test nickname',
       imgPath: 'test/img/path',
       introduction: 'test introduction',
-      twitterId: 'test_twitter_id',
-      instagramId: 'test_instagram_id',
-      siteUrl: 'https://test.com',
       followerCount: 1,
       recipeCount: 1,
+      userLinks: [
+        {
+          url: 'test-url1',
+        },
+      ],
     };
     const userProfile = await repository.create(userProfileProps);
 
     // Verify: ensure user.create was called with correct arguments
     expect(ormMock.userProfile.create).toHaveBeenCalledWith({
-      data: userProfileProps,
+      data: {
+        ...userProfileProps,
+        userLinks: {
+          createMany: {
+            data: userProfileProps.userLinks,
+          },
+        },
+      },
+      include: {
+        userLinks: true,
+      },
     });
 
     // Verify: ensure the function returns the data we specified
@@ -61,9 +73,6 @@ describe('UserProfileRepository.create()', () => {
     expect(userProfile.introduction).toStrictEqual(
       userProfileProps.introduction,
     );
-    expect(userProfile.twitterId).toStrictEqual(userProfileProps.twitterId);
-    expect(userProfile.instagramId).toStrictEqual(userProfileProps.instagramId);
-    expect(userProfile.siteUrl).toStrictEqual(userProfileProps.siteUrl);
     expect(userProfile.followerCount).toStrictEqual(
       userProfileProps.followerCount,
     );
@@ -78,6 +87,11 @@ describe('UserProfileRepository.create()', () => {
       introduction: 'test introduction',
       followerCount: 0,
       recipeCount: 0,
+      userLinks: [
+        {
+          url: 'test-url1',
+        },
+      ],
     };
     const userProfile = await repository.create(
       userProfilePropsWithoutOptional,
@@ -85,7 +99,17 @@ describe('UserProfileRepository.create()', () => {
 
     // Verify: ensure user.create was called with correct arguments
     expect(ormMock.userProfile.create).toHaveBeenCalledWith({
-      data: userProfilePropsWithoutOptional,
+      data: {
+        ...userProfilePropsWithoutOptional,
+        userLinks: {
+          createMany: {
+            data: userProfilePropsWithoutOptional.userLinks,
+          },
+        },
+      },
+      include: {
+        userLinks: true,
+      },
     });
 
     // Verify: ensure the function returns the data we specified
