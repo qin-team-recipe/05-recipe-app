@@ -65,7 +65,6 @@ export const BottomNavItem: FC<BottomNavItemProps<string>> = (props) => {
             height={navIconSize}
           />
         )
-        break
       case "お気に入り":
         return (
           <FavSvg
@@ -74,7 +73,6 @@ export const BottomNavItem: FC<BottomNavItemProps<string>> = (props) => {
             height={navIconSize}
           />
         )
-        break
       case "買い物リスト":
         return (
           <CartSvg
@@ -83,7 +81,6 @@ export const BottomNavItem: FC<BottomNavItemProps<string>> = (props) => {
             height={navIconSize}
           />
         )
-        break
       default:
         return null
     }
