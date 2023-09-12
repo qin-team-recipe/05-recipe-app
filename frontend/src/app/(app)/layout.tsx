@@ -21,9 +21,9 @@ export default function MainLayout(props: MainLayoutProps) {
           <Link href="/search">ロゴ</Link>
         </div>
         <BottomNavBar>
-          <BottomNavItem navLabel="さがす" href="/search" />
+          <BottomNavItem navLabel="一流レシピ" href="/search" />
           <BottomNavItem navLabel="お気に入り" href="/favorite" />
-          <BottomNavItem navLabel="お買い物リスト" href="/shopping" />
+          <BottomNavItem navLabel="買い物リスト" href="/shopping" />
         </BottomNavBar>
       </nav>
       <main className="sm:border-x-1 mb-auto mt-0 flex min-h-screen flex-1 flex-col overflow-y-auto sm:border sm:border-y-0 sm:border-solid sm:border-mauve-6">
