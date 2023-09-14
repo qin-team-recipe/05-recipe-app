@@ -11,7 +11,7 @@ import { tv } from "tailwind-variants"
 import { CartSvg, FavSvg, SearchSvg } from "@/app/(app)/_component/icon"
 
 /** @package */
-export type NavLabel = "さがす" | "お気に入り" | "お買い物リスト"
+export type NavLabel = "一流レシピ" | "お気に入り" | "買い物リスト"
 type BottomNavItemProps<T extends string> = {
   href: Route<T> | URL
   navLabel: NavLabel
@@ -57,7 +57,7 @@ export const BottomNavItem: FC<BottomNavItemProps<string>> = (props) => {
   const isActive = pathname === href
   const currentIcon = () => {
     switch (navLabel) {
-      case "さがす":
+      case "一流レシピ":
         return (
           <SearchSvg
             color={imgColor({ isActive })}
@@ -65,7 +65,6 @@ export const BottomNavItem: FC<BottomNavItemProps<string>> = (props) => {
             height={navIconSize}
           />
         )
-        break
       case "お気に入り":
         return (
           <FavSvg
@@ -74,8 +73,7 @@ export const BottomNavItem: FC<BottomNavItemProps<string>> = (props) => {
             height={navIconSize}
           />
         )
-        break
-      case "お買い物リスト":
+      case "買い物リスト":
         return (
           <CartSvg
             color={imgColor({ isActive })}
@@ -83,7 +81,6 @@ export const BottomNavItem: FC<BottomNavItemProps<string>> = (props) => {
             height={navIconSize}
           />
         )
-        break
       default:
         return null
     }
@@ -92,7 +89,7 @@ export const BottomNavItem: FC<BottomNavItemProps<string>> = (props) => {
   return (
     <Link href={href} className={textColor({ isActive })}>
       {currentIcon()}
-      <div className="text-2xs font-bold sm:text-base sm:font-normal">
+      <div className="font-zenAntique text-2xs font-bold sm:text-base sm:font-normal">
         {navLabel}
       </div>
     </Link>

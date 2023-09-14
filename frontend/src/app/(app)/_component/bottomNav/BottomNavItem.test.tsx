@@ -10,14 +10,18 @@ import {
 
 describe("BottomNavItemコンポーネントが正しくレンダリングされている", () => {
   describe("propsで受け取ったnavLabelが正しく表示されている", () => {
-    const navLabelList: NavLabel[] = ["さがす", "お気に入り", "お買い物リスト"]
+    const navLabelList: NavLabel[] = [
+      "一流レシピ",
+      "お気に入り",
+      "買い物リスト",
+    ]
     const hrefList: (Route<string> | URL)[] = [
       "/search",
       "/favorite",
       "/shopping",
     ]
 
-    test("「検索」と表示されている", () => {
+    test("「一流レシピ」と表示されている", () => {
       render(<BottomNavItem href={hrefList[0]} navLabel={navLabelList[0]} />)
 
       expect(screen.getByText(navLabelList[0])).toBeInTheDocument()
@@ -27,7 +31,7 @@ describe("BottomNavItemコンポーネントが正しくレンダリングされ
 
       expect(screen.getByText(navLabelList[1])).toBeInTheDocument()
     })
-    test("「お買い物」と表示されている", () => {
+    test("「買い物リスト」と表示されている", () => {
       render(<BottomNavItem href={hrefList[2]} navLabel={navLabelList[2]} />)
 
       expect(screen.getByText(navLabelList[2])).toBeInTheDocument()

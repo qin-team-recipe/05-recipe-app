@@ -14,7 +14,7 @@ export const SectionHeader: FC<SectionHeaderProps> = (props) => {
 
   return (
     <div className="flex items-end justify-between font-bold">
-      <h3 className="text-mauve-normal text-xl">{label}</h3>
+      <h3 className="text-mauve-normal font-zenAntique text-xl">{label}</h3>
       {subButtonLink ? (
         <div className="text-mauve-dim">
           <Link href={subButtonLink.href}>{subButtonLink.label}</Link>

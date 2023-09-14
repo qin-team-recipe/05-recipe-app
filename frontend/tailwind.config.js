@@ -26,6 +26,9 @@ module.exports = withTV({
       fontSize: {
         "2xs": "0.625rem",
       },
+      fontFamily: {
+        zenAntique: ["var(--font-zen-antique)"],
+      },
     },
   },
   plugins: [
