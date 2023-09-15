@@ -6,16 +6,18 @@ import { baseLabel } from "@/app/(app)/_component/label/baseLabel"
 
 type TitleProps = {
   label: string
-  size?: "2xl" | "3xl"
+  size?: "xl" | "2xl" | "3xl"
 }
 
-const title = tv({
+/** @package */
+export const STitle = tv({
   base: "font-bold",
   extend: baseLabel,
   variants: {
     size: {
       "2xl": "text-2xl",
       "3xl": "text-3xl",
+      xl: "text-xl",
     },
   },
 })
@@ -23,5 +25,5 @@ const title = tv({
 export const Title: FC<TitleProps> = (props) => {
   const { label, size = "2xl" } = props
 
-  return <h2 className={title({ size })}>{label}</h2>
+  return <h2 className={STitle({ size })}>{label}</h2>
 }

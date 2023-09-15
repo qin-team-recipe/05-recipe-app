@@ -1,1 +1,1 @@
-export { ContentContainer } from "./contentContainer"
+export { ContentContainer, sContentContainer } from "./contentContainer"

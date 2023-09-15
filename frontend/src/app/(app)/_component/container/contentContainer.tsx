@@ -8,7 +8,7 @@ type ContentContainerProps = {
   isPaddingRight?: boolean
 }
 
-const sContentContainer = tv({
+export const sContentContainer = tv({
   variants: {
     isPaddingLeft: {
       true: "pl-4",
