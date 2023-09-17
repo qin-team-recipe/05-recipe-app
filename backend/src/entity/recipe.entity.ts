@@ -72,12 +72,19 @@ export type PickupListRecipeResponse = (Pick<
   favorites: Pick<Favorite, 'createdAt'>[];
 })[];
 
-export type findManyByUserIdRecipeResponse = (Pick<
-  RecipeResponse,
-  'id' | 'title' | 'description' | 'favoriteCount'
-> & {
-  recipeImages: Pick<RecipeImage, 'path'>[];
-})[];
+export type FindManyByUserIdRecipeResponse = Prisma.RecipeGetPayload<{
+  select: {
+    id: true;
+    title: true;
+    description: true;
+    favoriteCount: true;
+    recipeImages: {
+      select: {
+        path: true;
+      };
+    };
+  };
+}>[];
 
 export type DeleteRecipeResponse = RecipeResponse & {
   recipeImages: Pick<RecipeImage, 'id' | 'path'>[];
