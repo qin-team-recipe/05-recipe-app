@@ -217,7 +217,31 @@ export class RecipeRepository {
     }
   }
 
-  // TODO: fullTextSearchでtextに一致するRecipesをページネーションで取得する関数作成
+  // 検索テキストにヒットするレシピをページネーションで取得
+  async findManyBySearchText(
+    searchText: string,
+    take: number,
+    cursor?: string,
+    orderBy?: Partial<{
+      [key in 'createdAt' | 'favoriteCount']: 'asc' | 'desc';
+    }>,
+  ): Promise<Recipe[] | null> {
+    try {
+      return await this.orm.recipe.findMany({
+        where: {
+          title: searchText,
+        },
+        take,
+        skip: cursor ? 1 : undefined,
+        cursor: cursor ? { id: cursor } : undefined,
+        orderBy,
+      });
+    } catch (error) {
+      this.logger.error(error);
+      prismaErrorHandling(error);
+      throw error;
+    }
+  }
 
   // レシピををIDで削除する
   async delete(id: string): Promise<Recipe | null> {
