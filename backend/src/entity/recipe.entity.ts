@@ -72,7 +72,7 @@ export type PickupListRecipeResponse = (Pick<
   favorites: Pick<Favorite, 'createdAt'>[];
 })[];
 
-export type FindManyByUserIdRecipeResponse = Prisma.RecipeGetPayload<{
+export type FindManyRecipeResponse = Prisma.RecipeGetPayload<{
   select: {
     id: true;
     title: true;
