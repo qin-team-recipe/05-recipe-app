@@ -53,10 +53,7 @@ export class RecipeRepository {
   }
 
   // レシピをIDで取得する
-  async findById(
-    id: string,
-    userId: string,
-  ): Promise<FindRecipeResponse | null> {
+  async findById(id: string): Promise<FindRecipeResponse | null> {
     try {
       return await this.orm.recipe.findUnique({
         where: { id },
@@ -97,9 +94,6 @@ export class RecipeRepository {
             },
           },
           favorites: {
-            where: {
-              userId,
-            },
             select: {
               userId: true,
             },
@@ -167,7 +161,9 @@ export class RecipeRepository {
     userId: string,
     take: number,
     cursor?: string,
-    orderBy?: { [key in 'createdAt' | 'favoriteCount']: 'asc' | 'desc' },
+    orderBy?: Partial<{
+      [key in 'createdAt' | 'favoriteCount']: 'asc' | 'desc';
+    }>,
   ): Promise<findManyByUserIdRecipeResponse> {
     try {
       return await this.orm.recipe.findMany({
@@ -196,6 +192,32 @@ export class RecipeRepository {
       throw error;
     }
   }
+
+  // フォロワーのレシピをページネーションで取得
+  async findManyByFollowerIds(
+    followerIds: string[],
+    take: number,
+    cursor?: string,
+    orderBy?: Partial<{
+      [key in 'createdAt']: 'asc' | 'desc';
+    }>,
+  ): Promise<Recipe[] | null> {
+    try {
+      return await this.orm.recipe.findMany({
+        where: { userId: { in: followerIds } },
+        take,
+        skip: cursor ? 1 : undefined,
+        cursor: cursor ? { id: cursor } : undefined,
+        orderBy,
+      });
+    } catch (error) {
+      this.logger.error(error);
+      prismaErrorHandling(error);
+      throw error;
+    }
+  }
+
+  // TODO: fullTextSearchでtextに一致するRecipesをページネーションで取得する関数作成
 
   // レシピををIDで削除する
   async delete(id: string): Promise<Recipe | null> {
