@@ -1,6 +1,6 @@
 import React, { FC } from "react"
 
-import { getInstructionList, getRecipe } from "@/mock/api"
+import { getInstructionList } from "@/mock/api"
 import { IconCopy } from "@tabler/icons-react"
 
 import { Instruction } from "@/app/(app)/_component/instruction"
@@ -23,7 +23,13 @@ const RecipePage: FC<RecipePageProps> = async (props) => {
 
   const instructionList = getInstructionList()
   const linkList = tabLinkList(params.recipeId)
-  const recipeData = getRecipe()
+  const response = await fetch(
+    `http://localhost:3000/recipe/${params.recipeId}/api`,
+    {
+      cache: "no-cache",
+    },
+  )
+  const recipeData = await response.json()
 
   return (
     <div>
