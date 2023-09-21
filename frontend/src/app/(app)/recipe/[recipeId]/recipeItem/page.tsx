@@ -1,6 +1,5 @@
 import React, { FC } from "react"
 
-import { getRecipe } from "@/mock/api"
 import type { TRecipeItem } from "@/type"
 import { IconCopy } from "@tabler/icons-react"
 
@@ -8,7 +7,6 @@ import { ContentContainer } from "@/app/(app)/_component/container"
 import { SectionHeader, SubButtonLink } from "@/app/(app)/_component/header"
 import { RecipeItem } from "@/app/(app)/_component/recipeItem"
 import { Tab } from "@/app/(app)/_component/tab"
-import { RecipePageDetail } from "@/app/(app)/recipe/[recipeId]/_component"
 import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
 export const metadata = {
@@ -33,31 +31,26 @@ const LinkTabPage: FC<LinkTabPageProps> = async (props) => {
   const recipeItems = recipeItemList.map((recipeItem, i) => {
     return <RecipeItem note={recipeItem.note} key={i} />
   })
-  const recipeData = getRecipe()
   const subButtonLink = {
     href: "/favorite",
     label: "まとめてお買物に追加",
   } as const satisfies SubButtonLink
 
   return (
-    <div>
-      <RecipePageDetail data={recipeData} />
-
-      <div className="py-7">
-        <Tab linkList={linkList}>
-          <div className="my-2 grid grid-cols-1 divide-y divide-mauve-8">
-            <ContentContainer>
-              <SectionHeader label="２人前" subButtonLink={subButtonLink} />
-            </ContentContainer>
-            {recipeItems}
-          </div>
-        </Tab>
-        <div className="flex justify-end px-4">
-          <button className="flex text-blue-11 active:opacity-95">
-            <IconCopy />
-            コピーする
-          </button>
+    <div className="py-7">
+      <Tab linkList={linkList}>
+        <div className="my-2 grid grid-cols-1 divide-y divide-mauve-8">
+          <ContentContainer>
+            <SectionHeader label="２人前" subButtonLink={subButtonLink} />
+          </ContentContainer>
+          {recipeItems}
         </div>
+      </Tab>
+      <div className="flex justify-end px-4">
+        <button className="flex text-blue-11 active:opacity-95">
+          <IconCopy />
+          コピーする
+        </button>
       </div>
     </div>
   )

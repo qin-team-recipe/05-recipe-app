@@ -1,10 +1,7 @@
 import React, { FC } from "react"
 
-import { getRecipe } from "@/mock/api"
-
 import { Tab } from "@/app/(app)/_component/tab"
 import { LinkCard } from "@/app/(app)/chef/[chefId]/_component"
-import { RecipePageDetail } from "@/app/(app)/recipe/[recipeId]/_component"
 import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
 export const metadata = {
@@ -64,18 +61,11 @@ const LinkTabPage: FC<LinkTabPageProps> = async (props) => {
   })
 
   const linkList = tabLinkList(params.recipeId)
-
-  const recipeData = getRecipe()
-
   return (
-    <div>
-      <RecipePageDetail data={recipeData} />
-
-      <div className="py-7">
-        <Tab linkList={linkList}>
-          <div>{chefCards}</div>
-        </Tab>
-      </div>
+    <div className="py-7">
+      <Tab linkList={linkList}>
+        <div>{chefCards}</div>
+      </Tab>
     </div>
   )
 }
