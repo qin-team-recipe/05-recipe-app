@@ -6,7 +6,7 @@ import { Recipe } from "@/app/(app)/_component/header"
 export const get = (): Recipe => {
   return {
     favoriteCount: 222,
-    img: "recipe-images/recipe-1.jpg",
+    img: "/recipe-images/recipe-1.jpg",
     introduction:
       "おいしいおいしいマルゲリータピザ。トマトたっぷり・チーズたっぷり！生地はさくさくもっちもち",
     name: "山田の特製マルゲリータ",
