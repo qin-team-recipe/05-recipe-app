@@ -26,7 +26,7 @@ const RecipePage: FC<RecipePageProps> = async (props) => {
   const response = await fetch(
     `http://localhost:3000/recipe/${params.recipeId}/api`,
     {
-      cache: "no-cache",
+      cache: "no-store",
     },
   )
   const recipeData = await response.json()
