@@ -6,7 +6,7 @@ import { Recipe } from "@/app/(app)/_component/header"
 export const get = (): Recipe => {
   return {
     favoriteCount: 222,
-    img: "/pizza.jpg",
+    img: "recipe-images/recipe-1.jpg",
     introduction:
       "おいしいおいしいマルゲリータピザ。トマトたっぷり・チーズたっぷり！生地はさくさくもっちもち",
     name: "山田の特製マルゲリータ",
@@ -23,9 +23,9 @@ export const getDraft = (): TRecipe[] => {
       createdAt: "2021年01月01日",
       favoriteCount: 111,
       img: {
-        key: "/pizza.jpg",
-        name: "/pizza.jpg",
-        url: "/pizza.jpg",
+        key: "/recipe-images/recipe-1.jpg",
+        name: "/recipe-images/recipe-1.jpg",
+        url: "/recipe-images/recipe-1.jpg",
       },
       instructionList: [
         {
@@ -63,9 +63,9 @@ export const getDraft = (): TRecipe[] => {
       createdAt: "2021年01月01日",
       favoriteCount: 222,
       img: {
-        key: "/pizza.jpg",
-        name: "/pizza.jpg",
-        url: "/pizza.jpg",
+        key: "/recipe-images/recipe-1.jpg",
+        name: "/recipe-images/recipe-1.jpg",
+        url: "/recipe-images/recipe-1.jpg",
       },
       instructionList: [
         {
@@ -104,9 +104,9 @@ export const getDraft = (): TRecipe[] => {
       createdAt: "2021年01月01日",
       favoriteCount: 333,
       img: {
-        key: "/pizza.jpg",
-        name: "/pizza.jpg",
-        url: "/pizza.jpg",
+        key: "/recipe-images/recipe-1.jpg",
+        name: "/recipe-images/recipe-1.jpg",
+        url: "/recipe-images/recipe-1.jpg",
       },
       instructionList: [
         {

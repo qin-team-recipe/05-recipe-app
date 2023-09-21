@@ -26,7 +26,7 @@ export const ChefImg: FC<ChefImgProps> = (props) => {
     <div className="h-full w-full">
       {/* TODO: imageがnullの場合の画像用意 */}
       <Image
-        src={img ?? "/pizza.jpg"}
+        src={img ?? "/recipe-images/recipe-1.jpg"}
         alt="chef"
         width={150}
         height={150}
