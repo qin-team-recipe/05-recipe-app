@@ -9,10 +9,6 @@ import { RecipeItem } from "@/app/(app)/_component/recipeItem"
 import { Tab } from "@/app/(app)/_component/tab"
 import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
-export const metadata = {
-  title: "レシピ詳細 | 材料",
-}
-
 type LinkTabPageProps = {
   params: {
     recipeId: string

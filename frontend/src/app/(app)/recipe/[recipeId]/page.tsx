@@ -7,10 +7,6 @@ import { Instruction } from "@/app/(app)/_component/instruction"
 import { Tab } from "@/app/(app)/_component/tab"
 import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
-export const metadata = {
-  title: "レシピ詳細",
-}
-
 type RecipePageProps = {
   params: {
     recipeId: string
