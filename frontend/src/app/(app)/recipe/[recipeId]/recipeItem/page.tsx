@@ -1,4 +1,5 @@
 import React, { FC } from "react"
+import { Metadata, ResolvingMetadata } from "next"
 
 import type { TRecipeItem } from "@/type"
 import { IconCopy } from "@tabler/icons-react"
@@ -9,8 +10,18 @@ import { RecipeItem } from "@/app/(app)/_component/recipeItem"
 import { Tab } from "@/app/(app)/_component/tab"
 import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
-export const metadata = {
-  title: "レシピ詳細 | 材料",
+export const generateMetadata = async (
+  parent: ResolvingMetadata,
+): Promise<Metadata> => {
+  const previousImages = (await parent).openGraph?.images || []
+  const parentTitle = (await parent).title + "の材料"
+
+  return {
+    openGraph: {
+      images: [...previousImages],
+    },
+    title: parentTitle,
+  }
 }
 
 type LinkTabPageProps = {

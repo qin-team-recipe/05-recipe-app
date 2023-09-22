@@ -14,7 +14,7 @@ export const generateMetadata = async ({
 
   return {
     openGraph: {
-      images: ["/some-specific-page-image.jpg", recipeData.img],
+      images: [recipeData.img],
     },
     title: recipeData.name,
   }
