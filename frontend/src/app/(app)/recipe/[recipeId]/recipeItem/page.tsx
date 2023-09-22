@@ -11,16 +11,19 @@ import { Tab } from "@/app/(app)/_component/tab"
 import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
 export const generateMetadata = async (
+  params: {
+    recipeId: string
+  },
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
   const previousImages = (await parent).openGraph?.images || []
-  const parentTitle = (await parent).title + "の材料"
+  const { title } = await parent
 
   return {
     openGraph: {
       images: [...previousImages],
     },
-    title: parentTitle,
+    title: `${title?.absolute}の材料一覧`,
   }
 }
 

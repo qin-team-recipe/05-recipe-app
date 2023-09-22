@@ -1,11 +1,25 @@
 import React, { FC } from "react"
+import { Metadata, ResolvingMetadata } from "next"
 
 import { Tab } from "@/app/(app)/_component/tab"
 import { LinkCard } from "@/app/(app)/chef/[chefId]/_component"
 import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
-export const metadata = {
-  title: "レシピ詳細 | リンク",
+export const generateMetadata = async (
+  params: {
+    recipeId: string
+  },
+  parent: ResolvingMetadata,
+): Promise<Metadata> => {
+  const previousImages = (await parent).openGraph?.images || []
+  const { title } = await parent
+
+  return {
+    openGraph: {
+      images: [...previousImages],
+    },
+    title: `${title?.absolute}のシェフSNS一覧`,
+  }
 }
 
 type LinkTabPageProps = {

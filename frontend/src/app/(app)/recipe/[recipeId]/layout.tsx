@@ -16,7 +16,7 @@ export const generateMetadata = async ({
     openGraph: {
       images: [recipeData.img],
     },
-    title: recipeData.name,
+    title: `一流レシピ | ${recipeData.name}`,
   }
 }
 
