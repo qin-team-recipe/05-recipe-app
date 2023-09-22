@@ -1,9 +1,23 @@
 import React, { ReactNode } from "react"
+import type { Metadata } from "next"
 
+import { Recipe } from "@/app/(app)/_component/header"
 import { RecipePageDetail } from "@/app/(app)/recipe/[recipeId]/_component"
 
-export const metadata = {
-  title: "シェフやレシピを検索",
+export const generateMetadata = async ({
+  params: { recipeId },
+}: RecipeDetailLayoutProps): Promise<Metadata> => {
+  const response = await fetch(`http://localhost:3000/recipe/${recipeId}/api`, {
+    cache: "no-store",
+  })
+  const recipeData: Recipe = await response.json()
+
+  return {
+    openGraph: {
+      images: ["/some-specific-page-image.jpg", recipeData.img],
+    },
+    title: recipeData.name,
+  }
 }
 
 type RecipeDetailLayoutProps = {
