@@ -23,7 +23,7 @@ export const RecipeCard: FC<RecipeCardProps> = (props) => {
 
   return (
     <div className={recipeCard({ hasHotRecipe })}>
-      <div className="bg-tomato-ui relative aspect-square w-full rounded-xl bg-[url('/pizza.jpg')] bg-cover bg-center bg-no-repeat">
+      <div className="bg-tomato-ui relative aspect-square w-full rounded-xl bg-[url('/recipe-images/recipe-1.jpg')] bg-cover bg-center bg-no-repeat">
         <RecipeFavButton />
       </div>
       <div className="p-1">
