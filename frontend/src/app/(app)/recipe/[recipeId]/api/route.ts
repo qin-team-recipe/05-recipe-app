@@ -9,8 +9,9 @@ export const GET = async (
 ) => {
   const recipeId = params.recipeId
   const data: Recipe = {
+    id: Number(recipeId),
     favoriteCount: getRandomInt(1000),
-    img: `/recipe-images/recipe-${getRandomInt(5)}.jpg`,
+    img: `/recipe-images/recipe-${getRandomInt(5) + 1}.jpg`,
     introduction:
       "おいしいおいしいマルゲリータピザ。トマトたっぷり・チーズたっぷり！生地はさくさくもっちもち",
     name: `山田の特製マルゲリータ${recipeId}`,

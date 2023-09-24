@@ -23,6 +23,7 @@ export type Chef = {
 
 /** @package */
 export type Recipe = {
+  id: number
   favoriteCount: number
   user: string
   userImg: string
