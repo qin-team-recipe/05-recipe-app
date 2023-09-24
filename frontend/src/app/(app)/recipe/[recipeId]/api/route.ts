@@ -10,6 +10,8 @@ export const GET = async (
   const recipeId = params.recipeId
   const data: Recipe = {
     id: Number(recipeId),
+    // 本来はちゃんとしたchefのidを入れる
+    authorId: `${recipeId}`,
     favoriteCount: getRandomInt(1000),
     img: `/recipe-images/recipe-${getRandomInt(5) + 1}.jpg`,
     introduction:

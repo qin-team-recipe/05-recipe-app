@@ -25,6 +25,8 @@ export const GET = async () => {
     const randomNum = getRandomInt(5)
     return {
       id: i,
+      // 本来はちゃんとしたchefのidを入れる
+      authorId: `${i}`,
       favoriteCount: getRandomInt(1000),
       hasHotRecipe: true,
       img: `/recipe-images/recipe-${getRandomInt(randomNum) + 1}.jpg`,
