@@ -1,11 +1,16 @@
 import React, { FC } from "react"
+import Image from "next/image"
+import Link from "next/link"
 
 import { tv } from "tailwind-variants"
 
 import { RecipeFavButton } from "@/app/(app)/_component/recipeCard/RecipeFavButton"
 
 type RecipeCardProps = {
+  favoriteCount: number
   hasHotRecipe?: boolean
+  img: string
+  recipeId: number
   summary: string
   title: string
 }
@@ -19,17 +24,29 @@ const recipeCard = tv({
 
 /** @package */
 export const RecipeCard: FC<RecipeCardProps> = (props) => {
-  const { hasHotRecipe = false, summary, title } = props
-
+  const {
+    favoriteCount,
+    hasHotRecipe = false,
+    img,
+    recipeId,
+    summary,
+    title,
+  } = props
   return (
-    <div className={recipeCard({ hasHotRecipe })}>
-      <div className="bg-tomato-ui relative aspect-square w-full rounded-xl bg-[url('/recipe-images/recipe-1.jpg')] bg-cover bg-center bg-no-repeat">
-        <RecipeFavButton />
+    <Link href={`/recipe/${recipeId}`} className={recipeCard({ hasHotRecipe })}>
+      <div className="bg-tomato-ui relative aspect-square overflow-hidden rounded-xl bg-cover bg-center bg-no-repeat">
+        <Image
+          src={img ? img : "/recipe-images/recipe-1.jpg"}
+          fill
+          alt={title}
+          className="w-full"
+        />
+        <RecipeFavButton favoriteCount={favoriteCount} />
       </div>
       <div className="p-1">
         <div className="text-sm font-bold line-clamp-2">{title}</div>
         <div className=" truncate text-xs text-mauve-11">{summary}</div>
       </div>
-    </div>
+    </Link>
   )
 }
