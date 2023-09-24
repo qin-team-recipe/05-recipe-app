@@ -11,7 +11,7 @@ import { RecipeCard } from "@/app/(app)/_component/recipeCard"
 
 /** @package */
 export const HotRecipeList = async () => {
-  const response = await fetch("http://localhost:3000/search/api/recipe", {
+  const response = await fetch("http://localhost:3000/search/api/recipes", {
     cache: "no-store",
   })
   const json: Recipe[] = await response.json()
