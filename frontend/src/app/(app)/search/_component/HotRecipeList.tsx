@@ -2,18 +2,29 @@ import React from "react"
 
 import { ScrollAreaWrapper } from "@/app/_component"
 import { ContentContainer } from "@/app/(app)/_component/container"
-import { SectionHeader, SubButtonLink } from "@/app/(app)/_component/header"
+import {
+  Recipe,
+  SectionHeader,
+  SubButtonLink,
+} from "@/app/(app)/_component/header"
 import { RecipeCard } from "@/app/(app)/_component/recipeCard"
 
 /** @package */
-export const HotRecipeList = () => {
-  const chefCards = Array.from({ length: 10 }).map((_, i) => {
+export const HotRecipeList = async () => {
+  const response = await fetch("http://localhost:3000/search/api/recipe", {
+    cache: "no-store",
+  })
+  const json: Recipe[] = await response.json()
+  const recipeCards = json.map((recipe) => {
     return (
       <RecipeCard
-        summary="補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章"
-        title="メイン文章メイン文章メイン文章メイン文章メイン文章メイン文章メイン文章"
-        key={i}
+        summary={recipe.user}
+        title={recipe.name}
+        key={recipe.id}
         hasHotRecipe={true}
+        favoriteCount={recipe.favoriteCount}
+        img={recipe.img}
+        recipeId={recipe.id}
       />
     )
   })
@@ -34,7 +45,7 @@ export const HotRecipeList = () => {
         <ScrollAreaWrapper>
           {/* カードリストの右にだけpaddingがつくように */}
           <ContentContainer isPaddingLeft={false}>
-            <div className="flex space-x-4">{chefCards}</div>
+            <div className="flex space-x-4">{recipeCards}</div>
           </ContentContainer>
         </ScrollAreaWrapper>
       </ContentContainer>
