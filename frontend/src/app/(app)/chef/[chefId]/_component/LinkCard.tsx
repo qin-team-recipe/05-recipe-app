@@ -18,10 +18,7 @@ export const LinkCard: FC<LinkCardProps> = (props) => {
   const { accountId, linkType, siteName, snsFollower, url } = props
 
   return (
-    <a
-      href={url}
-      className="flex gap-4 border border-0 border-b border-mauve-6 p-4"
-    >
+    <a href={url} className="flex gap-4 border-0 border-b border-mauve-6 p-4">
       <SnsIcon linkType={linkType} />
       <SiteInfo
         accountId={accountId}
