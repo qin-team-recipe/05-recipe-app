@@ -44,6 +44,9 @@ export const GET = async (_: Request) => {
   })
 
   const orderRecipes = filterRecipes.sort((a, b) => {
+    if (a.createdAt && b.createdAt) {
+      return a.createdAt < b.createdAt ? 1 : -1
+    }
     return a < b ? 1 : -1
   })
 
