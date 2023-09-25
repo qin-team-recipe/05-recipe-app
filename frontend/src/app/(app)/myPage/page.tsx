@@ -4,6 +4,7 @@ import Link from "next/link"
 import { getChef } from "@/mock/api"
 
 import { ContentContainer } from "@/app/(app)/_component/container"
+import { Recipe } from "@/app/(app)/_component/header"
 import { RecipeCard } from "@/app/(app)/_component/recipeCard"
 import { Tab } from "@/app/(app)/_component/tab"
 import { MyPageDetail } from "@/app/(app)/myPage/_component"
@@ -13,13 +14,25 @@ export const metadata = {
   title: "新着レシピ｜マイページ",
 }
 
-const MyPage: FC = () => {
-  const recipeCards = Array.from({ length: 10 }).map((_, i) => {
+const MyPage: FC = async () => {
+  const response = await fetch(
+    `http://localhost:3000/myPage/api/latestRecipes`,
+    {
+      cache: "no-store",
+    },
+  )
+  const json: Recipe[] = await response.json()
+  const recipeCards = json.map((recipe) => {
     return (
       <RecipeCard
-        summary="補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章"
-        title="メイン文章メイン文章メイン文章メイン文章メイン文章メイン文章メイン文章"
-        key={i}
+        summary={recipe.user}
+        title={recipe.name}
+        key={recipe.id}
+        hasHotRecipe={true}
+        favoriteCount={recipe.favoriteCount}
+        img={recipe.img}
+        recipeId={recipe.id}
+        createdAt={recipe.createdAt}
       />
     )
   })
