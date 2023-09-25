@@ -1,4 +1,7 @@
 // TODO: img, introductionはオプショナルにする必要がある
+
+import { Dates } from "@/type"
+
 /** @package */
 export type Common = {
   img: string
@@ -28,7 +31,8 @@ export type Recipe = {
   favoriteCount: number
   user: string
   userImg: string
-} & Common
+} & Common &
+  Dates
 
 /** @package */
 export type MyPage = Chef

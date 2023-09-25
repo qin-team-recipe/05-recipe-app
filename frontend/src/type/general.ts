@@ -77,3 +77,9 @@ export type TRecipeList = TRecipe[]
 export type TUserInfo = {
   likeList: [recipeId: string]
 }
+
+/** @package */
+export type Dates = {
+  createdAt?: string
+  updatedAt?: string
+}
