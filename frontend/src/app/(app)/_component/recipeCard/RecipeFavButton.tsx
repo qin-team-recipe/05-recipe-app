@@ -41,8 +41,14 @@ const reducer = (state: State, action: Action): State => {
   }
 }
 
+type RecipeFavButtonProps = {
+  favoriteCount: number
+}
+
 /** @package */
-export const RecipeFavButton: FC = () => {
+export const RecipeFavButton: FC<RecipeFavButtonProps> = ({
+  favoriteCount,
+}) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const handleClick = useCallback(() => {
@@ -60,7 +66,9 @@ export const RecipeFavButton: FC = () => {
         height={16}
         strokeWidth={3}
       />
-      <div className={`${state.textColor}`}>1,234</div>
+      <div className={`${state.textColor}`}>
+        {favoriteCount ? favoriteCount.toLocaleString() : "1,234"}
+      </div>
     </button>
   )
 }
