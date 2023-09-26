@@ -1,6 +1,7 @@
 import React, { FC } from "react"
 
 import { ContentContainer } from "@/app/(app)/_component/container"
+import { Recipe } from "@/app/(app)/_component/header"
 import { RecipeCard } from "@/app/(app)/_component/recipeCard"
 import { Tab } from "@/app/(app)/_component/tab"
 import { tabLinkList } from "@/app/(app)/chef/[chefId]/_lib"
@@ -13,13 +14,22 @@ type ChefPageProps = {
 
 const ChefPage: FC<ChefPageProps> = async (props) => {
   const { params } = props
-
-  const recipeCards = Array.from({ length: 10 }).map((_, i) => {
+  const response = await fetch(
+    `http://localhost:3000/chef/${params.chefId}/api/recipes`,
+    {
+      cache: "no-store",
+    },
+  )
+  const json: Recipe[] = await response.json()
+  const recipeCards = json.map((recipe) => {
     return (
       <RecipeCard
-        summary="補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章"
-        title="メイン文章メイン文章メイン文章メイン文章メイン文章メイン文章メイン文章"
-        key={i}
+        summary={recipe.user}
+        title={recipe.name}
+        key={recipe.id}
+        favoriteCount={recipe.favoriteCount}
+        img={recipe.img}
+        recipeId={recipe.id}
       />
     )
   })
