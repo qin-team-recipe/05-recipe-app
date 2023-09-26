@@ -11,7 +11,7 @@ type BottomNavBarProps = {
 
 const bottomNavBar = tv({
   base: `
-  w-full grid-cols-3 py-0.5
+  w-full grid-cols-3 py-0.5 background-white
   sm:w-auto sm:flex-col sm:gap-4 sm:py-0`,
   variants: {
     isShow: {
