@@ -2,17 +2,29 @@ import React from "react"
 
 import { ScrollAreaWrapper } from "@/app/_component"
 import { ContentContainer } from "@/app/(app)/_component/container"
-import { SectionHeader } from "@/app/(app)/_component/header"
+import { Recipe, SectionHeader } from "@/app/(app)/_component/header"
 import { RecipeCard } from "@/app/(app)/_component/recipeCard"
 
 /** @package */
-export const FavoriteRecipeList = () => {
-  const chefCards = Array.from({ length: 20 }).map((_, i) => {
+export const FavoriteRecipeList = async () => {
+  const res = await fetch(
+    "http://localhost:3000/favorite/api/favoriteRecipes",
+    {
+      cache: "no-store",
+    },
+  )
+  const json: Recipe[] = await res.json()
+
+  const recipeCards = json.map((recipe) => {
     return (
       <RecipeCard
-        summary="補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章"
-        title="メイン文章メイン文章メイン文章メイン文章メイン文章メイン文章メイン文章"
-        key={i}
+        summary={recipe.user}
+        title={recipe.name}
+        key={recipe.id}
+        hasHotRecipe={false}
+        favoriteCount={recipe.favoriteCount}
+        img={recipe.img}
+        recipeId={recipe.id}
       />
     )
   })
@@ -26,7 +38,7 @@ export const FavoriteRecipeList = () => {
         <ScrollAreaWrapper orientation="vertical">
           <ContentContainer isPaddingLeft={false} isPaddingRight={true}>
             <div className="grid h-full w-full grid-cols-2 gap-x-3 gap-y-3.5">
-              {chefCards}
+              {recipeCards}
             </div>
           </ContentContainer>
         </ScrollAreaWrapper>
