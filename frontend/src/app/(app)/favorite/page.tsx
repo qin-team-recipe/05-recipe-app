@@ -11,7 +11,7 @@ export const metadata = {
   title: "お気に入り",
 }
 
-export const FavoritePage = () => {
+const FavoritePage = () => {
   return (
     <div>
       <FavoritePageHeader />
