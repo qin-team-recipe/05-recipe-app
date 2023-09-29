@@ -11,7 +11,7 @@ export const metadata = {
   title: "お気に入り",
 }
 
-export default function FavoritePage() {
+const FavoritePage = () => {
   return (
     <div>
       <FavoritePageHeader />
@@ -31,3 +31,5 @@ export default function FavoritePage() {
     </div>
   )
 }
+
+export default FavoritePage

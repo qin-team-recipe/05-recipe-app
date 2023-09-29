@@ -81,7 +81,7 @@ describe('RecipeRepository.findManyByUserId()', () => {
         return Promise.resolve([]);
       });
     });
-    test('0 recipes', async () => {
+    test('0 favoriteRecipes', async () => {
       const ormProps = {
         ...commonOrmProps,
         cursor: undefined,
