@@ -53,6 +53,10 @@ export const SearchHeader: FC = () => {
         // @ts-ignore
         router.push(pushToLink)
         setTimer(null)
+      } else if (!event.target.value) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        router.push(pathname)
       }
     }, 1000)
 
