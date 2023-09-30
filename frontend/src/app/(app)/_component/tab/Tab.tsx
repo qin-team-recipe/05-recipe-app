@@ -9,7 +9,7 @@ import { tv } from "tailwind-variants"
 import { Link as LinkType } from "@/app/(app)/_component/tab"
 
 type TabProps = {
-  children: ReactNode
+  children?: ReactNode
   linkList: LinkType[]
 }
 
@@ -37,7 +37,9 @@ export const Tab: FC<TabProps> = (props) => {
               key={String(link.href)}
               href={link.href}
               className={tabLink({
-                isActive: pathname === link.pathname,
+                isActive: link.pathname
+                  ? pathname === link.pathname
+                  : pathname === link.href,
               })}
             >
               {link.tabLabel}
