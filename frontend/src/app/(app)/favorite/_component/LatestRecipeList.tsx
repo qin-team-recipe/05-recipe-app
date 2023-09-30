@@ -2,7 +2,11 @@ import React, { FC } from "react"
 
 import { ScrollAreaWrapper } from "@/app/_component"
 import { ContentContainer } from "@/app/(app)/_component/container"
-import { SectionHeader, SubButtonLink } from "@/app/(app)/_component/header"
+import {
+  Recipe,
+  SectionHeader,
+  SubButtonLink,
+} from "@/app/(app)/_component/header"
 import { RecipeCard } from "@/app/(app)/_component/recipeCard"
 
 type LatestRecipeListProps = {
@@ -10,17 +14,26 @@ type LatestRecipeListProps = {
 }
 
 /** @package */
-export const LatestRecipeList: FC<LatestRecipeListProps> = (props) => {
+export const LatestRecipeList: FC<LatestRecipeListProps> = async (props) => {
   const { isVertical = false } = props
+  const response = await fetch(
+    "http://localhost:3000/favorite/api/latestRecipes",
+    {
+      cache: "no-store",
+    },
+  )
+  const json: Recipe[] = await response.json()
 
-  // [dev]
-  const recipeCards = Array.from({ length: 10 }).map((_, i) => {
+  const recipeCards = json.map((recipe) => {
     return (
       <RecipeCard
-        summary="補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章補足文章"
-        title="メイン文章メイン文章メイン文章メイン文章メイン文章メイン文章メイン文章"
-        key={i}
-        hasHotRecipe={!isVertical}
+        summary={recipe.user}
+        title={recipe.name}
+        key={recipe.id}
+        hasHotRecipe={true}
+        favoriteCount={recipe.favoriteCount}
+        img={recipe.img}
+        recipeId={recipe.id}
       />
     )
   })
