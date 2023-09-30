@@ -44,7 +44,11 @@ export const SearchHeader: FC = () => {
 
     const newTimer = setTimeout(() => {
       if (searchKeyword) {
-        const pushToLink = `${pathname}/?q=${event.target.value}`
+        const redirectPathname =
+          pathname === ("/search/recipe" || "/search/chef")
+            ? pathname
+            : "/search/chef"
+        const pushToLink = `${redirectPathname}/?q=${event.target.value}`
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         router.push(pushToLink)
