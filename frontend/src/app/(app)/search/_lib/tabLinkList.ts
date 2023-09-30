@@ -15,10 +15,12 @@ export const tabLinkList = (args: TabLinkListArgs): Link[] => {
   return [
     {
       href: `/search/recipe${q}`,
+      pathname: "/search/recipe",
       tabLabel: "レシピ",
     },
     {
       href: `/search/chef${q}`,
+      pathname: "/search/chef",
       tabLabel: "シェフ",
     },
   ]
