@@ -10,7 +10,7 @@ type TabLinkListArgs = {
 export const tabLinkList = (args: TabLinkListArgs): Link[] => {
   const { queryParams } = args
 
-  const q = queryParams ? `/?q=${queryParams}` : ""
+  const q = queryParams ? `?${queryParams}` : ""
 
   return [
     {

@@ -27,7 +27,6 @@ const searchHeader = tv({
 /** @package */
 export const SearchHeader: FC = () => {
   const router = useRouter()
-
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
@@ -40,14 +39,12 @@ export const SearchHeader: FC = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(event.target.value)
-
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     clearTimeout(timer!)
 
     const newTimer = setTimeout(() => {
       if (searchKeyword) {
-        const pushToLink = `/search/chef/?q=${event.target.value}`
-
+        const pushToLink = `${pathname}/?q=${event.target.value}`
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         router.push(pushToLink)
