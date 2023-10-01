@@ -28,6 +28,7 @@ export const Tab: FC<TabProps> = (props) => {
   const { children, linkList } = props
 
   const pathname = usePathname()
+
   return (
     <div className="flex flex-col">
       <div className="flex w-full justify-between">
@@ -37,9 +38,7 @@ export const Tab: FC<TabProps> = (props) => {
               key={String(link.href)}
               href={link.href}
               className={tabLink({
-                isActive: link.pathname
-                  ? pathname === link.pathname
-                  : pathname === link.href,
+                isActive: pathname === link.href,
               })}
             >
               {link.tabLabel}
