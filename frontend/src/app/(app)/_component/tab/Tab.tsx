@@ -9,7 +9,7 @@ import { tv } from "tailwind-variants"
 import { Link as LinkType } from "@/app/(app)/_component/tab"
 
 type TabProps = {
-  children: ReactNode
+  children?: ReactNode
   linkList: LinkType[]
 }
 

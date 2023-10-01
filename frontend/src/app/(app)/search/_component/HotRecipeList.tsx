@@ -30,7 +30,7 @@ export const HotRecipeList = async () => {
   })
 
   const subButtonLink = {
-    href: "/favorite",
+    href: "/search/recipe",
     label: "もっと見る",
   } as const satisfies SubButtonLink
 
