@@ -31,7 +31,8 @@ export default function SettingsPage() {
               <IconChevronRight className="h-6 w-6 text-mauve-12 dark:text-mauve-1" />
             </Link>
             <Link
-              href="/privacy"
+              // href="/privacy"
+              href="/terms"
               className="flex items-center justify-between py-3"
             >
               <div>プライバシーポリシー</div>
