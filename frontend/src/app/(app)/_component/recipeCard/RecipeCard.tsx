@@ -17,7 +17,7 @@ type RecipeCardProps = {
 }
 
 const recipeCard = tv({
-  base: "text-mauve-normal w-fll",
+  base: "text-mauve-normal w-fll mx-auto",
   variants: {
     hasHotRecipe: { true: "w-40" },
   },
