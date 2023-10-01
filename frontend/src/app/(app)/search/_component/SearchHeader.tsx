@@ -30,8 +30,11 @@ export const SearchHeader: FC = () => {
 
   const pathname = usePathname()
   const searchParams = useSearchParams()
+  const queryParams = searchParams.get("q")
 
-  const convertedSearchParams = removeLastEqualSign(String(searchParams))
+  const convertedSearchParams = queryParams
+    ? decodeURIComponent(removeLastEqualSign(String(searchParams.get("q"))))
+    : ""
 
   const [searchKeyword, setSearchKeyword] = useState(convertedSearchParams)
   const [timer, setTimer] = useState<NodeJS.Timeout | null>(null)
@@ -46,7 +49,9 @@ export const SearchHeader: FC = () => {
 
     const newTimer = setTimeout(() => {
       if (searchKeyword) {
-        const pushToLink = `/search/chef/?q=${event.target.value}`
+        const pushToLink = `/search/recipe/?q=${decodeURIComponent(
+          event.target.value,
+        )}`
 
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
@@ -82,7 +87,7 @@ export const SearchHeader: FC = () => {
             setSearchKeyword("")
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            router.push(pathname)
+            router.replace(pathname) // router.pushからrouter.replaceに変更
           }}
         >
           <IconX size={18} />
