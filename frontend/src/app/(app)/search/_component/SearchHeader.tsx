@@ -85,9 +85,16 @@ export const SearchHeader: FC = () => {
           className="absolute inset-y-2 right-0 mr-3"
           onClick={() => {
             setSearchKeyword("")
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            router.replace(pathname) // router.pushからrouter.replaceに変更
+
+            if (pathname === "/search/recipe") {
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              router.push(pathname + "/pickup")
+            } else {
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              router.replace(pathname) // router.pushからrouter.replaceに変更
+            }
           }}
         >
           <IconX size={18} />
