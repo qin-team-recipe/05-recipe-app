@@ -1,6 +1,13 @@
 import { TRecipe } from "@/type"
 
-import { Recipe } from "@/app/(app)/_component/header"
+type Recipe = {
+  favoriteCount: number
+  img: string
+  introduction: string
+  name: string
+  user: string
+  userImg: string
+}
 
 /** @package */
 export const get = (): Recipe => {

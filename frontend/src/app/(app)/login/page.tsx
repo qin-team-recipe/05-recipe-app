@@ -7,17 +7,13 @@ export const metadata = {
   title: "ログインページ",
 }
 
-type Props = {
-  page: "favorite" | "shopping"
-}
-
-const LoginPage: FC<Props> = (props) => {
-  const { page } = props
+const LoginPage: FC = () => {
+  const pageType = "favorite"
 
   return (
     <div>
-      <LoginPageHeader page={page} />
-      <Login page={page} />
+      <LoginPageHeader page={pageType} />
+      <Login page={pageType} />
     </div>
   )
 }

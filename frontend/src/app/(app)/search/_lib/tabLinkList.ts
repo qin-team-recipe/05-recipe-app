@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Link } from "@/app/(app)/_component/tab"
 
 type TabLinkListArgs = {
@@ -16,10 +17,12 @@ export const tabLinkList = (args: TabLinkListArgs): Link[] => {
 
   return [
     {
+      // @ts-ignore
       href: `/search/recipe${q}`,
       tabLabel: "レシピ",
     },
     {
+      // @ts-ignore
       href: `/search/chef${q}`,
       tabLabel: "シェフ",
     },

@@ -6,9 +6,7 @@ import { LinkCard } from "@/app/(app)/chef/[chefId]/_component"
 import { tabLinkList } from "@/app/(app)/recipe/[recipeId]/_lib"
 
 export const generateMetadata = async (
-  params: {
-    recipeId: string
-  },
+  params: any,
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
   const previousImages = (await parent).openGraph?.images || []
