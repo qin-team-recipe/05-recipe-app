@@ -27,10 +27,14 @@ const searchHeader = tv({
 /** @package */
 export const SearchHeader: FC = () => {
   const router = useRouter()
+
   const pathname = usePathname()
   const searchParams = useSearchParams()
+  const queryParams = searchParams.get("q")
 
-  const convertedSearchParams = removeLastEqualSign(String(searchParams))
+  const convertedSearchParams = queryParams
+    ? decodeURIComponent(removeLastEqualSign(String(searchParams.get("q"))))
+    : ""
 
   const [searchKeyword, setSearchKeyword] = useState(convertedSearchParams)
   const [timer, setTimer] = useState<NodeJS.Timeout | null>(null)
@@ -39,24 +43,20 @@ export const SearchHeader: FC = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(event.target.value)
+
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     clearTimeout(timer!)
 
     const newTimer = setTimeout(() => {
       if (searchKeyword) {
-        const redirectPathname =
-          pathname === ("/search/recipe" || "/search/chef")
-            ? pathname
-            : "/search/chef"
-        const pushToLink = `${redirectPathname}/?q=${event.target.value}`
+        const pushToLink = `/search/recipe/?q=${decodeURIComponent(
+          event.target.value,
+        )}`
+
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         router.push(pushToLink)
         setTimer(null)
-      } else if (!event.target.value) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        router.push(pathname)
       }
     }, 1000)
 
@@ -87,7 +87,7 @@ export const SearchHeader: FC = () => {
             setSearchKeyword("")
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            router.push(pathname)
+            router.replace(pathname) // router.pushからrouter.replaceに変更
           }}
         >
           <IconX size={18} />
